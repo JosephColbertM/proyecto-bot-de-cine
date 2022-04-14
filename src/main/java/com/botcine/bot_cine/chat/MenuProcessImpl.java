@@ -67,9 +67,9 @@ public class MenuProcessImpl extends AbstractProcess {
 
     private void showMainMenu(CineLongPollingBot bot, Long chatId) {
         StringBuffer sb = new StringBuffer();
-        sb.append("MENU PRINCIPAL - BOT RRHH\r\n");
-        sb.append("1. Consultar permisos solicitados\r\n");
-        sb.append("2. Solicitar vacación\r\n");
+        sb.append("MENU PRINCIPAL - BOT DE CINE\r\n");
+        sb.append("1. ADMINISTRADOR\r\n");
+        sb.append("2. CLIENTE\r\n");
         sb.append("Elija una opción:\r\n");
         sendStringBuffer(bot, chatId, sb);
 
