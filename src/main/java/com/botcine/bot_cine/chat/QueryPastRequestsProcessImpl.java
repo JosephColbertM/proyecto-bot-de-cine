@@ -1,6 +1,9 @@
 package com.botcine.bot_cine.chat;
 
 import com.botcine.bot_cine.bl.PermissionBl;
+import com.botcine.bot_cine.chat.AbstractProcess;
+import com.botcine.bot_cine.chat.CineLongPollingBot;
+import com.botcine.bot_cine.chat.MenuProcessImpl;
 import com.botcine.bot_cine.dto.PermissionDto;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.objects.Update;
