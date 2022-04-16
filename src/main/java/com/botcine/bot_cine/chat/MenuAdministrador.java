@@ -34,7 +34,7 @@ public class MenuAdministrador extends AbstractProcess {
                     switch (opcion){
                         case 1 : result = new AccesoPeliculas();
                             break;
-                        case 2 : result = new RequestsPermissionProcessImpl();
+                        case 2 : result = new AccesoAdministradores();
                             break;
                         default: showMainMenu(bot, chatId);
                     }

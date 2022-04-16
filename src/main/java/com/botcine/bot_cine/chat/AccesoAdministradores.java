@@ -1,5 +1,7 @@
 package com.botcine.bot_cine.chat;
 
+import com.botcine.bot_cine.chat.administradores.AgregarAdministrador;
+import com.botcine.bot_cine.chat.administradores.ListaAdministradores;
 import com.botcine.bot_cine.chat.peliculas.AgregarPelicula;
 import com.botcine.bot_cine.chat.peliculas.EliminarPelicula;
 import com.botcine.bot_cine.chat.peliculas.ListaPeliculas;
@@ -9,16 +11,15 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.util.HashMap;
 
-public class AccesoPeliculas extends AbstractProcess {
-    public AccesoPeliculas() {
-        this.setName("Acceso al menu de peliculas");
+public class AccesoAdministradores extends AbstractProcess{
+    public AccesoAdministradores() {
+        this.setName("Acceso al menu de administradores");
         this.setDefault(true);
         this.setExpires(false);
         this.setStartDate(System.currentTimeMillis()/1000);
         this.setUserData(new HashMap<>());
         this.setStatus("STARTED");
     }
-
     @Override
     public AbstractProcess handle(Update update, CineLongPollingBot bot) {
         AbstractProcess result = this; // sigo en el mismo proceso.
@@ -36,13 +37,13 @@ public class AccesoPeliculas extends AbstractProcess {
                 try {
                     int opcion = Integer.parseInt(text);
                     switch (opcion){
-                        case 1 : result = new AgregarPelicula();
+                        case 1 : result = new AgregarAdministrador();
                             break;
                         case 2 : result = new ModificarPelicula();
                             break;
                         case 3 : result = new EliminarPelicula();
                             break;
-                        case 4 : result = new ListaPeliculas();
+                        case 4 : result = new ListaAdministradores();
                             break;
                         case 0 : result = new MenuAdministrador();
                             break;
@@ -61,7 +62,7 @@ public class AccesoPeliculas extends AbstractProcess {
 
     private void showMainMenu(CineLongPollingBot bot, Long chatId) {
         StringBuffer sb = new StringBuffer();
-        sb.append("MENU DE PELÍCULAS\r\n");
+        sb.append("MENU DE ADMINISTRADORES\r\n");
         sb.append("1. Agregar\r\n");
         sb.append("2. Modificar\r\n");
         sb.append("3. Eliminar\r\n");
