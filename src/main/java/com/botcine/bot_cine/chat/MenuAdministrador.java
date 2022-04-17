@@ -51,11 +51,13 @@ public class MenuAdministrador extends AbstractProcess {
 
     private void showMainMenu(CineLongPollingBot bot, Long chatId) {
         StringBuffer sb = new StringBuffer();
-        sb.append("MENU PRINCIPAL ADMINISTRADOR\r\n");
-        sb.append("1. Peliculas\r\n");
-        sb.append("2. Administradores\r\n");
+        sb.append("MENU CLIENTE\r\n");
+        sb.append("1. Ver cartelera\r\n");
+        sb.append("2. Infomacion de reservas\r\n");
+        sb.append("3. Historial de compras\r\n");
         sb.append("Elija una opción:\r\n");
         sendStringBuffer(bot, chatId, sb);
+
 
         String nombre = "Juan";
         String apellido = "Perez";

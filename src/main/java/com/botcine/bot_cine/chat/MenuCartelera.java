@@ -1,21 +1,15 @@
 package com.botcine.bot_cine.chat;
 
-import com.botcine.bot_cine.chat.widgets.AbstractWidget;
-import com.botcine.bot_cine.chat.widgets.MenuWidgetImpl;
-import org.telegram.telegrambots.bots.TelegramLongPollingBot;
-import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 
-public class MenuProcessImpl extends AbstractProcess {
-    public MenuProcessImpl() {
-        this.setName("Menú principal");
+public class MenuCartelera extends AbstractProcess {
+    public MenuCartelera() {
+        this.setName("Menú Cartelera");
         this.setDefault(true);
         this.setExpires(false);
         this.setStartDate(System.currentTimeMillis()/1000);
@@ -48,9 +42,9 @@ public class MenuProcessImpl extends AbstractProcess {
                 try {
                     int opcion = Integer.parseInt(text);
                     switch (opcion){
-                        case 1 : result = new MenuAdministrador();
+                        case 1 : result = new Horarios();
                             break;
-                        case 2 : result = new MenuCartelera();
+                        case 2 : result = new RequestsPermissionProcessImpl();
                             break;
                         default: showMainMenu(bot, chatId);
                     }
@@ -68,14 +62,13 @@ public class MenuProcessImpl extends AbstractProcess {
     private void showMainMenu(CineLongPollingBot bot, Long chatId) {
         StringBuffer sb = new StringBuffer();
         sb.append("MENU PRINCIPAL - BOT DE CINE\r\n");
-        sb.append("1. ADMINISTRADOR\r\n");
-        sb.append("2. CLIENTE\r\n");
+        sb.append("1 The Batman\r\n");
+        sb.append("2. Sonic 2\r\n");
+        sb.append("3. IT\r\n");
+        sb.append("4. Animales Fantasticos\r\n");
         sb.append("Elija una opción:\r\n");
         sendStringBuffer(bot, chatId, sb);
 
-        String nombre = "Juan";
-        String apellido = "Perez";
-        String nombreCompleto = nombre + " " + apellido;
         this.setStatus("AWAITING_USER_RESPONSE");
     }
 
@@ -96,5 +89,3 @@ public class MenuProcessImpl extends AbstractProcess {
         return null;
     }
 }
-
-

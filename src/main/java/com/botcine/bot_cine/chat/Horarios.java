@@ -1,20 +1,14 @@
 package com.botcine.bot_cine.chat;
 
-import com.botcine.bot_cine.chat.widgets.AbstractWidget;
-import com.botcine.bot_cine.chat.widgets.MenuWidgetImpl;
-import org.telegram.telegrambots.bots.TelegramLongPollingBot;
-import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 
-public class MenuProcessImpl extends AbstractProcess {
-    public MenuProcessImpl() {
+public class Horarios extends AbstractProcess {
+    public Horarios() {
         this.setName("Menú principal");
         this.setDefault(true);
         this.setExpires(false);
@@ -48,10 +42,17 @@ public class MenuProcessImpl extends AbstractProcess {
                 try {
                     int opcion = Integer.parseInt(text);
                     switch (opcion){
-                        case 1 : result = new MenuAdministrador();
+                        case 1 : result = new Asientos();
                             break;
-                        case 2 : result = new MenuCartelera();
+                        case 2 : result = new Asientos();
                             break;
+                        case 3 : result = new Asientos();
+                            break;
+                        case 4 : result = new Asientos();
+                            break;
+                        case 5 : result = new Asientos();
+                            break;
+
                         default: showMainMenu(bot, chatId);
                     }
                 } catch (NumberFormatException ex) {
@@ -67,19 +68,16 @@ public class MenuProcessImpl extends AbstractProcess {
 
     private void showMainMenu(CineLongPollingBot bot, Long chatId) {
         StringBuffer sb = new StringBuffer();
-        sb.append("MENU PRINCIPAL - BOT DE CINE\r\n");
-        sb.append("1. ADMINISTRADOR\r\n");
-        sb.append("2. CLIENTE\r\n");
+        sb.append("HORARIOS\r\n");
+        sb.append("1. 10:00 - 12:50\r\n");
+        sb.append("2. 12:50 - 15:40\r\n");
+        sb.append("3. 14:10 - 17:00\r\n");
+        sb.append("4. 15:30 - 18:10\r\n");
+        sb.append("5. 17:30 - 20:10\r\n");
         sb.append("Elija una opción:\r\n");
         sendStringBuffer(bot, chatId, sb);
-
-        String nombre = "Juan";
-        String apellido = "Perez";
-        String nombreCompleto = nombre + " " + apellido;
         this.setStatus("AWAITING_USER_RESPONSE");
     }
-
-
 
     @Override
     public AbstractProcess onError() {
@@ -96,5 +94,7 @@ public class MenuProcessImpl extends AbstractProcess {
         return null;
     }
 }
+
+
 
 

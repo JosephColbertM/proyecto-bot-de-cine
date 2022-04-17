@@ -1,6 +1,10 @@
 package com.botcine.bot_cine.dto;
 
-public class PeliculasDto {
+import com.botcine.bot_cine.chat.AbstractProcess;
+import com.botcine.bot_cine.chat.CineLongPollingBot;
+import org.telegram.telegrambots.meta.api.objects.Update;
+
+public class PeliculasDto{
     private String nombre;
     private String duracion;
     private String genero;
@@ -53,4 +57,5 @@ public class PeliculasDto {
                 "Genero: " + genero + '\n' +
                 "Funciones: " + horario + '\n';
     }
+
 }
