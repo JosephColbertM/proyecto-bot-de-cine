@@ -66,7 +66,7 @@ public class MenuCartelera extends AbstractProcess {
 
     private void showMainMenu(CineLongPollingBot bot, Long chatId) {
         StringBuffer sb = new StringBuffer();
-        sb.append("CARTELERA\r\n");
+        sb.append("CarteleraA\r\n");
         sb.append("1 The Batman\r\n");
         sb.append("2. Sonic 2\r\n");
         sb.append("3. IT\r\n");
