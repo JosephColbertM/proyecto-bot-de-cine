@@ -50,9 +50,7 @@ public class MenuProcessImpl extends AbstractProcess {
                     switch (opcion){
                         case 1 : result = new MenuAdministrador();
                             break;
-                        case 2 : result = new MenuCartelera();
-                            break;
-                        case 3 : result = new AccesoCliente();
+                        case 2 : result = new AccesoCliente();
                             break;
 
 
@@ -74,8 +72,7 @@ public class MenuProcessImpl extends AbstractProcess {
         sb.append("MENU PRINCIPAL - BOT DE CINE\r\n");
         sb.append("1. ADMINISTRADOR\r\n");
         sb.append("2. CLIENTE\r\n");
-        sb.append("3. CLIENTE\r\n");
-
+        
         sb.append("Elija una opción:\r\n");
         sendStringBuffer(bot, chatId, sb);
 
