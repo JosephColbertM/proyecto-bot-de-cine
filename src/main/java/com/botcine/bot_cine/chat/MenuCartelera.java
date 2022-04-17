@@ -44,8 +44,13 @@ public class MenuCartelera extends AbstractProcess {
                     switch (opcion){
                         case 1 : result = new Horarios();
                             break;
-                        case 2 : result = new RequestsPermissionProcessImpl();
+                        case 2 : result = new Horarios();
                             break;
+                        case 3 : result = new Horarios();
+                            break;
+                        case 4 : result = new Horarios();
+                            break;
+
                         default: showMainMenu(bot, chatId);
                     }
                 } catch (NumberFormatException ex) {
@@ -61,7 +66,7 @@ public class MenuCartelera extends AbstractProcess {
 
     private void showMainMenu(CineLongPollingBot bot, Long chatId) {
         StringBuffer sb = new StringBuffer();
-        sb.append("MENU PRINCIPAL - BOT DE CINE\r\n");
+        sb.append("CARTELERA\r\n");
         sb.append("1 The Batman\r\n");
         sb.append("2. Sonic 2\r\n");
         sb.append("3. IT\r\n");
