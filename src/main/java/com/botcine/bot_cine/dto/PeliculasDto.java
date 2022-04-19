@@ -1,8 +1,6 @@
 package com.botcine.bot_cine.dto;
 
-import com.botcine.bot_cine.chat.AbstractProcess;
-import com.botcine.bot_cine.chat.CineLongPollingBot;
-import org.telegram.telegrambots.meta.api.objects.Update;
+
 
 public class PeliculasDto{
     private String nombre;

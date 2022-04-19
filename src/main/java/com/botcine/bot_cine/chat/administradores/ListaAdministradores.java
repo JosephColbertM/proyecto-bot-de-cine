@@ -1,13 +1,13 @@
 package com.botcine.bot_cine.chat.administradores;
 
 import com.botcine.bot_cine.bl.AdministradorBl;
-import com.botcine.bot_cine.bl.PeliculasBl;
+
 import com.botcine.bot_cine.chat.AbstractProcess;
 import com.botcine.bot_cine.chat.AccesoAdministradores;
-import com.botcine.bot_cine.chat.AccesoPeliculas;
+
 import com.botcine.bot_cine.chat.CineLongPollingBot;
 import com.botcine.bot_cine.dto.AdministradorDto;
-import com.botcine.bot_cine.dto.PeliculasDto;
+
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.util.List;

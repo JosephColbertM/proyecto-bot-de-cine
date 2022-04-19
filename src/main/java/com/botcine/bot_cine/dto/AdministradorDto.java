@@ -1,10 +1,10 @@
 package com.botcine.bot_cine.dto;
 
 public class AdministradorDto {
-    private String nombre;
-    private String apellido;
-    private String usuario;
-    private String password;
+    String nombre;
+    String apellido;
+    String usuario;
+    String password;
 
     public AdministradorDto(String nombre, String apellido, String usuario, String password) {
         this.nombre = nombre;
@@ -49,8 +49,8 @@ public class AdministradorDto {
     public String toString() {
         return
                 "Nombre: " + nombre + '\n' +
-                "Apellido: " + apellido + '\n' +
-                "Usuario: " + usuario + '\n' +
-                "Password: " + password + '\n';
+                "Apellido" + apellido + '\n' +
+                "Usuario" + usuario + '\n' +
+                "Password" + password;
     }
 }

@@ -4,10 +4,7 @@ import com.botcine.bot_cine.chat.CandyBar.AgregarProducto;
 import com.botcine.bot_cine.chat.CandyBar.EliminarProducto;
 import com.botcine.bot_cine.chat.CandyBar.ListaProducto;
 import com.botcine.bot_cine.chat.CandyBar.ModificarProducto;
-import com.botcine.bot_cine.chat.administradores.AgregarAdministrador;
-import com.botcine.bot_cine.chat.administradores.ListaAdministradores;
-import com.botcine.bot_cine.chat.peliculas.EliminarPelicula;
-import com.botcine.bot_cine.chat.peliculas.ModificarPelicula;
+
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 

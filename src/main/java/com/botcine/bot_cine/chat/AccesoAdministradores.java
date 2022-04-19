@@ -1,11 +1,10 @@
 package com.botcine.bot_cine.chat;
 
 import com.botcine.bot_cine.chat.administradores.AgregarAdministrador;
+import com.botcine.bot_cine.chat.administradores.EliminarAdministrador;
 import com.botcine.bot_cine.chat.administradores.ListaAdministradores;
-import com.botcine.bot_cine.chat.peliculas.AgregarPelicula;
-import com.botcine.bot_cine.chat.peliculas.EliminarPelicula;
-import com.botcine.bot_cine.chat.peliculas.ListaPeliculas;
-import com.botcine.bot_cine.chat.peliculas.ModificarPelicula;
+import com.botcine.bot_cine.chat.administradores.ModificarAdministrador;
+
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
@@ -39,9 +38,9 @@ public class AccesoAdministradores extends AbstractProcess{
                     switch (opcion){
                         case 1 : result = new AgregarAdministrador();
                             break;
-                        case 2 : result = new ModificarPelicula();
+                        case 2 : result = new ModificarAdministrador();
                             break;
-                        case 3 : result = new EliminarPelicula();
+                        case 3 : result = new EliminarAdministrador();
                             break;
                         case 4 : result = new ListaAdministradores();
                             break;

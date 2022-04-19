@@ -1,16 +1,14 @@
 package com.botcine.bot_cine.chat.administradores;
 
-import com.botcine.bot_cine.bl.AdministradorBl;
 import com.botcine.bot_cine.chat.AbstractProcess;
+import com.botcine.bot_cine.chat.AccesoAdministradores;
 import com.botcine.bot_cine.chat.CineLongPollingBot;
-import com.botcine.bot_cine.dto.AdministradorDto;
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
-import java.util.List;
-
-public class ModificarAdministrador extends AbstractProcess {
-    public ModificarAdministrador() {
-        this.setName("Modificar datos de los administradores");
+public class DatosModificarAdministrador extends AbstractProcess {
+    public DatosModificarAdministrador() {
+        this.setName("Modificación de datos del administrador");
         this.setDefault(false);
         this.setExpires(false);
         this.setStartDate(System.currentTimeMillis()/1000);
@@ -19,20 +17,16 @@ public class ModificarAdministrador extends AbstractProcess {
     }
     @Override
     public AbstractProcess handle(Update update, CineLongPollingBot bot) {
-        int c=1;
         Long chatId = update.getMessage().getChatId();
-        AdministradorBl administradorBl = new AdministradorBl();
-        List<AdministradorDto> adminList = administradorBl.findLast10PermissionsByChatId(chatId);
         StringBuffer sb = new StringBuffer();
-        sb.append("ADMINISTRADORES\n\r");
-        sb.append("Ingrese el número del administrador que desea modificar\n\r\n");
-        for(AdministradorDto admins: adminList) {
-            sb.append(c + "\n\r");
-            sb.append(admins.toString()).append("\n\r");
-            c++;
-        }
+        sb.append("PARA MODIFICAR UN ADMINISTRADOR, DEBERA INGRESAR LOS DATOS EN EL SIGUIENTE ORDEN:\r\n\n");
+        sb.append("Nombre: \r\n");
+        sb.append("Apellido: \r\n");
+        sb.append("Usuario: \r\n");
+        sb.append("Password: \r\n");
+
         sendStringBuffer(bot, chatId, sb);
-        return new DatosModificarAdministrador();
+        return new AccesoAdministradores();
     }
 
     @Override

@@ -1,13 +1,39 @@
 package com.botcine.bot_cine.chat.peliculas;
 
+import com.botcine.bot_cine.bl.PeliculasBl;
 import com.botcine.bot_cine.chat.AbstractProcess;
+import com.botcine.bot_cine.chat.AccesoPeliculas;
 import com.botcine.bot_cine.chat.CineLongPollingBot;
+import com.botcine.bot_cine.dto.PeliculasDto;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
+import java.util.List;
+
 public class ModificarPelicula extends AbstractProcess {
+    public ModificarPelicula() {
+        this.setName("Modificar datos de las películas");
+        this.setDefault(false);
+        this.setExpires(false);
+        this.setStartDate(System.currentTimeMillis()/1000);
+        //this.setUserData(new HashMap<>());
+        this.setStatus("STARTED");
+    }
     @Override
     public AbstractProcess handle(Update update, CineLongPollingBot bot) {
-        return null;
+        int c=1;
+        Long chatId = update.getMessage().getChatId();
+        PeliculasBl peliculasBl = new PeliculasBl();
+        List<PeliculasDto> peliculaList = peliculasBl.findLast10PermissionsByChatId(chatId);
+        StringBuffer sb = new StringBuffer();
+        sb.append("PELÍCULAS\n\r");
+        sb.append("Ingrese el número de la película que desea modificar\n\r\n");
+        for(PeliculasDto pelicula: peliculaList) {
+            sb.append(c+ ":");
+            sb.append(pelicula.toString()).append("\n\r");
+            c++;
+        }
+        sendStringBuffer(bot, chatId, sb);
+        return new DatosModificarPelicula();
     }
 
     @Override

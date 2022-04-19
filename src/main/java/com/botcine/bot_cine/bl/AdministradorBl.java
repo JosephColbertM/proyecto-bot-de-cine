@@ -1,7 +1,7 @@
 package com.botcine.bot_cine.bl;
 
 import com.botcine.bot_cine.dto.AdministradorDto;
-import com.botcine.bot_cine.dto.PeliculasDto;
+
 
 import java.util.ArrayList;
 import java.util.List;

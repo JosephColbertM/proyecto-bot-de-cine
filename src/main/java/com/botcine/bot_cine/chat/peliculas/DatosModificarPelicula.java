@@ -1,17 +1,15 @@
 package com.botcine.bot_cine.chat.peliculas;
 
-import com.botcine.bot_cine.bl.PeliculasBl;
 import com.botcine.bot_cine.chat.AbstractProcess;
+
 import com.botcine.bot_cine.chat.AccesoPeliculas;
 import com.botcine.bot_cine.chat.CineLongPollingBot;
-import com.botcine.bot_cine.dto.PeliculasDto;
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
-import java.util.List;
-
-public class EliminarPelicula extends AbstractProcess {
-    public EliminarPelicula() {
-        this.setName("Eliminar una película");
+public class DatosModificarPelicula extends AbstractProcess {
+    public DatosModificarPelicula() {
+        this.setName("Modificación de datos pelicula");
         this.setDefault(false);
         this.setExpires(false);
         this.setStartDate(System.currentTimeMillis()/1000);
@@ -20,18 +18,15 @@ public class EliminarPelicula extends AbstractProcess {
     }
     @Override
     public AbstractProcess handle(Update update, CineLongPollingBot bot) {
-        int c=1;
         Long chatId = update.getMessage().getChatId();
-        PeliculasBl peliculasBl = new PeliculasBl();
-        List<PeliculasDto> peliculaList = peliculasBl.findLast10PermissionsByChatId(chatId);
         StringBuffer sb = new StringBuffer();
-        sb.append("PELÍCULAS\n\r");
-        sb.append("Ingrese el número de la película que desea eliminar\n\r\n");
-        for(PeliculasDto pelicula: peliculaList) {
-            sb.append(c).append("\n\r");
-            sb.append(pelicula.toString()).append("\n\r");
-            c++;
-        }
+        sb.append("PARA MODIFICAR UNA PELÍCULA, DEBERA INGRESAR LOS DATOS EN EL SIGUIENTE ORDEN:\r\n\n");
+        sb.append("Nombre: \r\n");
+        sb.append("Duración: \r\n");
+        sb.append("Genero: \r\n");
+        sb.append("Horarios: \r\n");
+
+
         sendStringBuffer(bot, chatId, sb);
         return new AccesoPeliculas();
     }
