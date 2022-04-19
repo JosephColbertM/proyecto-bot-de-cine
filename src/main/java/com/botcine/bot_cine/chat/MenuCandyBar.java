@@ -5,9 +5,9 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.util.HashMap;
 
-public class AccesoCliente extends AbstractProcess {
-    public AccesoCliente(){
-        this.setName("Acceso al menu de Clientes");
+public class MenuCandyBar extends AbstractProcess{
+    public MenuCandyBar(){
+        this.setName("Menú CandyBar");
         this.setDefault(true);
         this.setExpires(false);
         this.setStartDate(System.currentTimeMillis()/1000);
@@ -32,12 +32,17 @@ public class AccesoCliente extends AbstractProcess {
                 try {
                     int opcion = Integer.parseInt(text);
                     switch (opcion){
-                        case 1 : result = new MenuCartelera();
+                        case 1 : result = new Cantidad();
                             break;
-                        case 2 : result = new MenuCandyBar();
+                        case 2 : result = new Cantidad();
                             break;
-                        case 0 : result = new MenuAdministrador();
+                        case 3 : result = new Cantidad();
                             break;
+                        case 4 : result = new Cantidad();
+                            break;
+                        case 5 : result = new Cantidad();
+                            break;
+
                         default: showMainMenu(bot, chatId);
                     }
                 } catch (NumberFormatException ex) {
@@ -50,13 +55,14 @@ public class AccesoCliente extends AbstractProcess {
         }
         return result;
     }
-
     private void showMainMenu(CineLongPollingBot bot, Long chatId) {
         StringBuffer sb = new StringBuffer();
-        sb.append("MENU DE CLIENTE\r\n");
-        sb.append("1. Ver Cartelera\r\n");
-        sb.append("2. Ver menu de CandyBar\r\n");
-        sb.append("0. Salir\r\n");
+        sb.append("MENU CANDY-BAR\r\n");
+        sb.append("1. Pipocas saladas 15 Bs p/u\r\n");
+        sb.append("2. Pipocas dulces 10 Bs p/u\r\n");
+        sb.append("3. Soda Grande 14 Bs p/u\r\n");
+        sb.append("4. Soda Puequeña 9 Bs p/u\r\n");
+        sb.append("5. Chocolate Kit-Kat 8 Bs p/u\r\n");
         sb.append("Elija una opción:\r\n");
         sendStringBuffer(bot, chatId, sb);
 
