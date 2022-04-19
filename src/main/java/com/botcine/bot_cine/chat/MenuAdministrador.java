@@ -34,8 +34,13 @@ public class MenuAdministrador extends AbstractProcess {
                     switch (opcion){
                         case 1 : result = new AccesoPeliculas();
                             break;
-                        case 2 : result = new AccesoAdministradores();
+                        case 2 : result = new AccesoCandyBar();
                             break;
+                        case 3 : result = new AccesoAdministradores();
+                            break;
+                        case 4 : result = new MenuProcessImpl();
+                            break;
+
                         default: showMainMenu(bot, chatId);
                     }
                 } catch (NumberFormatException ex) {
@@ -51,10 +56,11 @@ public class MenuAdministrador extends AbstractProcess {
 
     private void showMainMenu(CineLongPollingBot bot, Long chatId) {
         StringBuffer sb = new StringBuffer();
-        sb.append("MENU CLIENTE\r\n");
-        sb.append("1. Ver cartelera\r\n");
-        sb.append("2. Infomacion de reservas\r\n");
-        sb.append("3. Historial de compras\r\n");
+        sb.append("MENU ADMINISTRADOR\r\n");
+        sb.append("1. Acceso Cartelera\r\n");
+        sb.append("2. Acceso CandyBar\r\n");
+        sb.append("3. Acceso Administradores\r\n");
+        sb.append("4. Salir\r\n");
         sb.append("Elija una opción:\r\n");
         sendStringBuffer(bot, chatId, sb);
 

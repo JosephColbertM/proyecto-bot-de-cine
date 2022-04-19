@@ -4,10 +4,9 @@ import com.botcine.bot_cine.chat.AbstractProcess;
 import com.botcine.bot_cine.chat.CineLongPollingBot;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
-public class CandyBar extends AbstractProcess {
+public class ModificarProducto extends AbstractProcess {
     @Override
     public AbstractProcess handle(Update update, CineLongPollingBot bot) {
-
         return null;
     }
 

@@ -1,10 +1,5 @@
 package com.botcine.bot_cine.chat;
 
-import com.botcine.bot_cine.chat.CandyBar.CandyBar;
-import com.botcine.bot_cine.chat.administradores.AgregarAdministrador;
-import com.botcine.bot_cine.chat.administradores.ListaAdministradores;
-import com.botcine.bot_cine.chat.peliculas.EliminarPelicula;
-import com.botcine.bot_cine.chat.peliculas.ModificarPelicula;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
@@ -39,7 +34,7 @@ public class AccesoCliente extends AbstractProcess {
                     switch (opcion){
                         case 1 : result = new MenuCartelera();
                             break;
-                        case 2 : result = new CandyBar();
+                        case 2 : result = new AccesoCandyBar();
                             break;
                         case 0 : result = new MenuAdministrador();
                             break;

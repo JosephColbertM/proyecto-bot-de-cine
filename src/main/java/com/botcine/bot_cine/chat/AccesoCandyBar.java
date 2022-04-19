@@ -1,35 +1,27 @@
 package com.botcine.bot_cine.chat;
 
-import com.botcine.bot_cine.chat.widgets.AbstractWidget;
-import com.botcine.bot_cine.chat.widgets.MenuWidgetImpl;
-import org.telegram.telegrambots.bots.TelegramLongPollingBot;
-import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import com.botcine.bot_cine.chat.CandyBar.AgregarProducto;
+import com.botcine.bot_cine.chat.CandyBar.EliminarProducto;
+import com.botcine.bot_cine.chat.CandyBar.ListaProducto;
+import com.botcine.bot_cine.chat.CandyBar.ModificarProducto;
+import com.botcine.bot_cine.chat.administradores.AgregarAdministrador;
+import com.botcine.bot_cine.chat.administradores.ListaAdministradores;
+import com.botcine.bot_cine.chat.peliculas.EliminarPelicula;
+import com.botcine.bot_cine.chat.peliculas.ModificarPelicula;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
-
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
-
-public class MenuProcessImpl extends AbstractProcess {
-    public MenuProcessImpl() {
-        this.setName("Menú principal");
+public class AccesoCandyBar extends AbstractProcess{
+    public AccesoCandyBar (){
+        this.setName("Acceso al menu de CandyBar");
         this.setDefault(true);
         this.setExpires(false);
         this.setStartDate(System.currentTimeMillis()/1000);
         this.setUserData(new HashMap<>());
         this.setStatus("STARTED");
     }
-
-    // Retornar un Widget de tipo menu
-//    @Override
-//    public AbstractWidget onInit() {
-//        MenuWidgetImpl menuWidget = new MenuWidgetImpl(messages);
-//        return menuWidget;
-//    }
-
 
     @Override
     public AbstractProcess handle(Update update, CineLongPollingBot bot) {
@@ -48,12 +40,16 @@ public class MenuProcessImpl extends AbstractProcess {
                 try {
                     int opcion = Integer.parseInt(text);
                     switch (opcion){
-                        case 1 : result = new MenuAdministrador();
+                        case 1 : result = new AgregarProducto();
                             break;
-                        case 2 : result = new AccesoCliente();
+                        case 2 : result = new ModificarProducto();
                             break;
-
-
+                        case 3 : result = new EliminarProducto();
+                            break;
+                        case 4 : result = new ListaProducto();
+                            break;
+                        case 0 : result = new MenuAdministrador();
+                            break;
                         default: showMainMenu(bot, chatId);
                     }
                 } catch (NumberFormatException ex) {
@@ -66,22 +62,19 @@ public class MenuProcessImpl extends AbstractProcess {
         }
         return result;
     }
-
     private void showMainMenu(CineLongPollingBot bot, Long chatId) {
         StringBuffer sb = new StringBuffer();
-        sb.append("MENU PRINCIPAL - BOT DE CINE\r\n");
-        sb.append("1. ADMINISTRADOR\r\n");
-        sb.append("2. CLIENTE\r\n");
-
+        sb.append("MENU DE ACCESO CANDY-BAR\r\n");
+        sb.append("1. Agregar\r\n");
+        sb.append("2. Modificar\r\n");
+        sb.append("3. Eliminar\r\n");
+        sb.append("4. Lista\r\n");
+        sb.append("0. Salir\r\n");
         sb.append("Elija una opción:\r\n");
         sendStringBuffer(bot, chatId, sb);
 
-        String nombre = "Juan";
-        String apellido = "Perez";
-        String nombreCompleto = nombre + " " + apellido;
         this.setStatus("AWAITING_USER_RESPONSE");
     }
-
 
 
     @Override
@@ -99,5 +92,3 @@ public class MenuProcessImpl extends AbstractProcess {
         return null;
     }
 }
-
-
