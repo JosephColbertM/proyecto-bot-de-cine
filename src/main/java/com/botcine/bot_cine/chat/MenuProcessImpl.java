@@ -76,9 +76,7 @@ public class MenuProcessImpl extends AbstractProcess {
         sb.append("Elija una opción:\r\n");
         sendStringBuffer(bot, chatId, sb);
 
-        String nombre = "Juan";
-        String apellido = "Perez";
-        String nombreCompleto = nombre + " " + apellido;
+
         this.setStatus("AWAITING_USER_RESPONSE");
     }
 

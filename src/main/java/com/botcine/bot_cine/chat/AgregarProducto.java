@@ -34,8 +34,7 @@ public class AgregarProducto extends AbstractProcess{
                             break;
                         case 2 : result = new Reserva();
                             break;
-                        case 3 : result = new RequestsPermissionProcessImpl();
-                            break;
+
                         default: showMainMenu(bot, chatId);
                     }
                 } catch (NumberFormatException ex) {

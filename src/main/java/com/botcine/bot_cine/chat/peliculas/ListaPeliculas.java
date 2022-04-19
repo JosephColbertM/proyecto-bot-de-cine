@@ -1,10 +1,8 @@
 package com.botcine.bot_cine.chat.peliculas;
 
 import com.botcine.bot_cine.bl.PeliculasBl;
-import com.botcine.bot_cine.bl.PermissionBl;
 import com.botcine.bot_cine.chat.*;
 import com.botcine.bot_cine.dto.PeliculasDto;
-import com.botcine.bot_cine.dto.PermissionDto;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.util.List;

@@ -44,8 +44,7 @@ public class Asientos extends AbstractProcess {
                     switch (opcion){
                         case 1 : result = new MenuAdministrador();
                             break;
-                        case 2 : result = new RequestsPermissionProcessImpl();
-                            break;
+
                         default: showMainMenu(bot, chatId);
                     }
                 } catch (NumberFormatException ex) {

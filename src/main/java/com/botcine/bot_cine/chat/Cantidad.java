@@ -36,8 +36,7 @@ public class Cantidad extends AbstractProcess{
                             break;
                         case 3 : result = new AgregarProducto();
                             break;
-                        case 4 : result = new RequestsPermissionProcessImpl();
-                            break;
+
                         default: showMainMenu(bot, chatId);
                     }
                 } catch (NumberFormatException ex) {
