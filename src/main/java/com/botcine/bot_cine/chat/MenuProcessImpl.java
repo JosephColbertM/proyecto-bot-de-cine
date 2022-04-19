@@ -71,9 +71,7 @@ public class MenuProcessImpl extends AbstractProcess {
     private void showMainMenu(CineLongPollingBot bot, Long chatId) {
         StringBuffer sb = new StringBuffer();
         sb.append("BIENVENIDO AL BOT DE RESERVAS HIGH SCHOOL MUSICAL\r\n");
-        sb.append("INGRESE A LA OPCION DE CLIENTE PARA HACER LA RESERVAS DE ENTRADAS\r\n");
-
-        sb.append("MENU PRINCIPAL - BOT DE CINE\r\n");
+        sb.append("Ingrese la opcion de cliente para hacer la reserva \r\n");
         sb.append("1. CLIENTE\r\n");
         sb.append("2. ADMINISTRADOR\r\n");
         sb.append("Elija una opción:\r\n");
