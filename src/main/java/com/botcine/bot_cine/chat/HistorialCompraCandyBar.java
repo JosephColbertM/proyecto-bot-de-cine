@@ -5,8 +5,8 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.util.HashMap;
 
-public class HistorialCompraCartelera extends AbstractProcess{
-    public HistorialCompraCartelera(){
+public class HistorialCompraCandyBar extends AbstractProcess{
+    public HistorialCompraCandyBar(){
         this.setName("Menú CandyBar");
         this.setDefault(true);
         this.setExpires(false);
@@ -14,7 +14,6 @@ public class HistorialCompraCartelera extends AbstractProcess{
         this.setUserData(new HashMap<>());
         this.setStatus("STARTED");
     }
-
     @Override
     public AbstractProcess handle(Update update, CineLongPollingBot bot) {
         AbstractProcess result = this; // sigo en el mismo proceso.
@@ -49,19 +48,17 @@ public class HistorialCompraCartelera extends AbstractProcess{
     }
     private void showMainMenu(CineLongPollingBot bot, Long chatId) {
         StringBuffer sb = new StringBuffer();
-        sb.append("COMPRAS REALIZADAS\r\n" +
-                  "Pelicula: The Batman\r\n"+
-                  "Duracion: 2:30\r\n"+
-                  "Boletos: 2\r\n"+
-                  "Horario: 10:00 - 12:50\r\n"+
-                  "Fecha de compra: 04/18/22\r\n"+
-                  "Fecha de emision: 04/24/22\r\n");
+        sb.append("COMPRAS REALIZADAS DEL CANDY-BAR\r\n" +
+                "Nombre: Pipoca Salada\r\n"+
+                "Cantidad: 3\r\n"+
+                "Precio total: 45 Bs\r\n"+
+                "Fecha de compra: 04/18/22\r\n"+
+                "Fecha de emision: 04/24/22\r\n");
         sb.append("0. Volver\r\n");
         sendStringBuffer(bot, chatId, sb);
 
         this.setStatus("AWAITING_USER_RESPONSE");
     }
-
     @Override
     public AbstractProcess onError() {
         return null;

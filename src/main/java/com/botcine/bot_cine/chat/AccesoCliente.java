@@ -38,7 +38,7 @@ public class AccesoCliente extends AbstractProcess {
                             break;
                         case 3 : result = new HistorialCompraCartelera();
                             break;
-                        case 4 : result = new MenuCandyBar();
+                        case 4 : result = new HistorialCompraCandyBar();
                             break;
                         case 0 : result = new MenuAdministrador();
                             break;

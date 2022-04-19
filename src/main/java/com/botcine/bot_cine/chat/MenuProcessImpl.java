@@ -48,9 +48,10 @@ public class MenuProcessImpl extends AbstractProcess {
                 try {
                     int opcion = Integer.parseInt(text);
                     switch (opcion){
-                        case 1 : result = new MenuAdministrador();
+                        case 1 : result = new AccesoCliente();
                             break;
-                        case 2 : result = new AccesoCliente();
+
+                        case 2 : result = new MenuAdministrador();
                             break;
 
 
@@ -69,10 +70,12 @@ public class MenuProcessImpl extends AbstractProcess {
 
     private void showMainMenu(CineLongPollingBot bot, Long chatId) {
         StringBuffer sb = new StringBuffer();
-        sb.append("MENU PRINCIPAL - BOT DE CINE\r\n");
-        sb.append("1. ADMINISTRADOR\r\n");
-        sb.append("2. CLIENTE\r\n");
+        sb.append("BIENVENIDO AL BOT DE RESERVAS HIGH SCHOOL MUSICAL\r\n");
+        sb.append("INGRESE A LA OPCION DE CLIENTE PARA HACER LA RESERVAS DE ENTRADAS\r\n");
 
+        sb.append("MENU PRINCIPAL - BOT DE CINE\r\n");
+        sb.append("1. CLIENTE\r\n");
+        sb.append("2. ADMINISTRADOR\r\n");
         sb.append("Elija una opción:\r\n");
         sendStringBuffer(bot, chatId, sb);
 
