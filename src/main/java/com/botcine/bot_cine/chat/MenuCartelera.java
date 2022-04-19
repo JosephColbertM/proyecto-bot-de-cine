@@ -50,6 +50,8 @@ public class MenuCartelera extends AbstractProcess {
                             break;
                         case 4 : result = new Horarios();
                             break;
+                        case 0 : result = new AccesoCliente();
+                            break;
 
                         default: showMainMenu(bot, chatId);
                     }
@@ -66,11 +68,12 @@ public class MenuCartelera extends AbstractProcess {
 
     private void showMainMenu(CineLongPollingBot bot, Long chatId) {
         StringBuffer sb = new StringBuffer();
-        sb.append("CarteleraA\r\n");
-        sb.append("1 The Batman\r\n");
+        sb.append("CARTELERA\r\n");
+        sb.append("1. The Batman\r\n");
         sb.append("2. Sonic 2\r\n");
         sb.append("3. IT\r\n");
         sb.append("4. Animales Fantasticos\r\n");
+        sb.append("0. Volver\r\n");
         sb.append("Elija una opción:\r\n");
         sendStringBuffer(bot, chatId, sb);
 

@@ -5,9 +5,9 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.util.HashMap;
 
-public class AccesoCliente extends AbstractProcess {
-    public AccesoCliente(){
-        this.setName("Acceso al menu de Clientes");
+public class HistorialCompraCartelera extends AbstractProcess{
+    public HistorialCompraCartelera(){
+        this.setName("Menú CandyBar");
         this.setDefault(true);
         this.setExpires(false);
         this.setStartDate(System.currentTimeMillis()/1000);
@@ -32,15 +32,7 @@ public class AccesoCliente extends AbstractProcess {
                 try {
                     int opcion = Integer.parseInt(text);
                     switch (opcion){
-                        case 1 : result = new MenuCartelera();
-                            break;
-                        case 2 : result = new MenuCandyBar();
-                            break;
-                        case 3 : result = new HistorialCompraCartelera();
-                            break;
-                        case 4 : result = new MenuCandyBar();
-                            break;
-                        case 0 : result = new MenuAdministrador();
+                        case 0 : result = new AccesoCliente();
                             break;
                         default: showMainMenu(bot, chatId);
                     }
@@ -54,16 +46,16 @@ public class AccesoCliente extends AbstractProcess {
         }
         return result;
     }
-
     private void showMainMenu(CineLongPollingBot bot, Long chatId) {
         StringBuffer sb = new StringBuffer();
-        sb.append("MENU DE CLIENTE\r\n");
-        sb.append("1. Ver Cartelera\r\n");
-        sb.append("2. Ver menu de CandyBar\r\n");
-        sb.append("3. Historial de Compra en Cartelera\r\n");
-        sb.append("4. Historial de Compra en CamdyBar\r\n");
-        sb.append("0. Salir\r\n");
-        sb.append("Elija una opción:\r\n");
+        sb.append("COMPRAS REALIZADAS\r\n" +
+                  "Pelicula: The Batman\r\n"+
+                  "Duracion: 2:30\r\n"+
+                  "Boletos: 2\r\n"+
+                  "Horario: 10:00 - 12:50\r\n"+
+                  "Fecha de compra: 04/18/22\r\n"+
+                  "Fecha de emision: 04/24/22\r\n");
+        sb.append("0. Volver\r\n");
         sendStringBuffer(bot, chatId, sb);
 
         this.setStatus("AWAITING_USER_RESPONSE");

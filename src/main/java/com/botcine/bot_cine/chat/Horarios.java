@@ -42,15 +42,17 @@ public class Horarios extends AbstractProcess {
                 try {
                     int opcion = Integer.parseInt(text);
                     switch (opcion){
-                        case 1 : result = new Asientos();
+                        case 1 : result = new CantidadAsientos();
                             break;
-                        case 2 : result = new Asientos();
+                        case 2 : result = new CantidadAsientos();
                             break;
-                        case 3 : result = new Asientos();
+                        case 3 : result = new CantidadAsientos();
                             break;
-                        case 4 : result = new Asientos();
+                        case 4 : result = new CantidadAsientos();
                             break;
-                        case 5 : result = new Asientos();
+                        case 5 : result = new CantidadAsientos();
+                            break;
+                        case 0 : result = new MenuCartelera();
                             break;
 
                         default: showMainMenu(bot, chatId);
@@ -74,6 +76,7 @@ public class Horarios extends AbstractProcess {
         sb.append("3. 14:10 - 17:00\r\n");
         sb.append("4. 15:30 - 18:10\r\n");
         sb.append("5. 17:30 - 20:10\r\n");
+        sb.append("0. Volver\r\n");
         sb.append("Elija una opción:\r\n");
         sendStringBuffer(bot, chatId, sb);
         this.setStatus("AWAITING_USER_RESPONSE");

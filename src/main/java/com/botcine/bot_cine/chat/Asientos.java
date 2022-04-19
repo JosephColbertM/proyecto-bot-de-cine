@@ -42,7 +42,17 @@ public class Asientos extends AbstractProcess {
                 try {
                     int opcion = Integer.parseInt(text);
                     switch (opcion){
-                        case 1 : result = new MenuAdministrador();
+                        case 1 : result = new ConfirmationMessage();
+                            break;
+                        case 2 : result = new ConfirmationMessage();
+                            break;
+                        case 3 : result = new ConfirmationMessage();
+                            break;
+                        case 4 : result = new ConfirmationMessage();
+                            break;
+                        case 5 : result = new ConfirmationMessage();
+                            break;
+                        case 0 : result = new CantidadAsientos();
                             break;
 
                         default: showMainMenu(bot, chatId);
@@ -66,6 +76,7 @@ public class Asientos extends AbstractProcess {
         sb.append("3. C4, C5\r\n");
         sb.append("4. D15, D16, D17\r\n");
         sb.append("5. F13, F16, F17, F19\r\n");
+        sb.append("0. Volver\r\n");
         sb.append("Elija una opción:\r\n");
         sendStringBuffer(bot, chatId, sb);
         this.setStatus("AWAITING_USER_RESPONSE");
