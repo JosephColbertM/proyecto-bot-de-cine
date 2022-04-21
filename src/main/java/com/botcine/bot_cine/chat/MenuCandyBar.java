@@ -42,6 +42,10 @@ public class MenuCandyBar extends AbstractProcess{
                             break;
                         case 5 : result = new Cantidad();
                             break;
+                        case 6 : result = new AgregarProducto();
+                            break;
+                        case 7 : result = new AccesoCliente();
+                            break;
 
                         default: showMainMenu(bot, chatId);
                     }
@@ -63,6 +67,9 @@ public class MenuCandyBar extends AbstractProcess{
         sb.append("3. Soda Grande 14 Bs p/u\r\n");
         sb.append("4. Soda Puequeña 9 Bs p/u\r\n");
         sb.append("5. Chocolate Kit-Kat 8 Bs p/u\r\n");
+        sb.append("6. Cancelar\r\n");
+        sb.append("7. Volver al menu principal\r\n");
+
         sb.append("Elija una opción:\r\n");
         sendStringBuffer(bot, chatId, sb);
 
