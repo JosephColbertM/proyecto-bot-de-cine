@@ -74,7 +74,7 @@ public class CantidadAsientos extends AbstractProcess {
         sb.append("1. Un Asiento\r\n");
         sb.append("2. Dos Asientos\r\n");
         sb.append("3. Tres Asientos\r\n");
-        sb.append("4. Cuetro Asientos\r\n");
+        sb.append("4. Cuatro Asientos\r\n");
         sb.append("5. Cinco Asientos\r\n");
         sb.append("0. Volver\r\n");
         sb.append("Elija una opción:\r\n");
