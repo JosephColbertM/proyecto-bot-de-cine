@@ -11,8 +11,8 @@ public class AdministradorBl {
     }
     public List<AdministradorDto> findLast10PermissionsByChatId(Long chatId) {
         List<AdministradorDto> result = new ArrayList<>();
-        result.add(new AdministradorDto("Francisco", "Valdez", "Fran52","12345"));
-        result.add(new AdministradorDto("Pedro", "Pascal", "Pascal1","password"));
+        result.add(new AdministradorDto("Gustavo", "Lopez", "Gustavo55","12345"));
+        result.add(new AdministradorDto("Pepe", "Mariaca", "Pepe8888","password"));
 
         return result;
     }
