@@ -1,16 +1,31 @@
 package com.botcine.bot_cine.dto;
 
 public class AdministradorDto {
+    Integer ca;
     String nombre;
     String apellido;
     String usuario;
     String password;
 
-    public AdministradorDto(String nombre, String apellido, String usuario, String password) {
+    public AdministradorDto{
+
+    }
+
+    public AdministradorDto(Integer ca, String nombre, String apellido, String usuario, String password) {
+        this.ca = ca;
         this.nombre = nombre;
         this.apellido = apellido;
         this.usuario = usuario;
         this.password = password;
+    }
+
+
+    public Integer getCa() {
+        return ca;
+    }
+
+    public void setCa(Integer ca) {
+        this.ca = ca;
     }
 
     public String getNombre() {
@@ -45,12 +60,15 @@ public class AdministradorDto {
         this.password = password;
     }
 
+
     @Override
     public String toString() {
-        return
-                "Nombre: " + nombre + '\n' +
-                "Apellido" + apellido + '\n' +
-                "Usuario" + usuario + '\n' +
-                "Password" + password;
+        return "AdministradorDto{" +
+                "ca=" + ca +
+                ", nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", usuario='" + usuario + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }
