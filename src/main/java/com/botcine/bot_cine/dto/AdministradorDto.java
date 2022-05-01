@@ -7,9 +7,6 @@ public class AdministradorDto {
     String usuario;
     String password;
 
-    public AdministradorDto{
-
-    }
 
     public AdministradorDto(Integer ca, String nombre, String apellido, String usuario, String password) {
         this.ca = ca;

@@ -1,44 +1,79 @@
 package com.botcine.bot_cine.dto;
 
 public class CandyBarDto {
-    String Nombre;
-    String Categoria;
-    String Precio;
+    Integer ccp;
+    String nombre;
+    String categoria;
+    Number precio;
+    Integer usuario_cu;
+    Integer paquetes_cpr;
 
-    public CandyBarDto(String nombre, String categoria, String precio) {
-        Nombre = nombre;
-        Categoria = categoria;
-        Precio = precio;
+    public CandyBarDto(Integer ccp, String nombre, String categoria, Number precio, Integer usuario_cu, Integer paquetes_cpr) {
+        this.ccp = ccp;
+        this.nombre = nombre;
+        this.categoria = categoria;
+        this.precio = precio;
+        this.usuario_cu = usuario_cu;
+        this.paquetes_cpr = paquetes_cpr;
+    }
+
+    public Integer getCcp() {
+        return ccp;
+    }
+
+    public void setCcp(Integer ccp) {
+        this.ccp = ccp;
     }
 
     public String getNombre() {
-        return Nombre;
+        return nombre;
     }
 
     public void setNombre(String nombre) {
-        Nombre = nombre;
+        this.nombre = nombre;
     }
 
     public String getCategoria() {
-        return Categoria;
+        return categoria;
     }
 
     public void setCategoria(String categoria) {
-        Categoria = categoria;
+        this.categoria = categoria;
     }
 
-    public String getPrecio() {
-        return Precio;
+    public Number getPrecio() {
+        return precio;
     }
 
-    public void setPrecio(String precio) {
-        Precio = precio;
+    public void setPrecio(Number precio) {
+        this.precio = precio;
+    }
+
+    public Integer getUsuario_cu() {
+        return usuario_cu;
+    }
+
+    public void setUsuario_cu(Integer usuario_cu) {
+        this.usuario_cu = usuario_cu;
+    }
+
+    public Integer getPaquetes_cpr() {
+        return paquetes_cpr;
+    }
+
+    public void setPaquetes_cpr(Integer paquetes_cpr) {
+        this.paquetes_cpr = paquetes_cpr;
     }
 
     @Override
     public String toString() {
-        return "Nombre = " + Nombre + '\n' +
-                "Categoria = " + Categoria + '\n' +
-                "Precio = " + Precio+ '\n';
+        return "CandyBarDto{" +
+                "ccp=" + ccp +
+                ", nombre='" + nombre + '\'' +
+                ", categoria='" + categoria + '\'' +
+                ", precio=" + precio +
+                ", usuario_cu=" + usuario_cu +
+                ", paquetes_cpr=" + paquetes_cpr +
+                '}';
     }
 }
