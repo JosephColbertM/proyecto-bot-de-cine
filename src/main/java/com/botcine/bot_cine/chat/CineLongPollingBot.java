@@ -27,7 +27,7 @@ public class CineLongPollingBot extends TelegramLongPollingBot {
     private static Logger LOGGER = LoggerFactory.getLogger(PeliculasBl.class);
 
 
-    public CineLongPollingBot(ApplicationContext context) {
+    public CineLongPollingBot() {
         this.context = context;
         usersSession = new HashMap<>();
     }
