@@ -4,13 +4,18 @@ import com.botcine.bot_cine.bl.AdministradorBl;
 import com.botcine.bot_cine.chat.AbstractProcess;
 import com.botcine.bot_cine.chat.CineLongPollingBot;
 import com.botcine.bot_cine.dto.AdministradorDto;
+import org.jvnet.hk2.annotations.Service;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.util.List;
-
+@Service
 public class ModificarAdministrador extends AbstractProcess {
-    public ModificarAdministrador() {
+    private AdministradorBl administradorBl;
+    @Autowired
+    public ModificarAdministrador(AdministradorBl administradorBl) {
+        this.administradorBl = administradorBl;
         this.setName("Modificar datos de los administradores");
         this.setDefault(false);
         this.setExpires(false);
@@ -18,7 +23,6 @@ public class ModificarAdministrador extends AbstractProcess {
         //this.setUserData(new HashMap<>());
         this.setStatus("STARTED");
     }
-
 
     @Override
     public AbstractProcess handle(ApplicationContext context, Update update, CineLongPollingBot bot) {

@@ -37,11 +37,11 @@ public class AccesoAdministradores extends AbstractProcess{
                 try {
                     int opcion = Integer.parseInt(text);
                     switch (opcion){
-                        case 1 : result = new AgregarAdministrador();
+                        case 1 : result = context.getBean(AgregarAdministrador.class) ;
                             break;
-                        case 2 : result = new ModificarAdministrador();
+                        case 2 : result = context.getBean(ModificarAdministrador.class) ;
                             break;
-                        case 3 : result = new EliminarAdministrador();
+                        case 3 : result = context.getBean(EliminarAdministrador.class) ;
                             break;
                         case 4 : result = context.getBean(ListaAdministradores.class) ;
                             break;
@@ -73,8 +73,6 @@ public class AccesoAdministradores extends AbstractProcess{
 
         this.setStatus("AWAITING_USER_RESPONSE");
     }
-
-
 
     @Override
     public AbstractProcess onError() {

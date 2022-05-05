@@ -3,11 +3,15 @@ package com.botcine.bot_cine.chat.peliculas;
 import com.botcine.bot_cine.bl.PeliculasBl;
 import com.botcine.bot_cine.chat.*;
 import com.botcine.bot_cine.dto.PeliculasDto;
+import org.jvnet.hk2.annotations.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.util.List;
-
+@Service
 public class ListaPeliculas extends AbstractProcess {
+    @Autowired
     public ListaPeliculas() {
         this.setName("Lista de las peliculas");
         this.setDefault(false);
@@ -18,7 +22,7 @@ public class ListaPeliculas extends AbstractProcess {
     }
 
     @Override
-    public AbstractProcess handle(Update update, CineLongPollingBot bot) {
+    public AbstractProcess handle(ApplicationContext context, Update update, CineLongPollingBot bot) {
         Long chatId = update.getMessage().getChatId();
         PeliculasBl peliculasBl = new PeliculasBl();
         List<PeliculasDto> peliculaList = peliculasBl.findLast10PermissionsByChatId(chatId);
