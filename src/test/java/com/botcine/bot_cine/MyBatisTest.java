@@ -23,6 +23,11 @@ public class MyBatisTest {
         for (AdministradorDto admi : administradorDtoList){
             System.out.println("Administradores: "+ admi);
         }
-
+    @Test
+    public void testSelectAllPeliculas(){
+        List<PeliculasDto> peliculasDtoList = peliculasDao.findAllPeliculas();
+        for (PeliculasDto pel : peliculasDtoList){
+            System.out.println("Administradores: "+ pel);
+        }
     }
 }
