@@ -61,7 +61,7 @@ public class AccesoCliente extends AbstractProcess {
         sb.append("1. Ver Cartelera\r\n");
         sb.append("2. Ver menu de CandyBar\r\n");
         sb.append("3. Historial de Compra en Cartelera\r\n");
-        sb.append("4. Historial de Compra en CamdyBar\r\n");
+        sb.append("4. Historial de Compra en Candy-Bar\r\n");
         sb.append("0. Salir\r\n");
         sb.append("Elija una opción:\r\n");
         sendStringBuffer(bot, chatId, sb);

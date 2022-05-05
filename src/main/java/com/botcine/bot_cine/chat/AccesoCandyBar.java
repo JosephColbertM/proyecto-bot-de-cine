@@ -5,6 +5,7 @@ import com.botcine.bot_cine.chat.CandyBar.EliminarProducto;
 import com.botcine.bot_cine.chat.CandyBar.ListaProducto;
 import com.botcine.bot_cine.chat.CandyBar.ModificarProducto;
 
+import org.springframework.context.ApplicationContext;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
@@ -20,8 +21,23 @@ public class AccesoCandyBar extends AbstractProcess{
         this.setStatus("STARTED");
     }
 
+    private void showMainMenu(CineLongPollingBot bot, Long chatId) {
+        StringBuffer sb = new StringBuffer();
+        sb.append("MENU DE ACCESO CANDY-BAR\r\n");
+        sb.append("1. Agregar\r\n");
+        sb.append("2. Modificar\r\n");
+        sb.append("3. Eliminar\r\n");
+        sb.append("4. Lista\r\n");
+        sb.append("0. Salir\r\n");
+        sb.append("Elija una opción:\r\n");
+        sendStringBuffer(bot, chatId, sb);
+
+        this.setStatus("AWAITING_USER_RESPONSE");
+    }
+
+
     @Override
-    public AbstractProcess handle(Update update, CineLongPollingBot bot) {
+    public AbstractProcess handle(ApplicationContext context, Update update, CineLongPollingBot bot) {
         AbstractProcess result = this; // sigo en el mismo proceso.
         Long chatId = update.getMessage().getChatId();
 
@@ -59,20 +75,6 @@ public class AccesoCandyBar extends AbstractProcess{
         }
         return result;
     }
-    private void showMainMenu(CineLongPollingBot bot, Long chatId) {
-        StringBuffer sb = new StringBuffer();
-        sb.append("MENU DE ACCESO CANDY-BAR\r\n");
-        sb.append("1. Agregar\r\n");
-        sb.append("2. Modificar\r\n");
-        sb.append("3. Eliminar\r\n");
-        sb.append("4. Lista\r\n");
-        sb.append("0. Salir\r\n");
-        sb.append("Elija una opción:\r\n");
-        sendStringBuffer(bot, chatId, sb);
-
-        this.setStatus("AWAITING_USER_RESPONSE");
-    }
-
 
     @Override
     public AbstractProcess onError() {

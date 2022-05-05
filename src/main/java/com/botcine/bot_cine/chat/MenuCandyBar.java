@@ -1,5 +1,6 @@
 package com.botcine.bot_cine.chat;
 
+import org.springframework.context.ApplicationContext;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
@@ -15,8 +16,25 @@ public class MenuCandyBar extends AbstractProcess{
         this.setStatus("STARTED");
     }
 
+    private void showMainMenu(CineLongPollingBot bot, Long chatId) {
+        StringBuffer sb = new StringBuffer();
+        sb.append("MENU CANDY-BAR\r\n");
+        sb.append("1. Pipocas saladas 15 Bs p/u\r\n");
+        sb.append("2. Pipocas dulces 10 Bs p/u\r\n");
+        sb.append("3. Soda Grande 14 Bs p/u\r\n");
+        sb.append("4. Soda Puequeña 9 Bs p/u\r\n");
+        sb.append("5. Chocolate Kit-Kat 8 Bs p/u\r\n");
+        sb.append("6. Cancelar\r\n");
+        sb.append("7. Volver al menu principal\r\n");
+
+        sb.append("Elija una opción:\r\n");
+        sendStringBuffer(bot, chatId, sb);
+
+        this.setStatus("AWAITING_USER_RESPONSE");
+    }
+
     @Override
-    public AbstractProcess handle(Update update, CineLongPollingBot bot) {
+    public AbstractProcess handle(ApplicationContext context, Update update, CineLongPollingBot bot) {
         AbstractProcess result = this; // sigo en el mismo proceso.
         Long chatId = update.getMessage().getChatId();
 
@@ -58,22 +76,6 @@ public class MenuCandyBar extends AbstractProcess{
             }
         }
         return result;
-    }
-    private void showMainMenu(CineLongPollingBot bot, Long chatId) {
-        StringBuffer sb = new StringBuffer();
-        sb.append("MENU CANDY-BAR\r\n");
-        sb.append("1. Pipocas saladas 15 Bs p/u\r\n");
-        sb.append("2. Pipocas dulces 10 Bs p/u\r\n");
-        sb.append("3. Soda Grande 14 Bs p/u\r\n");
-        sb.append("4. Soda Puequeña 9 Bs p/u\r\n");
-        sb.append("5. Chocolate Kit-Kat 8 Bs p/u\r\n");
-        sb.append("6. Cancelar\r\n");
-        sb.append("7. Volver al menu principal\r\n");
-
-        sb.append("Elija una opción:\r\n");
-        sendStringBuffer(bot, chatId, sb);
-
-        this.setStatus("AWAITING_USER_RESPONSE");
     }
 
     @Override

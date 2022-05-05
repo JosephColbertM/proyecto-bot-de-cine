@@ -4,6 +4,7 @@ import com.botcine.bot_cine.chat.AbstractProcess;
 import com.botcine.bot_cine.chat.AccesoCandyBar;
 import com.botcine.bot_cine.chat.AccesoPeliculas;
 import com.botcine.bot_cine.chat.CineLongPollingBot;
+import org.springframework.context.ApplicationContext;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
@@ -16,8 +17,9 @@ public class AgregarProducto extends AbstractProcess {
         //this.setUserData(new HashMap<>());
         this.setStatus("STARTED");
     }
+
     @Override
-    public AbstractProcess handle(Update update, CineLongPollingBot bot) {
+    public AbstractProcess handle(ApplicationContext context, Update update, CineLongPollingBot bot) {
         Long chatId = update.getMessage().getChatId();
         StringBuffer sb = new StringBuffer();
         sb.append("PARA AGREGAR UN PRODUCTO, DEBERA INGRESAR LOS DATOS EN EL SIGUIENTE ORDEN:\r\n\n");
@@ -36,7 +38,6 @@ public class AgregarProducto extends AbstractProcess {
             throw new RuntimeException(ex);
         }
         return new AccesoCandyBar();
-
     }
 
     @Override

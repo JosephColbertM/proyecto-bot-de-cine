@@ -2,6 +2,7 @@ package com.botcine.bot_cine.chat;
 
 import com.botcine.bot_cine.chat.widgets.AbstractWidget;
 import com.botcine.bot_cine.chat.widgets.MenuWidgetImpl;
+import org.springframework.context.ApplicationContext;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
@@ -31,8 +32,23 @@ public class MenuProcessImpl extends AbstractProcess {
 //    }
 
 
+
+    private void showMainMenu(CineLongPollingBot bot, Long chatId) {
+        StringBuffer sb = new StringBuffer();
+        sb.append("BIENVENIDO AL BOT DE RESERVAS HIGH SCHOOL MUSICAL\r\n");
+        sb.append("Ingrese la opcion de cliente para hacer la reserva \r\n");
+        sb.append("1. CLIENTE\r\n");
+        sb.append("2. ADMINISTRADOR\r\n");
+        sb.append("Elija una opción:\r\n");
+        sendStringBuffer(bot, chatId, sb);
+
+
+        this.setStatus("AWAITING_USER_RESPONSE");
+    }
+
+
     @Override
-    public AbstractProcess handle(Update update, CineLongPollingBot bot) {
+    public AbstractProcess handle(ApplicationContext context, Update update, CineLongPollingBot bot) {
         AbstractProcess result = this; // sigo en el mismo proceso.
         Long chatId = update.getMessage().getChatId();
 
@@ -67,21 +83,6 @@ public class MenuProcessImpl extends AbstractProcess {
         }
         return result;
     }
-
-    private void showMainMenu(CineLongPollingBot bot, Long chatId) {
-        StringBuffer sb = new StringBuffer();
-        sb.append("BIENVENIDO AL BOT DE RESERVAS HIGH SCHOOL MUSICAL\r\n");
-        sb.append("Ingrese la opcion de cliente para hacer la reserva \r\n");
-        sb.append("1. CLIENTE\r\n");
-        sb.append("2. ADMINISTRADOR\r\n");
-        sb.append("Elija una opción:\r\n");
-        sendStringBuffer(bot, chatId, sb);
-
-
-        this.setStatus("AWAITING_USER_RESPONSE");
-    }
-
-
 
     @Override
     public AbstractProcess onError() {

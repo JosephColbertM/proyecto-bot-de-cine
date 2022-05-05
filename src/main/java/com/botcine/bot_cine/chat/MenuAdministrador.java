@@ -1,5 +1,6 @@
 package com.botcine.bot_cine.chat;
 
+import org.springframework.context.ApplicationContext;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
@@ -15,8 +16,23 @@ public class MenuAdministrador extends AbstractProcess {
         this.setStatus("STARTED");
     }
 
+
+    private void showMainMenu(CineLongPollingBot bot, Long chatId) {
+        StringBuffer sb = new StringBuffer();
+        sb.append("MENU ADMINISTRADOR\r\n");
+        sb.append("1. Acceso Cartelera\r\n");
+        sb.append("2. Acceso CandyBar\r\n");
+        sb.append("3. Acceso Administradores\r\n");
+        sb.append("4. Salir\r\n");
+        sb.append("Elija una opción:\r\n");
+        sendStringBuffer(bot, chatId, sb);
+
+
+        this.setStatus("AWAITING_USER_RESPONSE");
+    }
+
     @Override
-    public AbstractProcess handle(Update update, CineLongPollingBot bot) {
+    public AbstractProcess handle(ApplicationContext context, Update update, CineLongPollingBot bot) {
         AbstractProcess result = this; // sigo en el mismo proceso.
         Long chatId = update.getMessage().getChatId();
 
@@ -52,20 +68,6 @@ public class MenuAdministrador extends AbstractProcess {
             }
         }
         return result;
-    }
-
-    private void showMainMenu(CineLongPollingBot bot, Long chatId) {
-        StringBuffer sb = new StringBuffer();
-        sb.append("MENU ADMINISTRADOR\r\n");
-        sb.append("1. Acceso Cartelera\r\n");
-        sb.append("2. Acceso CandyBar\r\n");
-        sb.append("3. Acceso Administradores\r\n");
-        sb.append("4. Salir\r\n");
-        sb.append("Elija una opción:\r\n");
-        sendStringBuffer(bot, chatId, sb);
-
-
-        this.setStatus("AWAITING_USER_RESPONSE");
     }
 
     @Override

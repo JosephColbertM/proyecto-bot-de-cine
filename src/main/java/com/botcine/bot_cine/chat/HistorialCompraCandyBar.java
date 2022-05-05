@@ -1,5 +1,6 @@
 package com.botcine.bot_cine.chat;
 
+import org.springframework.context.ApplicationContext;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
@@ -14,8 +15,23 @@ public class HistorialCompraCandyBar extends AbstractProcess{
         this.setUserData(new HashMap<>());
         this.setStatus("STARTED");
     }
+
+    private void showMainMenu(CineLongPollingBot bot, Long chatId) {
+        StringBuffer sb = new StringBuffer();
+        sb.append("COMPRAS REALIZADAS DEL CANDY-BAR\r\n" +
+                "Nombre: Pipoca Salada\r\n"+
+                "Cantidad: 3\r\n"+
+                "Precio total: 45 Bs\r\n"+
+                "Fecha de compra: 04/18/22\r\n"+
+                "Fecha de emision: 04/24/22\r\n");
+        sb.append("0. Volver\r\n");
+        sendStringBuffer(bot, chatId, sb);
+
+        this.setStatus("AWAITING_USER_RESPONSE");
+    }
+
     @Override
-    public AbstractProcess handle(Update update, CineLongPollingBot bot) {
+    public AbstractProcess handle(ApplicationContext context, Update update, CineLongPollingBot bot) {
         AbstractProcess result = this; // sigo en el mismo proceso.
         Long chatId = update.getMessage().getChatId();
 
@@ -46,19 +62,7 @@ public class HistorialCompraCandyBar extends AbstractProcess{
         return result;
 
     }
-    private void showMainMenu(CineLongPollingBot bot, Long chatId) {
-        StringBuffer sb = new StringBuffer();
-        sb.append("COMPRAS REALIZADAS DEL CANDY-BAR\r\n" +
-                "Nombre: Pipoca Salada\r\n"+
-                "Cantidad: 3\r\n"+
-                "Precio total: 45 Bs\r\n"+
-                "Fecha de compra: 04/18/22\r\n"+
-                "Fecha de emision: 04/24/22\r\n");
-        sb.append("0. Volver\r\n");
-        sendStringBuffer(bot, chatId, sb);
 
-        this.setStatus("AWAITING_USER_RESPONSE");
-    }
     @Override
     public AbstractProcess onError() {
         return null;

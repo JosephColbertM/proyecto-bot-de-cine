@@ -7,6 +7,7 @@ import com.botcine.bot_cine.chat.CineLongPollingBot;
 import com.botcine.bot_cine.chat.peliculas.DatosModificarPelicula;
 import com.botcine.bot_cine.dto.CandyBarDto;
 import com.botcine.bot_cine.dto.PeliculasDto;
+import org.springframework.context.ApplicationContext;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.util.List;
@@ -20,8 +21,9 @@ public class ModificarProducto extends AbstractProcess {
         //this.setUserData(new HashMap<>());
         this.setStatus("STARTED");
     }
+
     @Override
-    public AbstractProcess handle(Update update, CineLongPollingBot bot) {
+    public AbstractProcess handle(ApplicationContext context, Update update, CineLongPollingBot bot) {
         int c=1;
         Long chatId = update.getMessage().getChatId();
         CandyBarBl CandyBarBl = new CandyBarBl();
