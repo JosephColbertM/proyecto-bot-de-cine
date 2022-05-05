@@ -17,11 +17,5 @@ public class MyBatisTest {
         this.administradorDao = administradorDao;
     }
 
-    @Test
-    public void testSelectAllAdministradores(){
-        List<AdministradorDto> administradorDtoList = administradorDao.findAllAdministradores();
-        for (AdministradorDto admi : administradorDtoList){
-            System.out.println("Administradores: "+ admi);
-        }
 
-}}
+}

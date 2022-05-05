@@ -29,12 +29,12 @@ public class BotCineApplication {
 	}
 
 	public static void main(String[] args) {
-		SpringApplication.run(BotCineApplication.class, args);
+		ApplicationContext context = SpringApplication.run(BotCineApplication.class, args);
 		try {
 			//Inicializamos libreria de bots
 			TelegramBotsApi telegramApi = new TelegramBotsApi(DefaultBotSession.class);
 			//Registramos la implementacion de nuestro BOT
-			telegramApi.registerBot(new CineLongPollingBot());
+			telegramApi.registerBot(new CineLongPollingBot(context));
 		} catch (TelegramApiException e) {
 			e.printStackTrace();
 		}
