@@ -14,7 +14,8 @@ import java.util.List;
 @Service
 public class EliminarAdministrador extends AbstractProcess {
     private AdministradorBl administradorBl;
-    public EliminarAdministrador() {
+    public EliminarAdministrador(AdministradorBl administradorBl) {
+        this.administradorBl = administradorBl;
         this.setName("Eliminar un administrador");
         this.setDefault(false);
         this.setExpires(false);

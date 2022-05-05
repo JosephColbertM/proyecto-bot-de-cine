@@ -27,7 +27,7 @@ public class CineLongPollingBot extends TelegramLongPollingBot {
     private static Logger LOGGER = LoggerFactory.getLogger(PeliculasBl.class);
 
 
-    public CineLongPollingBot(boolean b) {
+    public CineLongPollingBot(ApplicationContext context) {
         this.context = context;
         usersSession = new HashMap<>();
     }
@@ -36,10 +36,6 @@ public class CineLongPollingBot extends TelegramLongPollingBot {
         this.test = test;
         this.context = context;
         usersSession = new HashMap<>();
-    }
-
-    public CineLongPollingBot() {
-
     }
 
     @Override

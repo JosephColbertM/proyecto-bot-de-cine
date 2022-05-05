@@ -3,6 +3,9 @@ package com.botcine.bot_cine;
 import com.botcine.bot_cine.chat.CineLongPollingBot;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Chat;
@@ -18,10 +21,12 @@ import java.util.List;
  * Pruebas integrales de la aplicación
  */
 class CineApplicationTests {
+	@Autowired
+	private ApplicationContext appContext;
 
 	@Test
 	void sayHello() {
-		CineLongPollingBot bot = new CineLongPollingBot(true);
+		CineLongPollingBot bot = new CineLongPollingBot(appContext,true);
 		// Invoco al bot con un mensaje
 		bot.onUpdateReceived(createUpdate("Hello"));
 		// Reviso cuantos mensaje me retorna.

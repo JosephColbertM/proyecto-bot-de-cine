@@ -19,6 +19,6 @@ public class AdministradorBl {
     }
 
     public List<AdministradorDto> findLast10PermissionsByChatId(Long chatId) {
-        return administradorDao.findAllAdministradores();
+        return administradorDao.findAllAdministradores(chatId+"");
     }
 }
