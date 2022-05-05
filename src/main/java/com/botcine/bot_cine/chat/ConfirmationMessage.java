@@ -1,5 +1,6 @@
 package com.botcine.bot_cine.chat;
 
+import org.springframework.context.ApplicationContext;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
@@ -18,8 +19,17 @@ public class ConfirmationMessage extends AbstractProcess {
     }
 
 
+    private void showMainMenu(CineLongPollingBot bot, Long chatId) {
+        StringBuffer sb = new StringBuffer();
+        sb.append("Compra de Boletos Exitosa!!\r\n");
+        sb.append("0. Volver\r\n");
+        sendStringBuffer(bot, chatId, sb);
+        this.setStatus("AWAITING_USER_RESPONSE");
+    }
+
+
     @Override
-    public AbstractProcess handle(Update update, CineLongPollingBot bot) {
+    public AbstractProcess handle(ApplicationContext context, Update update, CineLongPollingBot bot) {
         AbstractProcess result = this; // sigo en el mismo proceso.
         Long chatId = update.getMessage().getChatId();
 
@@ -50,16 +60,6 @@ public class ConfirmationMessage extends AbstractProcess {
         }
         return result;
     }
-
-    private void showMainMenu(CineLongPollingBot bot, Long chatId) {
-        StringBuffer sb = new StringBuffer();
-        sb.append("Compra de Boletos Exitosa!!\r\n");
-        sb.append("0. Volver\r\n");
-        sendStringBuffer(bot, chatId, sb);
-        this.setStatus("AWAITING_USER_RESPONSE");
-    }
-
-
 
     @Override
     public AbstractProcess onError() {
