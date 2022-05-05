@@ -1,5 +1,6 @@
 package com.botcine.bot_cine.chat;
 
+import org.springframework.context.ApplicationContext;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
@@ -25,8 +26,23 @@ public class MenuCartelera extends AbstractProcess {
 //    }
 
 
+    private void showMainMenu(CineLongPollingBot bot, Long chatId) {
+        StringBuffer sb = new StringBuffer();
+        sb.append("CARTELERA\r\n");
+        sb.append("1. The Batman\r\n");
+        sb.append("2. Sonic 2\r\n");
+        sb.append("3. IT\r\n");
+        sb.append("4. Animales Fantasticos\r\n");
+        sb.append("0. Volver\r\n");
+        sb.append("Elija una opción:\r\n");
+        sendStringBuffer(bot, chatId, sb);
+
+        this.setStatus("AWAITING_USER_RESPONSE");
+    }
+
+
     @Override
-    public AbstractProcess handle(Update update, CineLongPollingBot bot) {
+    public AbstractProcess handle(ApplicationContext context, Update update, CineLongPollingBot bot) {
         AbstractProcess result = this; // sigo en el mismo proceso.
         Long chatId = update.getMessage().getChatId();
 
@@ -65,22 +81,6 @@ public class MenuCartelera extends AbstractProcess {
         }
         return result;
     }
-
-    private void showMainMenu(CineLongPollingBot bot, Long chatId) {
-        StringBuffer sb = new StringBuffer();
-        sb.append("CARTELERA\r\n");
-        sb.append("1. The Batman\r\n");
-        sb.append("2. Sonic 2\r\n");
-        sb.append("3. IT\r\n");
-        sb.append("4. Animales Fantasticos\r\n");
-        sb.append("0. Volver\r\n");
-        sb.append("Elija una opción:\r\n");
-        sendStringBuffer(bot, chatId, sb);
-
-        this.setStatus("AWAITING_USER_RESPONSE");
-    }
-
-
 
     @Override
     public AbstractProcess onError() {

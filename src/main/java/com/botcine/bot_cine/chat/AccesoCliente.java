@@ -1,5 +1,6 @@
 package com.botcine.bot_cine.chat;
 
+import org.springframework.context.ApplicationContext;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
@@ -15,8 +16,23 @@ public class AccesoCliente extends AbstractProcess {
         this.setStatus("STARTED");
     }
 
+
+    private void showMainMenu(CineLongPollingBot bot, Long chatId) {
+        StringBuffer sb = new StringBuffer();
+        sb.append("MENU DE CLIENTE\r\n");
+        sb.append("1. Ver Cartelera\r\n");
+        sb.append("2. Ver menu de CandyBar\r\n");
+        sb.append("3. Historial de Compra en Cartelera\r\n");
+        sb.append("4. Historial de Compra en Candy-Bar\r\n");
+        sb.append("0. Salir\r\n");
+        sb.append("Elija una opción:\r\n");
+        sendStringBuffer(bot, chatId, sb);
+
+        this.setStatus("AWAITING_USER_RESPONSE");
+    }
+
     @Override
-    public AbstractProcess handle(Update update, CineLongPollingBot bot) {
+    public AbstractProcess handle(ApplicationContext context, Update update, CineLongPollingBot bot) {
         AbstractProcess result = this; // sigo en el mismo proceso.
         Long chatId = update.getMessage().getChatId();
 
@@ -53,20 +69,6 @@ public class AccesoCliente extends AbstractProcess {
             }
         }
         return result;
-    }
-
-    private void showMainMenu(CineLongPollingBot bot, Long chatId) {
-        StringBuffer sb = new StringBuffer();
-        sb.append("MENU DE CLIENTE\r\n");
-        sb.append("1. Ver Cartelera\r\n");
-        sb.append("2. Ver menu de CandyBar\r\n");
-        sb.append("3. Historial de Compra en Cartelera\r\n");
-        sb.append("4. Historial de Compra en Candy-Bar\r\n");
-        sb.append("0. Salir\r\n");
-        sb.append("Elija una opción:\r\n");
-        sendStringBuffer(bot, chatId, sb);
-
-        this.setStatus("AWAITING_USER_RESPONSE");
     }
 
     @Override

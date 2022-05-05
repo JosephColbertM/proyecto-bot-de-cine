@@ -1,5 +1,6 @@
 package com.botcine.bot_cine.chat;
 
+import org.springframework.context.ApplicationContext;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
@@ -25,8 +26,23 @@ public class Asientos extends AbstractProcess {
 //    }
 
 
+
+    private void showMainMenu(CineLongPollingBot bot, Long chatId) {
+        StringBuffer sb = new StringBuffer();
+        sb.append("ASIENTOS\r\n");
+        sb.append("1. A1, A2\r\n");
+        sb.append("2. B3, B4\r\n");
+        sb.append("3. C4, C5\r\n");
+        sb.append("4. D15, D16, D17\r\n");
+        sb.append("5. F13, F16, F17, F19\r\n");
+        sb.append("0. Volver\r\n");
+        sb.append("Elija una opción:\r\n");
+        sendStringBuffer(bot, chatId, sb);
+        this.setStatus("AWAITING_USER_RESPONSE");
+    }
+
     @Override
-    public AbstractProcess handle(Update update, CineLongPollingBot bot) {
+    public AbstractProcess handle(ApplicationContext context, Update update, CineLongPollingBot bot) {
         AbstractProcess result = this; // sigo en el mismo proceso.
         Long chatId = update.getMessage().getChatId();
 
@@ -66,20 +82,6 @@ public class Asientos extends AbstractProcess {
             }
         }
         return result;
-    }
-
-    private void showMainMenu(CineLongPollingBot bot, Long chatId) {
-        StringBuffer sb = new StringBuffer();
-        sb.append("ASIENTOS\r\n");
-        sb.append("1. A1, A2\r\n");
-        sb.append("2. B3, B4\r\n");
-        sb.append("3. C4, C5\r\n");
-        sb.append("4. D15, D16, D17\r\n");
-        sb.append("5. F13, F16, F17, F19\r\n");
-        sb.append("0. Volver\r\n");
-        sb.append("Elija una opción:\r\n");
-        sendStringBuffer(bot, chatId, sb);
-        this.setStatus("AWAITING_USER_RESPONSE");
     }
 
     @Override

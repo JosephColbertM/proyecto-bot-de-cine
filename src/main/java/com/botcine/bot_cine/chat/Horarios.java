@@ -1,5 +1,6 @@
 package com.botcine.bot_cine.chat;
 
+import org.springframework.context.ApplicationContext;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
@@ -25,8 +26,22 @@ public class Horarios extends AbstractProcess {
 //    }
 
 
+    private void showMainMenu(CineLongPollingBot bot, Long chatId) {
+        StringBuffer sb = new StringBuffer();
+        sb.append("HORARIOS\r\n");
+        sb.append("1. 10:00 - 12:50\r\n");
+        sb.append("2. 12:50 - 15:40\r\n");
+        sb.append("3. 14:10 - 17:00\r\n");
+        sb.append("4. 15:30 - 18:10\r\n");
+        sb.append("5. 17:30 - 20:10\r\n");
+        sb.append("0. Volver\r\n");
+        sb.append("Elija una opción:\r\n");
+        sendStringBuffer(bot, chatId, sb);
+        this.setStatus("AWAITING_USER_RESPONSE");
+    }
+
     @Override
-    public AbstractProcess handle(Update update, CineLongPollingBot bot) {
+    public AbstractProcess handle(ApplicationContext context, Update update, CineLongPollingBot bot) {
         AbstractProcess result = this; // sigo en el mismo proceso.
         Long chatId = update.getMessage().getChatId();
 
@@ -66,20 +81,6 @@ public class Horarios extends AbstractProcess {
             }
         }
         return result;
-    }
-
-    private void showMainMenu(CineLongPollingBot bot, Long chatId) {
-        StringBuffer sb = new StringBuffer();
-        sb.append("HORARIOS\r\n");
-        sb.append("1. 10:00 - 12:50\r\n");
-        sb.append("2. 12:50 - 15:40\r\n");
-        sb.append("3. 14:10 - 17:00\r\n");
-        sb.append("4. 15:30 - 18:10\r\n");
-        sb.append("5. 17:30 - 20:10\r\n");
-        sb.append("0. Volver\r\n");
-        sb.append("Elija una opción:\r\n");
-        sendStringBuffer(bot, chatId, sb);
-        this.setStatus("AWAITING_USER_RESPONSE");
     }
 
     @Override
