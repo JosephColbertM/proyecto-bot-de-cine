@@ -15,6 +15,7 @@ public class AdministradorBl {
 
     @Autowired
     public AdministradorBl(AdministradorDao administradorDao) {
+
         this.administradorDao = administradorDao;
     }
 

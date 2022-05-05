@@ -26,7 +26,6 @@ public class DatosModificarPelicula extends AbstractProcess {
         sb.append("Nombre: \r\n");
         sb.append("Duración: \r\n");
         sb.append("Genero: \r\n");
-        sb.append("Horarios: \r\n");
 
 
         sendStringBuffer(bot, chatId, sb);

@@ -11,7 +11,11 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import java.util.List;
 
 public class EliminarPelicula extends AbstractProcess {
-    public EliminarPelicula() {
+
+    private PeliculasBl peliculasBl;
+
+    public EliminarPelicula(PeliculasBl peliculasBl) {
+        this.peliculasBl = peliculasBl;
         this.setName("Eliminar una película");
         this.setDefault(false);
         this.setExpires(false);
@@ -24,8 +28,7 @@ public class EliminarPelicula extends AbstractProcess {
     public AbstractProcess handle(ApplicationContext context, Update update, CineLongPollingBot bot) {
         int c=1;
         Long chatId = update.getMessage().getChatId();
-        PeliculasBl peliculasBl = new PeliculasBl();
-        List<PeliculasDto> peliculaList = peliculasBl.findLast10PermissionsByChatId(chatId);
+        List<PeliculasDto> peliculaList = peliculasBl.findLast10PermissionsByChatId(chatId);//cambiar
         StringBuffer sb = new StringBuffer();
         sb.append("PELÍCULAS\n\r");
         sb.append("Ingrese el número de la película que desea eliminar\n\r\n");

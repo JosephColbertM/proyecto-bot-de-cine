@@ -52,15 +52,15 @@ public class AccesoPeliculas extends AbstractProcess {
                 try {
                     int opcion = Integer.parseInt(text);
                     switch (opcion){
-                        case 1 : result = new AgregarPelicula();
+                        case 1 : result = context.getBean(AgregarPelicula.class);
                             break;
-                        case 2 : result = new ModificarPelicula();
+                        case 2 : result = context.getBean(ModificarPelicula.class);
                             break;
-                        case 3 : result = new EliminarPelicula();
+                        case 3 : result = context.getBean(EliminarPelicula.class);
                             break;
-                        case 4 : result = new ListaPeliculas();
+                        case 4 : result = context.getBean(ListaPeliculas.class);
                             break;
-                        case 0 : result = new MenuAdministrador();
+                        case 0 : result = context.getBean(MenuAdministrador.class);
                             break;
                         default: showMainMenu(bot, chatId);
                     }

@@ -7,14 +7,18 @@ public class PeliculasDto{
     private String nombre;
     private String duracion;
     private String genero;
-    private String horario;
 
-    public PeliculasDto(Integer cp, String nombre, String duracion, String genero, String horario) {
+    public PeliculasDto(Integer cp, String nombre, String duracion, String genero) {
         this.cp = cp;
         this.nombre = nombre;
         this.duracion = duracion;
         this.genero = genero;
-        this.horario = horario;
+    }
+
+    public PeliculasDto(){
+        nombre = " ";
+        duracion = " ";
+        genero = " ";
     }
 
     public Integer getCp() { return cp; }
@@ -45,13 +49,6 @@ public class PeliculasDto{
         this.genero = genero;
     }
 
-    public String getHorario() {
-        return horario;
-    }
-
-    public void setHorario(String horario) {
-        this.horario = horario;
-    }
 
     @Override
     public String toString() {
@@ -60,7 +57,6 @@ public class PeliculasDto{
                 ", nombre='" + nombre + '\'' +
                 ", duracion='" + duracion + '\'' +
                 ", genero='" + genero + '\'' +
-                ", horario='" + horario + '\'' +
                 '}';
     }
 }

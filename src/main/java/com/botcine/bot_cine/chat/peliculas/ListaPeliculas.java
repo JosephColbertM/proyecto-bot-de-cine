@@ -11,8 +11,12 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import java.util.List;
 @Service
 public class ListaPeliculas extends AbstractProcess {
+
+    private PeliculasBl peliculasBl;
+
     @Autowired
-    public ListaPeliculas() {
+    public ListaPeliculas(PeliculasBl peliculasBl) {
+        this.peliculasBl = peliculasBl;
         this.setName("Lista de las peliculas");
         this.setDefault(false);
         this.setExpires(false);
@@ -24,7 +28,6 @@ public class ListaPeliculas extends AbstractProcess {
     @Override
     public AbstractProcess handle(ApplicationContext context, Update update, CineLongPollingBot bot) {
         Long chatId = update.getMessage().getChatId();
-        PeliculasBl peliculasBl = new PeliculasBl();
         List<PeliculasDto> peliculaList = peliculasBl.findLast10PermissionsByChatId(chatId);
         StringBuffer sb = new StringBuffer();
         sb.append("PELÍCULAS EN CARTELERA\n\r\n");
