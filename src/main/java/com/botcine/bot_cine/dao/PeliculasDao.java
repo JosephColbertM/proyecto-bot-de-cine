@@ -18,9 +18,6 @@ public interface PeliculasDao {
     public List<PeliculasDto> findPets(@Param("cp") Integer id);
 
 
-
-
-
     @Insert("INSERT INTO pet(pet_name, pet_tipe, pet_age, pet_gender, pet_stat, pet_care, pet_contacts,pet_image, state,mod_user,mod_date,usuario_id_usuario) " +
             " VALUES ( #{pet_name}, #{pet_tipe}, #{pet_age}, #{pet_gender}, #{pet_stat}, #{pet_care}, #{pet_contacts}, #{pet_image}, 1,'rene',CURRENT_TIMESTAMP,"+
             " (SELECT u.id_usuario FROM usuario u WHERE u.telegram_id = #{userid} AND u.state = 1)) ")

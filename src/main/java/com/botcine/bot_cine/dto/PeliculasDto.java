@@ -1,7 +1,5 @@
 package com.botcine.bot_cine.dto;
 
-
-
 public class PeliculasDto{
     private Integer cp;
     private String nombre;
