@@ -5,6 +5,7 @@ import com.botcine.bot_cine.chat.administradores.EliminarAdministrador;
 import com.botcine.bot_cine.chat.administradores.ListaAdministradores;
 import com.botcine.bot_cine.chat.administradores.ModificarAdministrador;
 
+import org.springframework.context.ApplicationContext;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
@@ -20,7 +21,7 @@ public class AccesoAdministradores extends AbstractProcess{
         this.setStatus("STARTED");
     }
     @Override
-    public AbstractProcess handle(Update update, CineLongPollingBot bot) {
+    public AbstractProcess handle(ApplicationContext context,Update update, CineLongPollingBot bot) {
         AbstractProcess result = this; // sigo en el mismo proceso.
         Long chatId = update.getMessage().getChatId();
 
@@ -42,7 +43,7 @@ public class AccesoAdministradores extends AbstractProcess{
                             break;
                         case 3 : result = new EliminarAdministrador();
                             break;
-                        case 4 : result = new ListaAdministradores();
+                        case 4 : result = context.getBean(ListaAdministradores.class) ;
                             break;
                         case 0 : result = new MenuAdministrador();
                             break;
@@ -72,6 +73,8 @@ public class AccesoAdministradores extends AbstractProcess{
 
         this.setStatus("AWAITING_USER_RESPONSE");
     }
+
+
 
     @Override
     public AbstractProcess onError() {

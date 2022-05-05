@@ -11,4 +11,6 @@ public interface CandyBarDao {
 
     @Select("SELECT nombre, categoria, precio FROM compra_paquetes")
     public List<AdministradorDto> findAllCandyBar();
+
+
 }

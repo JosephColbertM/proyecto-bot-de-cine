@@ -1,6 +1,7 @@
 package com.botcine.bot_cine.chat;
 
 import com.botcine.bot_cine.chat.widgets.AbstractWidget;
+import org.springframework.context.ApplicationContext;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -30,7 +31,7 @@ public abstract class AbstractProcess {
     private String status;
 
     // Este metodo decide que hacer con el usuario en cada tipo de proceso.
-    public abstract AbstractProcess handle(Update update, CineLongPollingBot bot);
+    public abstract AbstractProcess handle(ApplicationContext context, Update update, CineLongPollingBot bot);
 
 //    // Método que se invoca al iniciar el proceso
 //    public abstract AbstractWidget onInit();

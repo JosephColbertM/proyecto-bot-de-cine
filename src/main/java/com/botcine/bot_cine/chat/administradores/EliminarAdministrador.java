@@ -5,11 +5,15 @@ import com.botcine.bot_cine.chat.AbstractProcess;
 import com.botcine.bot_cine.chat.AccesoAdministradores;
 import com.botcine.bot_cine.chat.CineLongPollingBot;
 import com.botcine.bot_cine.dto.AdministradorDto;
+import org.jvnet.hk2.annotations.Service;
+import org.springframework.context.ApplicationContext;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.util.List;
 
+@Service
 public class EliminarAdministrador extends AbstractProcess {
+    private AdministradorBl administradorBl;
     public EliminarAdministrador() {
         this.setName("Eliminar un administrador");
         this.setDefault(false);
@@ -18,11 +22,11 @@ public class EliminarAdministrador extends AbstractProcess {
         //this.setUserData(new HashMap<>());
         this.setStatus("STARTED");
     }
+
     @Override
-    public AbstractProcess handle(Update update, CineLongPollingBot bot) {
+    public AbstractProcess handle(ApplicationContext context, Update update, CineLongPollingBot bot) {
         int c=1;
         Long chatId = update.getMessage().getChatId();
-        AdministradorBl administradorBl = new AdministradorBl();
         List<AdministradorDto> adminList = administradorBl.findLast10PermissionsByChatId(chatId);
         StringBuffer sb = new StringBuffer();
         sb.append("ADMINISTRADORES\n\r");

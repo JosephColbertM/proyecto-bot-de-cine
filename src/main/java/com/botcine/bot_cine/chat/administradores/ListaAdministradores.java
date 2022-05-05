@@ -8,12 +8,20 @@ import com.botcine.bot_cine.chat.AccesoAdministradores;
 import com.botcine.bot_cine.chat.CineLongPollingBot;
 import com.botcine.bot_cine.dto.AdministradorDto;
 
+import org.jvnet.hk2.annotations.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.util.List;
 
+@Service
 public class ListaAdministradores extends AbstractProcess {
-    public ListaAdministradores() {
+    private AdministradorBl administradorBl;
+
+    @Autowired
+    public ListaAdministradores(AdministradorBl administradorBl) {
+        this.administradorBl = administradorBl;
         this.setName("Lista de los administradores");
         this.setDefault(false);
         this.setExpires(false);
@@ -23,9 +31,9 @@ public class ListaAdministradores extends AbstractProcess {
     }
 
     @Override
-    public AbstractProcess handle(Update update, CineLongPollingBot bot) {
+    public AbstractProcess handle(ApplicationContext context, Update update, CineLongPollingBot bot) {
         Long chatId = update.getMessage().getChatId();
-        AdministradorBl administradorBl = new AdministradorBl();
+
         List<AdministradorDto> adminList = administradorBl.findLast10PermissionsByChatId(chatId);
         StringBuffer sb = new StringBuffer();
         sb.append("ADMINISTRADORES\n\r\n");
