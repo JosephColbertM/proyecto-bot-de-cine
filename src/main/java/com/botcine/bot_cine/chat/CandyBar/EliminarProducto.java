@@ -12,7 +12,9 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import java.util.List;
 
 public class EliminarProducto extends AbstractProcess {
-    public EliminarProducto(){
+    private CandyBarBl candyBarBl;
+
+    public EliminarProducto(CandyBarBl candyBarBl){
         this.setName("Eliminar un producto");
         this.setDefault(false);
         this.setExpires(false);
@@ -25,8 +27,8 @@ public class EliminarProducto extends AbstractProcess {
     public AbstractProcess handle(ApplicationContext context, Update update, CineLongPollingBot bot) {
         Long chatId = update.getMessage().getChatId();
         int c=1;
-        CandyBarBl CandyBarBl = new CandyBarBl();
-        List<CandyBarDto> candy = CandyBarBl.findLast10PermissionsByChatId(chatId);
+
+        List<CandyBarDto> candy = candyBarBl.findLast10PermissionsByChatId(chatId);
         StringBuffer sb = new StringBuffer();
         sb.append("PRODUCTOS\n\r");
         sb.append("Ingrese el número del que desea eliminar\n\r\n");

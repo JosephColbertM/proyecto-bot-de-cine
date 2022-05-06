@@ -15,7 +15,6 @@ public class PeliculasBl {
 
     @Autowired
     public PeliculasBl(PeliculasDao peliculasDao) {
-
         this.peliculasDao = peliculasDao;
     }
 

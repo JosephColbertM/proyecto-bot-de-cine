@@ -11,12 +11,21 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import java.util.List;
 
 public class ListaProducto extends AbstractProcess {
+    private CandyBarBl candyBarBl;
+
+    public ListaProducto(CandyBarBl candyBarBl){
+        this.setName("Eliminar un producto");
+        this.setDefault(false);
+        this.setExpires(false);
+        this.setStartDate(System.currentTimeMillis()/1000);
+        //this.setUserData(new HashMap<>());
+        this.setStatus("STARTED");
+    }
 
     @Override
     public AbstractProcess handle(ApplicationContext context, Update update, CineLongPollingBot bot) {
         Long chatId = update.getMessage().getChatId();
-        CandyBarBl CandyBarBl= new CandyBarBl();
-        List<CandyBarDto> CandyBarList= CandyBarBl.findLast10PermissionsByChatId(chatId);
+        List<CandyBarDto> CandyBarList= candyBarBl.findLast10PermissionsByChatId(chatId);
         StringBuffer sb = new StringBuffer();
         sb.append("MENU CANDY-BAR\n\r\n");
         for(CandyBarDto menu: CandyBarList){

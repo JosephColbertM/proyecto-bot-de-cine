@@ -13,7 +13,8 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import java.util.List;
 
 public class ModificarProducto extends AbstractProcess {
-    public ModificarProducto(){
+    private CandyBarBl candyBarBl;
+    public ModificarProducto(CandyBarBl candyBarBl){
         this.setName("Modificar datos del candybar");
         this.setDefault(false);
         this.setExpires(false);
@@ -26,8 +27,7 @@ public class ModificarProducto extends AbstractProcess {
     public AbstractProcess handle(ApplicationContext context, Update update, CineLongPollingBot bot) {
         int c=1;
         Long chatId = update.getMessage().getChatId();
-        CandyBarBl CandyBarBl = new CandyBarBl();
-        List<CandyBarDto> candy = CandyBarBl.findLast10PermissionsByChatId(chatId);
+        List<CandyBarDto> candy = candyBarBl.findLast10PermissionsByChatId(chatId);
         StringBuffer sb = new StringBuffer();
         sb.append("CANDY-BAR\n\r");
         sb.append("Ingrese el número del producto que desea modificar\n\r\n");

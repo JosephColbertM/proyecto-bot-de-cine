@@ -1,18 +1,23 @@
 package com.botcine.bot_cine.bl;
 
+import com.botcine.bot_cine.dao.CandyBarDao;
 import com.botcine.bot_cine.dto.CandyBarDto;
-import java.util.ArrayList;
-import java.util.List;
+import com.botcine.bot_cine.dto.PeliculasDto;
+import org.jvnet.hk2.annotations.Service;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+@Service
 public class CandyBarBl {
-    public CandyBarBl() {
+    private CandyBarDao candyBarDao;
+    @Autowired
+    public CandyBarBl(CandyBarDao candyBarDao) {
+        this.candyBarDao = candyBarDao;
     }
     public List<CandyBarDto> findLast10PermissionsByChatId(Long chatId) {
-        List<CandyBarDto> result = new ArrayList<>();
-       // result.add(new CandyBarDto("PopCorns","Comida","10.50 Bs"));
-       // result.add(new CandyBarDto("Chocolate","Dulces","5.50 Bs"));
-       // result.add(new CandyBarDto("Coca Cola","Refresco","8.50 Bs"));
+        Integer id = Math.toIntExact(chatId);
+        List<CandyBarDto> Prod = candyBarDao.findAllCandyBar(1);
+        return Prod;
 
-        return result;
     }
 }

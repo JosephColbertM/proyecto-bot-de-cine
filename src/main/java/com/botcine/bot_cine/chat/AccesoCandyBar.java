@@ -53,15 +53,15 @@ public class AccesoCandyBar extends AbstractProcess{
                 try {
                     int opcion = Integer.parseInt(text);
                     switch (opcion){
-                        case 1 : result = new AgregarProducto();
+                        case 1 : result = context.getBean(AgregarProducto.class);
                             break;
-                        case 2 : result = new ModificarProducto();
+                        case 2 : result = context.getBean(ModificarProducto.class);
                             break;
-                        case 3 : result = new EliminarProducto();
+                        case 3 : result = context.getBean(EliminarProducto.class);
                             break;
-                        case 4 : result = new ListaProducto();
+                        case 4 : result = context.getBean(ListaProducto.class);
                             break;
-                        case 0 : result = new MenuAdministrador();
+                        case 0 : result = context.getBean(MenuAdministrador.class);
                             break;
                         default: showMainMenu(bot, chatId);
                     }

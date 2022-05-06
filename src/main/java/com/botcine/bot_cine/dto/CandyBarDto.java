@@ -4,17 +4,21 @@ public class CandyBarDto {
     Integer ccp;
     String nombre;
     String categoria;
-    Number precio;
+    Double precio;
     Integer usuario_cu;
     Integer paquetes_cpr;
 
-    public CandyBarDto(Integer ccp, String nombre, String categoria, Number precio, Integer usuario_cu, Integer paquetes_cpr) {
+    public CandyBarDto(Integer ccp, String nombre, String categoria, Double precio, Integer usuario_cu, Integer paquetes_cpr) {
         this.ccp = ccp;
         this.nombre = nombre;
         this.categoria = categoria;
         this.precio = precio;
         this.usuario_cu = usuario_cu;
         this.paquetes_cpr = paquetes_cpr;
+    }
+    public CandyBarDto(){
+        nombre = " ";
+        precio= Double.valueOf(" ");
     }
 
     public Integer getCcp() {
@@ -46,7 +50,7 @@ public class CandyBarDto {
     }
 
     public void setPrecio(Number precio) {
-        this.precio = precio;
+        this.precio = (Double) precio;
     }
 
     public Integer getUsuario_cu() {
