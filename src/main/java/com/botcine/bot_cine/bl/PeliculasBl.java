@@ -15,16 +15,14 @@ public class PeliculasBl {
 
     @Autowired
     public PeliculasBl(PeliculasDao peliculasDao) {
+
         this.peliculasDao = peliculasDao;
     }
-    public List<PeliculasDto> findLast10PermissionsByChatId(Long chatId) {
-        List<PeliculasDto> result = new ArrayList<>();
-      //  result.add(new PeliculasDto("Batman", "2:50", "Thriller","10:00,12:00,14:10,15:30,17:30"));
-       // result.add(new PeliculasDto("Sonic 2", "1:42", "Aventura","11:20,11:40,14:50,15:00,18:50"));
-      //  result.add(new PeliculasDto("IT", "2:10", "Terror","10:00,12:00,14:10,15:30,17:30"));
-      //  result.add(new PeliculasDto("Animales Fantasticos", "2:30", "Aventura","11:20,11:40,14:50,15:00,18:50"));
 
-        return result;
+    public List<PeliculasDto> findLast10PermissionsByChatId(Long chatId) {
+        Integer id = Math.toIntExact(chatId);
+        List<PeliculasDto> Pel = peliculasDao.findAllPeliculas(1);
+        return Pel;
     }
 
     public void savePeliculas(PeliculasDto peliculasDto, Long chatId){

@@ -1,21 +1,28 @@
 package com.botcine.bot_cine.chat;
 
 import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 
 import java.util.HashMap;
 
-
+@Service
 public class MenuCartelera extends AbstractProcess {
-    public MenuCartelera() {
+
+    private EjemploBl ejemploBl;
+    private EjemploDto ejemploDto;
+
+    public MenuCartelera(EjemploBl ejemploBl) {
+        this.ejemploBl = ejemploBl;
         this.setName("Menú Cartelera");
         this.setDefault(true);
         this.setExpires(false);
         this.setStartDate(System.currentTimeMillis()/1000);
         this.setUserData(new HashMap<>());
         this.setStatus("STARTED");
+        this.ejemploDto = new EjemploDto(" ");
     }
 
     // Retornar un Widget de tipo menu
@@ -62,7 +69,7 @@ public class MenuCartelera extends AbstractProcess {
                             break;
                         case 2 : result = new Horarios();
                             break;
-                        case 3 : result = new Horarios();
+                        case 3 : result = new Horarios(ejemploDto, ejemploBl);
                             break;
                         case 4 : result = new Horarios();
                             break;

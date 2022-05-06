@@ -9,13 +9,14 @@ import java.util.HashMap;
 
 
 public class Horarios extends AbstractProcess {
-    public Horarios() {
+    public Horarios(EjemploDto ejemploDto, EjemploBl ejemploBl) {
         this.setName("Menú principal");
         this.setDefault(true);
         this.setExpires(false);
         this.setStartDate(System.currentTimeMillis()/1000);
         this.setUserData(new HashMap<>());
         this.setStatus("STARTED");
+
     }
 
     // Retornar un Widget de tipo menu

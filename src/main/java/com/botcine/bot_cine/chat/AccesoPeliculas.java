@@ -35,7 +35,7 @@ public class AccesoPeliculas extends AbstractProcess {
         this.setStatus("AWAITING_USER_RESPONSE");
     }
 
-    
+
     @Override
     public AbstractProcess handle(ApplicationContext context, Update update, CineLongPollingBot bot) {
         AbstractProcess result = this; // sigo en el mismo proceso.
@@ -53,7 +53,9 @@ public class AccesoPeliculas extends AbstractProcess {
                 try {
                     int opcion = Integer.parseInt(text);
                     switch (opcion){
-                        case 1 : result = context.getBean(AgregarPelicula.class);
+                        case 1 :
+                            this.setStatus("STARTED");
+                            result = context.getBean(AgregarPelicula.class);
                             break;
                         case 2 : result = context.getBean(ModificarPelicula.class);
                             break;
