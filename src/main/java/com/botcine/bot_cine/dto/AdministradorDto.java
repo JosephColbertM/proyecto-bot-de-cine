@@ -60,12 +60,10 @@ public class AdministradorDto {
 
     @Override
     public String toString() {
-        return "AdministradorDto{" +
-                "ca=" + ca +
-                ", nombre='" + nombre + '\'' +
-                ", apellido='" + apellido + '\'' +
-                ", usuario='" + usuario + '\'' +
-                ", password='" + password + '\'' +
-                '}';
+        return
+                "Nombre: " + nombre + '\n' +
+                "Apellido" + apellido + '\n' +
+                "Usuario" + usuario + '\n' +
+                "Contraseña" + password;
     }
 }

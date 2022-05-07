@@ -9,7 +9,7 @@ import java.util.HashMap;
 
 
 public class Horarios extends AbstractProcess {
-    public Horarios(EjemploDto ejemploDto, EjemploBl ejemploBl) {
+    public Horarios() {
         this.setName("Menú principal");
         this.setDefault(true);
         this.setExpires(false);

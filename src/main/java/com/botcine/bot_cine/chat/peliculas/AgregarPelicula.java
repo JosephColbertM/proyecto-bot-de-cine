@@ -74,14 +74,6 @@ public class AgregarPelicula extends AbstractProcess {
         return null;
     }
 
-    public AgregarPelicula(){
 
-        this.setName("Agergar nuevo duenho");
-        this.setDefault(false);
-        this.setExpires(false);
-        this.setStartDate(System.currentTimeMillis()/1000);
-
-        this.setStatus("STARTED");
-    }
 
 }

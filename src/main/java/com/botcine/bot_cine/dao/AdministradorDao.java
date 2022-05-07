@@ -11,7 +11,6 @@ import java.util.List;
 
 @Service
 public interface AdministradorDao {
-    @Select("SELECT ca, nombre, apellido, usuario, password FROM administrador")
-    public List<AdministradorDto> findAllAdministradores(@Param("id")String botChatId);
-
+    @Select("SELECT ca, nombre, apellido, usuario, password FROM administrador WHERE ca = #{ca}")
+    public List<AdministradorDto> findAllAdministradores(@Param("ca")Integer id);
 }

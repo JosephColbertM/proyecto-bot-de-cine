@@ -57,7 +57,9 @@ public class AccesoPeliculas extends AbstractProcess {
                             this.setStatus("STARTED");
                             result = context.getBean(AgregarPelicula.class);
                             break;
-                        case 2 : result = context.getBean(ModificarPelicula.class);
+                        case 2 :
+                            this.setStatus("STARTED");
+                            result = context.getBean(ModificarPelicula.class);
                             break;
                         case 3 : result = context.getBean(EliminarPelicula.class);
                             break;

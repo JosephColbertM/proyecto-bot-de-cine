@@ -6,7 +6,6 @@ import org.jvnet.hk2.annotations.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -20,6 +19,8 @@ public class AdministradorBl {
     }
 
     public List<AdministradorDto> findLast10PermissionsByChatId(Long chatId) {
-        return administradorDao.findAllAdministradores(chatId+"");
+        Integer id = Math.toIntExact(chatId);
+        List<AdministradorDto> admin = administradorDao.findAllAdministradores(id);
+        return admin;
     }
 }
