@@ -3,7 +3,7 @@ package com.botcine.bot_cine.bl;
 import com.botcine.bot_cine.dao.CandyBarDao;
 import com.botcine.bot_cine.dto.CandyBarDto;
 import com.botcine.bot_cine.dto.PeliculasDto;
-import org.jvnet.hk2.annotations.Service;
+import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -15,8 +15,7 @@ public class CandyBarBl {
         this.candyBarDao = candyBarDao;
     }
     public List<CandyBarDto> findLast10PermissionsByChatId(Long chatId) {
-        Integer id = Math.toIntExact(chatId);
-        List<CandyBarDto> Prod = candyBarDao.findAllCandyBar(1);
+        List<CandyBarDto> Prod = candyBarDao.findAllCandyBar();
         return Prod;
 
     }

@@ -1,22 +1,22 @@
 package com.botcine.bot_cine.dto;
 
 public class CandyBarDto {
-    Integer ccp;
+    Integer cpr;
     String nombre;
     Double precio;
 
-    public CandyBarDto(Integer ccp, String nombre, Double precio) {
-        this.ccp = ccp;
+    public CandyBarDto(Integer cpr, String nombre, Double precio) {
+        this.cpr = cpr;
         this.nombre = nombre;
         this.precio = precio;
     }
 
-    public Integer getCcp() {
-        return ccp;
+    public Integer getCpr() {
+        return cpr;
     }
 
-    public void setCcp(Integer ccp) {
-        this.ccp = ccp;
+    public void setCpr(Integer cpr) {
+        this.cpr = cpr;
     }
 
     public String getNombre() {
@@ -38,7 +38,7 @@ public class CandyBarDto {
     @Override
     public String toString() {
         return "CandyBarDto{" +
-                "ccp=" + ccp +
+                "cpr=" + cpr +
                 ", nombre='" + nombre + '\'' +
                 ", precio=" + precio +
                 '}';

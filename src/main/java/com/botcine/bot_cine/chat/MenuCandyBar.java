@@ -1,13 +1,11 @@
 package com.botcine.bot_cine.chat;
 
-import com.botcine.bot_cine.bl.MenuCandybarBL;
-import com.botcine.bot_cine.dto.MenuCandybarDto;
-import com.botcine.bot_cine.dto.PeliculasDto;
-import org.jvnet.hk2.annotations.Service;
+import com.botcine.bot_cine.bl.CandyBarBl;
+import com.botcine.bot_cine.dto.CandyBarDto;
+import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
-import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.util.HashMap;
@@ -15,12 +13,12 @@ import java.util.List;
 
 @Service
 public class MenuCandyBar extends AbstractProcess{
-    private MenuCandybarBL menuCandybarBl;
+    private CandyBarBl candyBarBl;
 
     @Autowired
-    public MenuCandyBar(MenuCandybarBL menuCandybarBl){
+    public MenuCandyBar(CandyBarBl candyBarBl){
+        this.candyBarBl = candyBarBl;
         this.setName("Menú CandyBar");
-        this.menuCandybarBl = menuCandybarBl;
         this.setDefault(true);
         this.setExpires(false);
         this.setStartDate(System.currentTimeMillis()/1000);
@@ -28,15 +26,16 @@ public class MenuCandyBar extends AbstractProcess{
         this.setStatus("STARTED");
     }
 
-
     @Override
     public AbstractProcess handle(ApplicationContext context, Update update, CineLongPollingBot bot) {
 
         Long chatId = update.getMessage().getChatId();
-        List<MenuCandybarDto> menuList = menuCandybarBl.findLast10PermissionsByChatId(chatId);
+        List<CandyBarDto> menuList = candyBarBl.findLast10PermissionsByChatId(chatId);
         StringBuffer sb = new StringBuffer();
         sb.append("Lista de peliculas:\r\n\n");
-        for (MenuCandybarDto menu: menuList){
+        System.out.println(menuList.size());
+
+        for (CandyBarDto menu: menuList){
             sb.append(menu.toString()).append("\n\r");
         }
         SendMessage sendMessage = new SendMessage();
