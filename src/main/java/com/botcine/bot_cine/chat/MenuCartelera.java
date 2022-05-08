@@ -20,11 +20,11 @@ import java.util.List;
 @Service
 public class MenuCartelera extends AbstractProcess {
 
-    private CarteleraBl carteleraBl;
+    private PeliculasBl peliculasBl;
 
     @Autowired
-    public MenuCartelera(CarteleraBl carteleraBl) {
-        this.carteleraBl = carteleraBl;
+    public MenuCartelera(PeliculasBl peliculasBl) {
+        this.peliculasBl = peliculasBl;
         this.setName("Comprar Ticket");
         this.setDefault(false);
         this.setExpires(false);
@@ -37,12 +37,12 @@ public class MenuCartelera extends AbstractProcess {
 
     public AbstractProcess handle(ApplicationContext context, Update update, CineLongPollingBot bot) {
         Long chatId = update.getMessage().getChatId();
-        List<CarteleraDto> carteleraList = carteleraBl.findLast10PermissionsByChatId(chatId);
+        List<PeliculasDto> peliculaList = peliculasBl.findLast10PermissionsByChatId(chatId);//cambiar
         StringBuffer sb = new StringBuffer();
         sb.append("Lista de peliculas:\r\n\n");
 
-        System.out.println(carteleraList.size());
-        for(CarteleraDto pelicula: carteleraList) {
+        System.out.println(peliculaList.size());
+        for(PeliculasDto pelicula: peliculaList) {
             sb.append(pelicula.toString()).append("\n\r");
         }
 

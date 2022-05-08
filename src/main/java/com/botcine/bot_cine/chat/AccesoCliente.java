@@ -49,11 +49,11 @@ public class AccesoCliente extends AbstractProcess {
                 try {
                     int opcion = Integer.parseInt(text);
                     switch (opcion){
-<<<<<<< HEAD
+
                        // case 1 : result = new MenuCartelera();
                            // break;
-                        case 2 : result = new MenuCandyBar();
-=======
+                     //   case 2 : result = new MenuCandyBar();
+
                         case 1 :
                             this.setStatus("STARTED");
                             result = context.getBean(MenuCartelera.class);
@@ -61,7 +61,7 @@ public class AccesoCliente extends AbstractProcess {
                         case 2 :
                             this.setStatus("STARTED");
                             result = context.getBean(MenuCandyBar.class);
->>>>>>> 9ff24d7a1e881c1d1944d6ccd80cb86f5a0e5e9b
+
                             break;
                         case 3 : result = new HistorialCompraCartelera();
                             break;

@@ -11,8 +11,8 @@ import java.util.List;
 @Service
 public interface CarteleraDao {
 
-    @Select("SELECT a.cp, a.nombre, a.duracion, a.genero, a.horario " +
-            "FROM peliculas a ")
+    @Select("SELECT cp, nombre, duracion, horario_inicio, horario_final" +
+            "FROM peliculas ")
     public List<CarteleraDto> findAllPeliculas();
 
 

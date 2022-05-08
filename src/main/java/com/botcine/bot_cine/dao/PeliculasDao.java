@@ -11,8 +11,8 @@ import java.util.List;
 @Service
 public interface PeliculasDao {
 
-    @Select("SELECT a.cp, a.nombre, a.duracion, a.genero " +
-            "FROM peliculas a ")
+    @Select("SELECT cp, nombre, duracion " +
+            "FROM peliculas  ")
     public List<PeliculasDto> findAllPeliculas();
 
 
