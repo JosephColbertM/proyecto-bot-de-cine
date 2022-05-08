@@ -1,14 +1,26 @@
 package com.botcine.bot_cine.chat;
 
+import com.botcine.bot_cine.bl.MenuCandybarBL;
+import com.botcine.bot_cine.dto.MenuCandybarDto;
+import com.botcine.bot_cine.dto.PeliculasDto;
+import org.jvnet.hk2.annotations.Service;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.util.HashMap;
+import java.util.List;
 
+@Service
 public class MenuCandyBar extends AbstractProcess{
-    public MenuCandyBar(){
+    private MenuCandybarBL menuCandybarBl;
+
+    @Autowired
+    public MenuCandyBar(MenuCandybarBL menuCandybarBl){
         this.setName("Menú CandyBar");
+        this.menuCandybarBl = menuCandybarBl;
         this.setDefault(true);
         this.setExpires(false);
         this.setStartDate(System.currentTimeMillis()/1000);
@@ -16,66 +28,30 @@ public class MenuCandyBar extends AbstractProcess{
         this.setStatus("STARTED");
     }
 
-    private void showMainMenu(CineLongPollingBot bot, Long chatId) {
-        StringBuffer sb = new StringBuffer();
-        sb.append("MENU CANDY-BAR\r\n");
-        sb.append("1. Pipocas saladas 15 Bs p/u\r\n");
-        sb.append("2. Pipocas dulces 10 Bs p/u\r\n");
-        sb.append("3. Soda Grande 14 Bs p/u\r\n");
-        sb.append("4. Soda Puequeña 9 Bs p/u\r\n");
-        sb.append("5. Chocolate Kit-Kat 8 Bs p/u\r\n");
-        sb.append("6. Cancelar\r\n");
-        sb.append("7. Volver al menu principal\r\n");
-
-        sb.append("Elija una opción:\r\n");
-        sendStringBuffer(bot, chatId, sb);
-
-        this.setStatus("AWAITING_USER_RESPONSE");
-    }
 
     @Override
     public AbstractProcess handle(ApplicationContext context, Update update, CineLongPollingBot bot) {
-        AbstractProcess result = this; // sigo en el mismo proceso.
+
         Long chatId = update.getMessage().getChatId();
-
-        if (this.getStatus().equals("STARTED")) {
-
-            showMainMenu(bot, chatId);
-        } else if (this.getStatus().equals("AWAITING_USER_RESPONSE")) {
-            // Estamos esperando por un numero 1 o 2
-            Message message = update.getMessage();
-            if ( message.hasText() ) {
-                // Intentamos transformar en número
-                String text = message.getText(); // El texto contiene asdasdas
-                try {
-                    int opcion = Integer.parseInt(text);
-                    switch (opcion){
-                        case 1 : result = new Cantidad();
-                            break;
-                        case 2 : result = new Cantidad();
-                            break;
-                        case 3 : result = new Cantidad();
-                            break;
-                        case 4 : result = new Cantidad();
-                            break;
-                        case 5 : result = new Cantidad();
-                            break;
-                        case 6 : result = new AgregarProducto();
-                            break;
-                        case 7 : result = new AccesoCliente();
-                            break;
-
-                        default: showMainMenu(bot, chatId);
-                    }
-                } catch (NumberFormatException ex) {
-                    showMainMenu(bot, chatId);
-                }
-                // continuar con el proceso seleccionado
-            } else { // Si me enviaron algo diferente de un texto.
-                showMainMenu(bot, chatId);
-            }
+        List<MenuCandybarDto> menuList = menuCandybarBl.findLast10PermissionsByChatId(chatId);
+        StringBuffer sb = new StringBuffer();
+        sb.append("Lista de peliculas:\r\n\n");
+        for (MenuCandybarDto menu: menuList){
+            sb.append(menu.toString()).append("\n\r");
         }
-        return result;
+        SendMessage sendMessage = new SendMessage();
+        sendMessage.setChatId(chatId.toString());
+        sendMessage.setText(sb.toString());
+
+        try {
+            bot.execute(sendMessage);
+        } catch (Exception ex) {
+            // relanzamos la excepción
+            throw new RuntimeException(ex);
+        }
+        return context.getBean(AccesoCliente.class);
+
+
     }
 
     @Override

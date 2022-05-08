@@ -3,22 +3,12 @@ package com.botcine.bot_cine.dto;
 public class CandyBarDto {
     Integer ccp;
     String nombre;
-    String categoria;
     Double precio;
-    Integer usuario_cu;
-    Integer paquetes_cpr;
 
-    public CandyBarDto(Integer ccp, String nombre, String categoria, Double precio, Integer usuario_cu, Integer paquetes_cpr) {
+    public CandyBarDto(Integer ccp, String nombre, Double precio) {
         this.ccp = ccp;
         this.nombre = nombre;
-        this.categoria = categoria;
         this.precio = precio;
-        this.usuario_cu = usuario_cu;
-        this.paquetes_cpr = paquetes_cpr;
-    }
-    public CandyBarDto(){
-        nombre = " ";
-        precio= Double.valueOf(" ");
     }
 
     public Integer getCcp() {
@@ -37,36 +27,12 @@ public class CandyBarDto {
         this.nombre = nombre;
     }
 
-    public String getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
-    }
-
-    public Number getPrecio() {
+    public Double getPrecio() {
         return precio;
     }
 
-    public void setPrecio(Number precio) {
-        this.precio = (Double) precio;
-    }
-
-    public Integer getUsuario_cu() {
-        return usuario_cu;
-    }
-
-    public void setUsuario_cu(Integer usuario_cu) {
-        this.usuario_cu = usuario_cu;
-    }
-
-    public Integer getPaquetes_cpr() {
-        return paquetes_cpr;
-    }
-
-    public void setPaquetes_cpr(Integer paquetes_cpr) {
-        this.paquetes_cpr = paquetes_cpr;
+    public void setPrecio(Double precio) {
+        this.precio = precio;
     }
 
     @Override
@@ -74,10 +40,7 @@ public class CandyBarDto {
         return "CandyBarDto{" +
                 "ccp=" + ccp +
                 ", nombre='" + nombre + '\'' +
-                ", categoria='" + categoria + '\'' +
                 ", precio=" + precio +
-                ", usuario_cu=" + usuario_cu +
-                ", paquetes_cpr=" + paquetes_cpr +
                 '}';
     }
 }

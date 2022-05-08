@@ -1,5 +1,6 @@
 package com.botcine.bot_cine.chat;
 
+import com.botcine.bot_cine.chat.peliculas.AgregarPelicula;
 import org.springframework.context.ApplicationContext;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -48,9 +49,19 @@ public class AccesoCliente extends AbstractProcess {
                 try {
                     int opcion = Integer.parseInt(text);
                     switch (opcion){
+<<<<<<< HEAD
                        // case 1 : result = new MenuCartelera();
                            // break;
                         case 2 : result = new MenuCandyBar();
+=======
+                        case 1 :
+                            this.setStatus("STARTED");
+                            result = context.getBean(MenuCartelera.class);
+                            break;
+                        case 2 :
+                            this.setStatus("STARTED");
+                            result = context.getBean(MenuCandyBar.class);
+>>>>>>> 9ff24d7a1e881c1d1944d6ccd80cb86f5a0e5e9b
                             break;
                         case 3 : result = new HistorialCompraCartelera();
                             break;
