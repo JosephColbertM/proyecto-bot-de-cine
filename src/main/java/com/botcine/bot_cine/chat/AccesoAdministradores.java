@@ -60,7 +60,7 @@ public class AccesoAdministradores extends AbstractProcess{
                             this.setStatus("STARTED");
                             result = context.getBean(ListaAdministrador.class);
                             break;
-                        case 0 : result = context.getBean(MenuProcessImpl.class);
+                        case 0 : result = new MenuProcessImpl();
                             break;
                         default: showMainMenu(bot, chatId);
                     }

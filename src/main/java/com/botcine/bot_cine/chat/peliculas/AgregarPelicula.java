@@ -30,34 +30,46 @@ public class AgregarPelicula extends AbstractProcess {
         this.setStatus("STARTED");
     }
 
-
     @Override
-    public AbstractProcess handle(ApplicationContext context, Update update, CineLongPollingBot bot) {
 
+    public AbstractProcess handle(ApplicationContext context, Update update, CineLongPollingBot bot) {
+        AbstractProcess result = this;
         Long chatId = update.getMessage().getChatId();
         List<PeliculasDto> peliculaList = peliculasBl.findLast10PermissionsByChatId(chatId);//cambiar
         StringBuffer sb = new StringBuffer();
-        sb.append("PARA AGREGAR UNA PELÍCULA, DEBERA INGRESAR LOS DATOS EN EL SIGUIENTE ORDEN:\r\n\n");
-        sb.append("Nombre: \r\n");
-        sb.append("Duración: \r\n");
-        sb.append("Genero: \r\n");
-
-        System.out.println(peliculaList.size());
-        for(PeliculasDto pelicula: peliculaList) {
-            sb.append(pelicula.toString()).append("\n\r");
+        if (this.getStatus().equals("STARTED")) {
+            sb.append("PARA AGREGAR UNA PELÍCULA, DEBERA INGRESAR LOS DATOS EN EL SIGUIENTE ORDEN:\r\n\n");
+            sb.append("Nombre: \r\n");
+            sb.append("Duración: \r\n");
+            sb.append("Genero: \r\n");
+            sendStringBuffer(bot, chatId, sb);
+            setStatus("AWAITING_USER_RESPONSE");
+            System.out.println("Inicio");
+        } else if (this.getStatus().equals("AWAITING_USER_RESPONSE")) {
+            Message message = update.getMessage();
+            if (message.hasText()) {
+                // Intentamos transformar en número
+                String text = message.getText(); // El texto contiene asdasdas
+                try {
+                    System.out.println("Entrada");
+                    String c[] = text.split("/");
+                    peliculasBl.savePeliculas(c[0], c[1], c[2]);
+                    setStatus("STARTED");
+                    return new AccesoPeliculas();
+                } catch (Exception ex) {
+                    System.out.println(ex);
+                }
+            } else { // Si me enviaron algo diferente de un texto.
+                System.out.println("Fallo");
+                sb.append("PARA AGREGAR UNA PELÍCULA, DEBERA INGRESAR LOS DATOS EN EL SIGUIENTE ORDEN:\r\n\n");
+                sb.append("Nombre: \r\n");
+                sb.append("Duración: \r\n");
+                sb.append("Genero: \r\n");
+                sendStringBuffer(bot, chatId, sb);
+                setStatus("AWAITING_USER_RESPONSE");
+            }
         }
-
-        SendMessage sendMessage = new SendMessage();
-        sendMessage.setChatId(chatId.toString());
-        sendMessage.setText(sb.toString());
-
-        try {
-            bot.execute(sendMessage);
-        } catch (Exception ex) {
-            // relanzamos la excepción
-            throw new RuntimeException(ex);
-        }
-        return context.getBean(AccesoPeliculas.class);
+        return result;
     }
 
     @Override

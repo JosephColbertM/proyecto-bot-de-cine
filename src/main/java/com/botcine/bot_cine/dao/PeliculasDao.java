@@ -17,10 +17,9 @@ public interface PeliculasDao {
 
 
     @Insert("INSERT INTO peliculas(nombre, duracion, genero)" +
-            " VALUES ( #{nombre}, #{duracion}, #{genero}" +
-            " (SELECT b.ch FROM horarios u")
+            " VALUES (#{nombre}, #{duracion}, #{genero})")
 
-    void savePeliculas(@Param("nombre") String nombre, @Param("duracion") String duracion, @Param("genero") String genero, @Param("cp") Integer id);
+    void savePeliculas(@Param("nombre") String nombre, @Param("duracion") String duracion, @Param("genero") String genero);
 
 }
 
