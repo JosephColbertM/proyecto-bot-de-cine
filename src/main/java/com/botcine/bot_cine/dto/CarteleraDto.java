@@ -2,19 +2,17 @@ package com.botcine.bot_cine.dto;
 
 public class CarteleraDto {
     private Integer cpt;
-    private String fecha;
-    private Double precio_final;
     private Integer cantidad;
     private String nombre_pelicula;
     private String horario;
+    private String asientos;
 
-    public CarteleraDto(Integer cpt, String fecha, Double precio_final, Integer cantidad, String nombre_pelicula, String horario) {
+    public CarteleraDto(Integer cpt, Integer cantidad, String nombre_pelicula, String horario, String asientos) {
         this.cpt = cpt;
-        this.fecha = fecha;
-        this.precio_final = precio_final;
         this.cantidad = cantidad;
         this.nombre_pelicula = nombre_pelicula;
         this.horario = horario;
+        this.asientos = asientos;
     }
 
     public Integer getCpt() {
@@ -23,22 +21,6 @@ public class CarteleraDto {
 
     public void setCpt(Integer cpt) {
         this.cpt = cpt;
-    }
-
-    public String getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
-    }
-
-    public Double getPrecio_final() {
-        return precio_final;
-    }
-
-    public void setPrecio_final(Double precio_final) {
-        this.precio_final = precio_final;
     }
 
     public Integer getCantidad() {
@@ -65,15 +47,22 @@ public class CarteleraDto {
         this.horario = horario;
     }
 
+    public String getAsientos() {
+        return asientos;
+    }
+
+    public void setAsientos(String asientos) {
+        this.asientos = asientos;
+    }
+
     @Override
     public String toString() {
         return "CarteleraDto{" +
                 "cpt=" + cpt +
-                ", fecha='" + fecha + '\'' +
-                ", precio_final=" + precio_final +
                 ", cantidad=" + cantidad +
                 ", nombre_pelicula='" + nombre_pelicula + '\'' +
                 ", horario='" + horario + '\'' +
+                ", asientos='" + asientos + '\'' +
                 '}';
     }
 }

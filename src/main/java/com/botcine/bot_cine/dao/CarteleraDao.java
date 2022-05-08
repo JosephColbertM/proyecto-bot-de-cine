@@ -16,11 +16,6 @@ public interface CarteleraDao {
     public List<CarteleraDto> findAllPeliculas();
 
 
-    @Insert("INSERT INTO peliculas(nombre, duracion, genero)" +
-            " VALUES (#{nombre}, #{duracion}, #{genero})")
-
-    void saveCartelera(@Param("cantidad") Integer cantidad, @Param("nombre_pelicula") String nombre_pelicula, @Param("horario") String horario);
-
 }
 
 

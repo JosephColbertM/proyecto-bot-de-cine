@@ -40,6 +40,7 @@ public class MenuCartelera extends AbstractProcess {
         List<PeliculasDto> peliculaList = peliculasBl.findLast10PermissionsByChatId(chatId);//cambiar
         StringBuffer sb = new StringBuffer();
         sb.append("Lista de peliculas:\r\n\n");
+        sb.append("Presione cualquier tecla para realizar la compra de su boleto:\r\n\n");
 
         System.out.println(peliculaList.size());
         for(PeliculasDto pelicula: peliculaList) {
@@ -56,9 +57,10 @@ public class MenuCartelera extends AbstractProcess {
             // relanzamos la excepción
             throw new RuntimeException(ex);
         }
-        return context.getBean(AccesoPeliculas.class);
+        return context.getBean(CompraTicket.class);
 
     }
+
 
     @Override
     public AbstractProcess onError() {

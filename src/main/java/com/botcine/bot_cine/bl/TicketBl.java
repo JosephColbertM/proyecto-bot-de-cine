@@ -10,21 +10,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class CarteleraBl {
+public class TicketBl {
 
-    private CarteleraDao carteleraDao;
     private TicketDao ticketDao;
 
     @Autowired
-    public CarteleraBl(CarteleraDao carteleraDao) {
+    public TicketBl(TicketDao ticketDao) {
 
-        this.carteleraDao = carteleraDao;
+        this.ticketDao = ticketDao;
     }
 
-    public List<CarteleraDto> findLast10PermissionsByChatId(Long chatId) {
-
-        List<CarteleraDto> car = carteleraDao.findAllPeliculas();
-        return car;
+    public void saveCartelera(Integer cantidad, String nombre_pelicula, String horario, String asientos){
+        ticketDao.saveCartelera(cantidad,nombre_pelicula,horario, asientos);
     }
-
 }
