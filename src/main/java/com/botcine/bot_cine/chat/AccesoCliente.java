@@ -61,9 +61,10 @@ public class AccesoCliente extends AbstractProcess {
                         case 2 :
                             this.setStatus("STARTED");
                             result = context.getBean(MenuCandyBar.class);
-
                             break;
-                        case 3 : result = new HistorialCompraCartelera();
+                        case 3 :
+                            this.setStatus("STARTED");
+                            result = context.getBean(HistorialCompraCartelera.class);
                             break;
                         case 4 : result = new HistorialCompraCandyBar();
                             break;

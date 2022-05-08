@@ -1,67 +1,58 @@
 package com.botcine.bot_cine.chat;
 
+import com.botcine.bot_cine.bl.HistorialBl;
+import com.botcine.bot_cine.bl.PeliculasBl;
+import com.botcine.bot_cine.dto.CarteleraDto;
+import com.botcine.bot_cine.dto.PeliculasDto;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Service;
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.util.HashMap;
-
+import java.util.List;
+@Service
 public class HistorialCompraCartelera extends AbstractProcess{
-    public HistorialCompraCartelera(){
-        this.setName("Menú CandyBar");
-        this.setDefault(true);
+    private HistorialBl historialBl;
+
+    @Autowired
+    public HistorialCompraCartelera(HistorialBl historialBl) {
+        this.historialBl = historialBl;
+        this.setName("Agregar película");
+        this.setDefault(false);
         this.setExpires(false);
         this.setStartDate(System.currentTimeMillis()/1000);
-        this.setUserData(new HashMap<>());
+        //this.setUserData(new HashMap<>());
         this.setStatus("STARTED");
     }
 
-    private void showMainMenu(CineLongPollingBot bot, Long chatId) {
-        StringBuffer sb = new StringBuffer();
-        sb.append("COMPRAS REALIZADAS\r\n" +
-                  "Pelicula: The Batman\r\n"+
-                  "Duracion: 2:30\r\n"+
-                  "Boletos: 2\r\n"+
-                  "Horario: 10:00 - 12:50\r\n"+
-                  "Fecha de compra: 04/18/22\r\n"+
-                  "Fecha de emision: 04/24/22\r\n");
-        sb.append("0. Volver\r\n");
-        sendStringBuffer(bot, chatId, sb);
-
-        this.setStatus("AWAITING_USER_RESPONSE");
-    }
 
     @Override
     public AbstractProcess handle(ApplicationContext context, Update update, CineLongPollingBot bot) {
-        AbstractProcess result = this; // sigo en el mismo proceso.
         Long chatId = update.getMessage().getChatId();
+        List<CarteleraDto> historialList = historialBl.findLast10PermissionsByChatId(chatId);//cambiar
+        StringBuffer sb = new StringBuffer();
+        sb.append("Lista de peliculas:\r\n\n");
 
-        if (this.getStatus().equals("STARTED")) {
-
-            showMainMenu(bot, chatId);
-        } else if (this.getStatus().equals("AWAITING_USER_RESPONSE")) {
-            // Estamos esperando por un numero 1 o 2
-            Message message = update.getMessage();
-            if ( message.hasText() ) {
-                // Intentamos transformar en número
-                String text = message.getText(); // El texto contiene asdasdas
-                try {
-                    int opcion = Integer.parseInt(text);
-                    switch (opcion){
-                        case 0 : result = new AccesoCliente();
-                            break;
-                        default: showMainMenu(bot, chatId);
-                    }
-                } catch (NumberFormatException ex) {
-                    showMainMenu(bot, chatId);
-                }
-                // continuar con el proceso seleccionado
-            } else { // Si me enviaron algo diferente de un texto.
-                showMainMenu(bot, chatId);
-            }
+        System.out.println(historialList.size());
+        for(CarteleraDto pelicula: historialList) {
+            sb.append(pelicula.toString()).append("\n\r");
         }
-        return result;
+        sb.append("Ingrese cualquier caracter para volver al menu\n\r");
 
+        SendMessage sendMessage = new SendMessage();
+        sendMessage.setChatId(chatId.toString());
+        sendMessage.setText(sb.toString());
+
+        try {
+            bot.execute(sendMessage);
+        } catch (Exception ex) {
+            // relanzamos la excepción
+            throw new RuntimeException(ex);
+        }
+        return context.getBean(AccesoPeliculas.class);
     }
 
     @Override
@@ -78,4 +69,6 @@ public class HistorialCompraCartelera extends AbstractProcess{
     public AbstractProcess onTimeout() {
         return null;
     }
+
+
 }
