@@ -22,5 +22,10 @@ public class AdministratorBl {
         return administradorDao.findAllAdministradores();
     }
 
+    public void saveAdministrador(String nombre, String apellido, String usuario, String password, String bot_chat_id){
+        administradorDao.saveAdministrador(nombre, apellido, usuario, password, bot_chat_id);
+    }
+
+
 
 }

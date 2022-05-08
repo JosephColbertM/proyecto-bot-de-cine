@@ -24,7 +24,7 @@ public class PeliculasBl {
         return Pel;
     }
 
-    public void savePeliculas(String nombre, String genero, String duracion){
-        peliculasDao.savePeliculas(nombre,duracion,genero);
+    public void savePeliculas(String nombre, String duracion, String hora_inicio, String hora_final){
+        peliculasDao.savePeliculas(nombre,duracion,hora_inicio,hora_final);
     }
 }

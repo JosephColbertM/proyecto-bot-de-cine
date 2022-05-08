@@ -17,6 +17,7 @@ public class AdministradorDto {
         this.bot_chat_id = bot_chat_id;
     }
 
+
     public Integer getCa() {
         return ca;
     }
@@ -67,13 +68,10 @@ public class AdministradorDto {
 
     @Override
     public String toString() {
-        return "AdministradorDto{" +
-                "ca=" + ca +
-                ", nombre='" + nombre + '\'' +
-                ", apellido='" + apellido + '\'' +
-                ", usuario='" + usuario + '\'' +
-                ", password='" + password + '\'' +
-                ", bot_chat_id='" + bot_chat_id + '\'' +
-                '}';
+        return
+                "Nombre: " + nombre + '\n' +
+                        "Apellido: " + apellido + '\n' +
+                        "Usuario: " + usuario + '\n' +
+                        "Password: " + password + '\n';
     }
 }

@@ -32,7 +32,6 @@ public class ListaPeliculas extends AbstractProcess {
 
     @Override
     public AbstractProcess handle(ApplicationContext context, Update update, CineLongPollingBot bot) {
-
         Long chatId = update.getMessage().getChatId();
         List<PeliculasDto> peliculaList = peliculasBl.findLast10PermissionsByChatId(chatId);//cambiar
         StringBuffer sb = new StringBuffer();
@@ -42,6 +41,7 @@ public class ListaPeliculas extends AbstractProcess {
         for(PeliculasDto pelicula: peliculaList) {
             sb.append(pelicula.toString()).append("\n\r");
         }
+        sb.append("Ingrese cualquier caracter para volver al menu\n\r");
 
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(chatId.toString());

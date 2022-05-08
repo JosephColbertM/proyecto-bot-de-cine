@@ -2,6 +2,7 @@ package com.botcine.bot_cine.chat.administradores;
 
 import com.botcine.bot_cine.bl.AdministratorBl;
 import com.botcine.bot_cine.chat.AbstractProcess;
+import com.botcine.bot_cine.chat.AccesoAdministradores;
 import com.botcine.bot_cine.chat.AccesoPeliculas;
 import com.botcine.bot_cine.chat.CineLongPollingBot;
 import com.botcine.bot_cine.dto.AdministradorDto;
@@ -38,7 +39,7 @@ public class ListaAdministrador extends AbstractProcess {
             sb.append(administradorDto.toString()).append("\n\r");
 
         }
-
+        sb.append("Ingrese cualquier caracter para volver al menu\n\r");
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(chatId.toString());
         sendMessage.setText(sb.toString());
@@ -49,7 +50,7 @@ public class ListaAdministrador extends AbstractProcess {
             // relanzamos la excepción
             throw new RuntimeException(ex);
         }
-        return context.getBean(AccesoPeliculas.class);
+        return new AccesoAdministradores();
     }
 
     @Override

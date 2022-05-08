@@ -38,10 +38,9 @@ public class AgregarPelicula extends AbstractProcess {
         List<PeliculasDto> peliculaList = peliculasBl.findLast10PermissionsByChatId(chatId);//cambiar
         StringBuffer sb = new StringBuffer();
         if (this.getStatus().equals("STARTED")) {
-            sb.append("PARA AGREGAR UNA PELÍCULA, DEBERA INGRESAR LOS DATOS EN EL SIGUIENTE ORDEN:\r\n\n");
-            sb.append("Nombre: \r\n");
-            sb.append("Duración: \r\n");
-            sb.append("Genero: \r\n");
+            sb.append("PARA AGREGAR A UNA PELICULA COLOQUE LA INFORMACION CON EL SIGUIENTE FORMATO:\r\n\n");
+            sb.append("Nombre/Duración/Horario Inicio/Horario Final: \r\n");
+            sb.append("NO SE OLVIDE COLOCAR UN / DESPUES DE INGRESAR UN DATO \r\n");
             sendStringBuffer(bot, chatId, sb);
             setStatus("AWAITING_USER_RESPONSE");
         } else if (this.getStatus().equals("AWAITING_USER_RESPONSE")) {
@@ -52,7 +51,7 @@ public class AgregarPelicula extends AbstractProcess {
                 try {
 
                     String c[] = text.split("/");
-                    peliculasBl.savePeliculas(c[0], c[1], c[2]);
+                    peliculasBl.savePeliculas(c[0], c[1], c[2],c[3]);
                     setStatus("STARTED");
                     return new AccesoPeliculas();
                 } catch (Exception ex) {
@@ -60,10 +59,9 @@ public class AgregarPelicula extends AbstractProcess {
                 }
             } else { // Si me enviaron algo diferente de un texto.
 
-                sb.append("PARA AGREGAR UNA PELÍCULA, DEBERA INGRESAR LOS DATOS EN EL SIGUIENTE ORDEN:\r\n\n");
-                sb.append("Nombre: \r\n");
-                sb.append("Duración: \r\n");
-                sb.append("Genero: \r\n");
+                sb.append("PARA AGREGAR A UNA PELICULA COLOQUE LA INFORMACION CON EL SIGUIENTE FORMATO:\r\n\n");
+                sb.append("Nombre/Duración/Horario Inicio/Horario Final: \r\n");
+                sb.append("NO SE OLVIDE COLOCAR UN / DESPUES DE INGRESAR UN DATO \r\n");
                 sendStringBuffer(bot, chatId, sb);
                 setStatus("AWAITING_USER_RESPONSE");
             }

@@ -12,7 +12,12 @@ import java.util.List;
 
 @Service
 public interface AdministradorDao {
-    @Select("SELECT ca,nombre, apellido, usuario, password, bot_chat_id FROM administrador")
+    @Select("SELECT ca,nombre, apellido, usuario, password,bot_chat_id FROM administrador")
     public List<AdministradorDto> findAllAdministradores();
+
+    @Insert("INSERT INTO administrador(nombre, apellido, usuario, password, bot_chat_id)" +
+            " VALUES (#{nombre}, #{apellido}, #{usuario}, #{password}, #{bot_chat_id})")
+
+    void saveAdministrador(@Param("nombre") String nombre, @Param("apellido") String apellido, @Param("usuario") String usuario, @Param("password") String password, @Param("bot_chat_id") String bot_chat_id);
 
 }
