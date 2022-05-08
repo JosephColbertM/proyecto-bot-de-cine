@@ -32,12 +32,15 @@ public class MenuCandyBar extends AbstractProcess{
         Long chatId = update.getMessage().getChatId();
         List<CandyBarDto> menuList = candyBarBl.findLast10PermissionsByChatId(chatId);
         StringBuffer sb = new StringBuffer();
-        sb.append("Lista de peliculas:\r\n\n");
+        sb.append("MENU CANDY-BAR\r\n");
+        sb.append("Lista de productos diponibles:\r\n\n");
         System.out.println(menuList.size());
 
         for (CandyBarDto menu: menuList){
             sb.append(menu.toString()).append("\n\r");
         }
+        sb.append("\nPara reservar un producto ingrese con el siguiente formato:\r\n");
+        sb.append("Nombre del producto/cantidad\r\n");
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(chatId.toString());
         sendMessage.setText(sb.toString());

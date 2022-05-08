@@ -37,10 +37,7 @@ public class CandyBarDto {
 
     @Override
     public String toString() {
-        return "CandyBarDto{" +
-                "cpr=" + cpr +
-                ", nombre='" + nombre + '\'' +
-                ", precio=" + precio +
-                '}';
+        return cpr + ". " + nombre + '\t' +
+                precio + " Bs";
     }
 }
