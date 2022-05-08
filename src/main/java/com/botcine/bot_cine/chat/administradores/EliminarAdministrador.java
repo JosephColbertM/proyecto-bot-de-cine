@@ -28,7 +28,7 @@ public class EliminarAdministrador extends AbstractProcess {
     public AbstractProcess handle(ApplicationContext context, Update update, CineLongPollingBot bot) {
         int c=1;
         Long chatId = update.getMessage().getChatId();
-        List<AdministradorDto> adminList = administradorBl.findLast10PermissionsByChatId(chatId);
+        List<AdministradorDto> adminList = administradorBl.listadoDeAdministradores(chatId);
         StringBuffer sb = new StringBuffer();
         sb.append("ADMINISTRADORES\n\r");
         sb.append("Ingrese el número del administrador que desea eliminar\n\r\n");

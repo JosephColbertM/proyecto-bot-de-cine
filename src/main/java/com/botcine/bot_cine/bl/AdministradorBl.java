@@ -14,13 +14,11 @@ public class AdministradorBl {
 
     @Autowired
     public AdministradorBl(AdministradorDao administradorDao) {
-
         this.administradorDao = administradorDao;
     }
 
-    public List<AdministradorDto> findLast10PermissionsByChatId(Long chatId) {
-        Integer id = Math.toIntExact(chatId);
-        List<AdministradorDto> admin = administradorDao.findAllAdministradores(id);
+    public List<AdministradorDto> listadoDeAdministradores(Long chatId) {
+        List<AdministradorDto> admin = administradorDao.findAllAdministradores();
         return admin;
     }
 }

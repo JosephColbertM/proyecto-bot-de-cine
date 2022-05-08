@@ -50,7 +50,7 @@ public class PeliculasDto{
 
     @Override
     public String toString() {
-        return "PeliculasDto{" +
+        return "Peliculas{" +
                 "cp=" + cp +
                 ", nombre='" + nombre + '\'' +
                 ", duracion='" + duracion + '\'' +

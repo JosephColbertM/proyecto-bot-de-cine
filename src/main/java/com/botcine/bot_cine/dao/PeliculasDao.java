@@ -12,8 +12,8 @@ import java.util.List;
 public interface PeliculasDao {
 
     @Select("SELECT a.cp, a.nombre, a.duracion, a.genero " +
-            "FROM peliculas a JOIN horarios b ON a.cp = b.ch WHERE a.cp = #{cp}")
-    public List<PeliculasDto> findAllPeliculas(@Param("cp") Integer id);
+            "FROM peliculas a ")
+    public List<PeliculasDto> findAllPeliculas();
 
 
     @Insert("INSERT INTO peliculas(nombre, duracion, genero)" +

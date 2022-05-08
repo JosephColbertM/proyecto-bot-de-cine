@@ -19,18 +19,10 @@ public class PeliculasBl {
     }
 
     public List<PeliculasDto> findLast10PermissionsByChatId(Long chatId) {
-        Integer id = Math.toIntExact(chatId);
-        List<PeliculasDto> Pel = peliculasDao.findAllPeliculas(1);
+
+        List<PeliculasDto> Pel = peliculasDao.findAllPeliculas();
         return Pel;
     }
 
-    public void savePeliculas(PeliculasDto peliculasDto, Long chatId){
-        Integer chat = Math.toIntExact(chatId);
-        String nombre = peliculasDto.getNombre();
-        String duracion = peliculasDto.getDuracion();
-        String genero = peliculasDto.getGenero();
 
-
-        peliculasDao.savePeliculas(nombre, duracion, genero, chat);
-    }
 }

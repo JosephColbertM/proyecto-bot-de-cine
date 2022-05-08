@@ -1,5 +1,6 @@
 package com.botcine.bot_cine.chat;
 
+import com.botcine.bot_cine.bl.AdministradorBl;
 import com.botcine.bot_cine.bl.PeliculasBl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +26,7 @@ public class CineLongPollingBot extends TelegramLongPollingBot {
     private ApplicationContext context;
 
     private static Logger LOGGER = LoggerFactory.getLogger(PeliculasBl.class);
+    private static Logger LOGGERA = LoggerFactory.getLogger(AdministradorBl.class);
 
 
     public CineLongPollingBot(ApplicationContext context) {
@@ -83,8 +85,7 @@ public class CineLongPollingBot extends TelegramLongPollingBot {
             usersSession.put(chatId, nextProcess);
 
         } else { // Ya existe un proceso
-            LOGGER.info("Continuamos el proceso para el  chatId: " + chatId
-                    + " proceso: " + currentProcess.getName());
+
             AbstractProcess nextProcess = currentProcess.handle(context, update, this);
 
             if (!nextProcess.equals(currentProcess)) { // Si el siguiente proceso es diferente

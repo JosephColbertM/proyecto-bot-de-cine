@@ -17,7 +17,7 @@ import javax.sql.DataSource;
 
 
 @SpringBootApplication
-@MapperScan("com.botcine.bot_cine.dao")
+@MapperScan("com.botcine.bot_cine")
 public class BotCineApplication {
 
 	@Bean

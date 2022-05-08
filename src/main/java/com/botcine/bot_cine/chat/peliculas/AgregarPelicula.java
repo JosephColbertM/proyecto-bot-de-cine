@@ -33,6 +33,7 @@ public class AgregarPelicula extends AbstractProcess {
 
     @Override
     public AbstractProcess handle(ApplicationContext context, Update update, CineLongPollingBot bot) {
+
         Long chatId = update.getMessage().getChatId();
         List<PeliculasDto> peliculaList = peliculasBl.findLast10PermissionsByChatId(chatId);//cambiar
         StringBuffer sb = new StringBuffer();
@@ -42,8 +43,8 @@ public class AgregarPelicula extends AbstractProcess {
         sb.append("Genero: \r\n");
 
         System.out.println(peliculaList.size());
-        for(PeliculasDto pel: peliculaList) {
-            sb.append(pel.toString()).append("\n\r");
+        for(PeliculasDto pelicula: peliculaList) {
+            sb.append(pelicula.toString()).append("\n\r");
         }
 
         SendMessage sendMessage = new SendMessage();
@@ -56,7 +57,7 @@ public class AgregarPelicula extends AbstractProcess {
             // relanzamos la excepción
             throw new RuntimeException(ex);
         }
-        return new AccesoPeliculas();
+        return context.getBean(AccesoPeliculas.class);
     }
 
     @Override
@@ -73,7 +74,6 @@ public class AgregarPelicula extends AbstractProcess {
     public AbstractProcess onTimeout() {
         return null;
     }
-
 
 
 }

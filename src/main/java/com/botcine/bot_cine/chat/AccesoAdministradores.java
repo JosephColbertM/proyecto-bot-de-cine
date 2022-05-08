@@ -20,6 +20,19 @@ public class AccesoAdministradores extends AbstractProcess{
         this.setUserData(new HashMap<>());
         this.setStatus("STARTED");
     }
+    private void showMainMenu(CineLongPollingBot bot, Long chatId) {
+        StringBuffer sb = new StringBuffer();
+        sb.append("MENU DE ADMINISTRADORES\r\n");
+        sb.append("1. Agregar\r\n");
+        sb.append("2. Modificar\r\n");
+        sb.append("3. Eliminar\r\n");
+        sb.append("4. Lista\r\n");
+        sb.append("0. Salir\r\n");
+        sb.append("Elija una opción:\r\n");
+        sendStringBuffer(bot, chatId, sb);
+
+        this.setStatus("AWAITING_USER_RESPONSE");
+    }
     @Override
     public AbstractProcess handle(ApplicationContext context,Update update, CineLongPollingBot bot) {
         AbstractProcess result = this; // sigo en el mismo proceso.
@@ -43,9 +56,11 @@ public class AccesoAdministradores extends AbstractProcess{
                             break;
                         case 3 : result = context.getBean(EliminarAdministrador.class) ;
                             break;
-                        case 4 : result = context.getBean(ListaAdministradores.class) ;
+                        case 4 :
+                            this.setStatus("STARTED");
+                            result = context.getBean(ListaAdministradores.class) ;
                             break;
-                        case 0 : result = new MenuAdministrador();
+                        case 0 : result = context.getBean(MenuProcessImpl.class);
                             break;
                         default: showMainMenu(bot, chatId);
                     }
@@ -60,19 +75,7 @@ public class AccesoAdministradores extends AbstractProcess{
         return result;
     }
 
-    private void showMainMenu(CineLongPollingBot bot, Long chatId) {
-        StringBuffer sb = new StringBuffer();
-        sb.append("MENU DE ADMINISTRADORES\r\n");
-        sb.append("1. Agregar\r\n");
-        sb.append("2. Modificar\r\n");
-        sb.append("3. Eliminar\r\n");
-        sb.append("4. Lista\r\n");
-        sb.append("0. Salir\r\n");
-        sb.append("Elija una opción:\r\n");
-        sendStringBuffer(bot, chatId, sb);
 
-        this.setStatus("AWAITING_USER_RESPONSE");
-    }
 
     @Override
     public AbstractProcess onError() {

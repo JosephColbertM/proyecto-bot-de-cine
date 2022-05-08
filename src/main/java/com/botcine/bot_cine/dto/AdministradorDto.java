@@ -6,16 +6,16 @@ public class AdministradorDto {
     String apellido;
     String usuario;
     String password;
+    String bot_chat_id;
 
-
-    public AdministradorDto(Integer ca, String nombre, String apellido, String usuario, String password) {
+    public AdministradorDto(Integer ca, String nombre, String apellido, String usuario, String password, String bot_chat_id) {
         this.ca = ca;
         this.nombre = nombre;
         this.apellido = apellido;
         this.usuario = usuario;
         this.password = password;
+        this.bot_chat_id = bot_chat_id;
     }
-
 
     public Integer getCa() {
         return ca;
@@ -57,13 +57,23 @@ public class AdministradorDto {
         this.password = password;
     }
 
+    public String getBot_chat_id() {
+        return bot_chat_id;
+    }
+
+    public void setBot_chat_id(String bot_chat_id) {
+        this.bot_chat_id = bot_chat_id;
+    }
 
     @Override
     public String toString() {
-        return
-                "Nombre: " + nombre + '\n' +
-                "Apellido" + apellido + '\n' +
-                "Usuario" + usuario + '\n' +
-                "Contraseña" + password;
+        return "AdministradorDto{" +
+                "ca=" + ca +
+                ", nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", usuario='" + usuario + '\'' +
+                ", password='" + password + '\'' +
+                ", bot_chat_id='" + bot_chat_id + '\'' +
+                '}';
     }
 }
