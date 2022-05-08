@@ -24,9 +24,7 @@ public class AccesoAdministradores extends AbstractProcess{
         StringBuffer sb = new StringBuffer();
         sb.append("MENU DE ADMINISTRADORES\r\n");
         sb.append("1. Agregar\r\n");
-        sb.append("2. Modificar\r\n");
-        sb.append("3. Eliminar\r\n");
-        sb.append("4. Lista\r\n");
+        sb.append("2. Lista\r\n");
         sb.append("0. Salir\r\n");
         sb.append("Elija una opción:\r\n");
         sendStringBuffer(bot, chatId, sb);
@@ -52,15 +50,11 @@ public class AccesoAdministradores extends AbstractProcess{
                     switch (opcion){
                         case 1 : result = context.getBean(AddAdministrator.class) ;
                             break;
-                        case 2 : result = context.getBean(ModificarAdministrador.class) ;
-                            break;
-                        case 3 : result = context.getBean(EliminarAdministrador.class) ;
-                            break;
-                        case 4 :
+                        case 2:
                             this.setStatus("STARTED");
                             result = context.getBean(ListaAdministrador.class);
                             break;
-                        case 0 : result = new MenuProcessImpl();
+                        case 0 : result = new MenuAdministrador();
                             break;
                         default: showMainMenu(bot, chatId);
                     }

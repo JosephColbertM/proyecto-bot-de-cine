@@ -25,9 +25,7 @@ public class AccesoCandyBar extends AbstractProcess{
         StringBuffer sb = new StringBuffer();
         sb.append("MENU DE ACCESO CANDY-BAR\r\n");
         sb.append("1. Agregar\r\n");
-        sb.append("2. Modificar\r\n");
-        sb.append("3. Eliminar\r\n");
-        sb.append("4. Lista\r\n");
+        sb.append("2. Lista\r\n");
         sb.append("0. Salir\r\n");
         sb.append("Elija una opción:\r\n");
         sendStringBuffer(bot, chatId, sb);
@@ -55,13 +53,9 @@ public class AccesoCandyBar extends AbstractProcess{
                     switch (opcion){
                         case 1 : result = context.getBean(AgregarProducto.class);
                             break;
-                        case 2 : result = context.getBean(ModificarProducto.class);
+                        case 2 : result = context.getBean(ListaProducto.class);
                             break;
-                        case 3 : result = context.getBean(EliminarProducto.class);
-                            break;
-                        case 4 : result = context.getBean(ListaProducto.class);
-                            break;
-                        case 0 : result = new AccesoAdministradores();
+                        case 0 : result = new MenuAdministrador();
                             break;
                         default: showMainMenu(bot, chatId);
                     }

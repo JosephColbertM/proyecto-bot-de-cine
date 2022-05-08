@@ -25,9 +25,7 @@ public class AccesoPeliculas extends AbstractProcess {
         StringBuffer sb = new StringBuffer();
         sb.append("MENU DE PELÍCULAS\r\n");
         sb.append("1. Agregar\r\n");
-        sb.append("2. Modificar\r\n");
-        sb.append("3. Eliminar\r\n");
-        sb.append("4. Lista\r\n");
+        sb.append("2. Lista\r\n");
         sb.append("0. Salir\r\n");
         sb.append("Elija una opción:\r\n");
         sendStringBuffer(bot, chatId, sb);
@@ -57,15 +55,9 @@ public class AccesoPeliculas extends AbstractProcess {
                             this.setStatus("STARTED");
                             result = context.getBean(AgregarPelicula.class);
                             break;
-                        case 2 :
-                            this.setStatus("STARTED");
-                            result = context.getBean(ModificarPelicula.class);
+                        case 2 : result = context.getBean(ListaPeliculas.class);
                             break;
-                        case 3 : result = context.getBean(EliminarPelicula.class);
-                            break;
-                        case 4 : result = context.getBean(ListaPeliculas.class);
-                            break;
-                        case 0 : result = new AccesoAdministradores();
+                        case 0 : result = new MenuAdministrador();
                             break;
                         default: showMainMenu(bot, chatId);
                     }
