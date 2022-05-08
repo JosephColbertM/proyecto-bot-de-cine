@@ -48,8 +48,8 @@ public class AccesoCliente extends AbstractProcess {
                 try {
                     int opcion = Integer.parseInt(text);
                     switch (opcion){
-                        case 1 : result = new MenuCartelera();
-                            break;
+                       // case 1 : result = new MenuCartelera();
+                           // break;
                         case 2 : result = new MenuCandyBar();
                             break;
                         case 3 : result = new HistorialCompraCartelera();

@@ -68,8 +68,8 @@ public class Horarios extends AbstractProcess {
                             break;
                         case 5 : result = new CantidadAsientos();
                             break;
-                        case 0 : result = new MenuCartelera();
-                            break;
+                        //case 0 : result = new MenuCartelera();
+                          //  break;
 
                         default: showMainMenu(bot, chatId);
                     }

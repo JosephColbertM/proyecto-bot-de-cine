@@ -1,90 +1,63 @@
 package com.botcine.bot_cine.chat;
 
+import com.botcine.bot_cine.bl.CarteleraBl;
+import com.botcine.bot_cine.bl.PeliculasBl;
+import com.botcine.bot_cine.chat.AbstractProcess;
+import com.botcine.bot_cine.chat.AccesoPeliculas;
+import com.botcine.bot_cine.chat.CineLongPollingBot;
+import com.botcine.bot_cine.dto.CarteleraDto;
+import com.botcine.bot_cine.dto.PeliculasDto;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
+
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
-
-import java.util.HashMap;
+import java.util.List;
 
 @Service
 public class MenuCartelera extends AbstractProcess {
 
+    private CarteleraBl carteleraBl;
 
-    public MenuCartelera() {
-
-        this.setName("Menú Cartelera");
-        this.setDefault(true);
+    @Autowired
+    public MenuCartelera(CarteleraBl carteleraBl) {
+        this.carteleraBl = carteleraBl;
+        this.setName("Comprar Ticket");
+        this.setDefault(false);
         this.setExpires(false);
         this.setStartDate(System.currentTimeMillis()/1000);
-        this.setUserData(new HashMap<>());
+        //this.setUserData(new HashMap<>());
         this.setStatus("STARTED");
-
     }
-
-    // Retornar un Widget de tipo menu
-//    @Override
-//    public AbstractWidget onInit() {
-//        MenuWidgetImpl menuWidget = new MenuWidgetImpl(messages);
-//        return menuWidget;
-//    }
-
-
-    private void showMainMenu(CineLongPollingBot bot, Long chatId) {
-        StringBuffer sb = new StringBuffer();
-        sb.append("CARTELERA\r\n");
-        sb.append("1. The Batman\r\n");
-        sb.append("2. Sonic 2\r\n");
-        sb.append("3. IT\r\n");
-        sb.append("4. Animales Fantasticos\r\n");
-        sb.append("0. Volver\r\n");
-        sb.append("Elija una opción:\r\n");
-        sendStringBuffer(bot, chatId, sb);
-
-        this.setStatus("AWAITING_USER_RESPONSE");
-    }
-
 
     @Override
+
     public AbstractProcess handle(ApplicationContext context, Update update, CineLongPollingBot bot) {
-        AbstractProcess result = this; // sigo en el mismo proceso.
         Long chatId = update.getMessage().getChatId();
+        List<CarteleraDto> carteleraList = carteleraBl.findLast10PermissionsByChatId(chatId);
+        StringBuffer sb = new StringBuffer();
+        sb.append("Lista de peliculas:\r\n\n");
 
-        if (this.getStatus().equals("STARTED")) {
-
-            showMainMenu(bot, chatId);
-        } else if (this.getStatus().equals("AWAITING_USER_RESPONSE")) {
-            // Estamos esperando por un numero 1 o 2
-            Message message = update.getMessage();
-            if ( message.hasText() ) {
-                // Intentamos transformar en número
-                String text = message.getText(); // El texto contiene asdasdas
-                try {
-                    int opcion = Integer.parseInt(text);
-                    switch (opcion){
-                        case 1 : result = new Horarios();
-                            break;
-                        case 2 : result = new Horarios();
-                            break;
-                        case 3 : result = new Horarios();
-                            break;
-                        case 4 : result = new Horarios();
-                            break;
-                        case 0 : result = new AccesoCliente();
-                            break;
-
-                        default: showMainMenu(bot, chatId);
-                    }
-                } catch (NumberFormatException ex) {
-                    showMainMenu(bot, chatId);
-                }
-                // continuar con el proceso seleccionado
-            } else { // Si me enviaron algo diferente de un texto.
-                showMainMenu(bot, chatId);
-            }
+        System.out.println(carteleraList.size());
+        for(CarteleraDto pelicula: carteleraList) {
+            sb.append(pelicula.toString()).append("\n\r");
         }
-        return result;
+
+        SendMessage sendMessage = new SendMessage();
+        sendMessage.setChatId(chatId.toString());
+        sendMessage.setText(sb.toString());
+
+        try {
+            bot.execute(sendMessage);
+        } catch (Exception ex) {
+            // relanzamos la excepción
+            throw new RuntimeException(ex);
+        }
+        return context.getBean(AccesoPeliculas.class);
+
     }
 
     @Override
@@ -101,4 +74,6 @@ public class MenuCartelera extends AbstractProcess {
     public AbstractProcess onTimeout() {
         return null;
     }
+
+
 }
