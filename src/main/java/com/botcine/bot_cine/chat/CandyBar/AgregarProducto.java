@@ -1,15 +1,17 @@
 package com.botcine.bot_cine.chat.CandyBar;
 
-import com.botcine.bot_cine.chat.AbstractProcess;
-import com.botcine.bot_cine.chat.AccesoCandyBar;
-import com.botcine.bot_cine.chat.AccesoPeliculas;
-import com.botcine.bot_cine.chat.CineLongPollingBot;
+import com.botcine.bot_cine.bl.CandyBarBl;
+import com.botcine.bot_cine.chat.*;
 import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
-
+@Service
 public class AgregarProducto extends AbstractProcess {
-    public AgregarProducto(){
+    private CandyBarBl candyBarBl;
+    public AgregarProducto(CandyBarBl candyBarBl){
+        this.candyBarBl=candyBarBl;
         this.setName("Agregar película");
         this.setDefault(false);
         this.setExpires(false);
@@ -20,24 +22,40 @@ public class AgregarProducto extends AbstractProcess {
 
     @Override
     public AbstractProcess handle(ApplicationContext context, Update update, CineLongPollingBot bot) {
+        AbstractProcess result = this;
         Long chatId = update.getMessage().getChatId();
+
         StringBuffer sb = new StringBuffer();
-        sb.append("PARA AGREGAR UN PRODUCTO, DEBERA INGRESAR LOS DATOS EN EL SIGUIENTE ORDEN:\r\n\n");
-        sb.append("Nombre: \r\n");
-        sb.append("Cantidad: \r\n");
-        sb.append("Precio: \r\n");
+        if (this.getStatus().equals("STARTED")) {
+            sb.append("PARA AGREGAR A UN ADMINISTRADOR COLOQUE LA INFORMACION CON EL SIGUIENTE FORMATO:\r\n\n");
+            sb.append("Nombre/Apellido/Usuario/Password/chat_id: \r\n");
+            sb.append("NO SE OLVIDE COLOCAR UN / DESPUES DE INGRESAR UN DATO \r\n");
+            sendStringBuffer(bot, chatId, sb);
+            setStatus("AWAITING_USER_RESPONSE");
+        } else if (this.getStatus().equals("AWAITING_USER_RESPONSE")) {
+            Message message = update.getMessage();
+            if (message.hasText()) {
+                // Intentamos transformar en número
+                String text = message.getText(); // El texto contiene asdasdas
+                try {
 
+                    String c[] = text.split("/");
+                    candyBarBl.saveProductos(c[0], Double.valueOf(c[1]));
+                    setStatus("STARTED");
+                    return new AccesoCandyBar();
+                } catch (Exception ex) {
 
-        SendMessage sendMessage = new SendMessage();
-        sendMessage.setChatId(chatId.toString());
-        sendMessage.setText(sb.toString());
-        try {
-            bot.execute(sendMessage);
-        } catch (Exception ex) {
-            // relanzamos la excepción
-            throw new RuntimeException(ex);
+                }
+            } else { // Si me enviaron algo diferente de un texto.
+
+                sb.append("PARA AGREGAR A UN ADMINISTRADOR COLOQUE LA INFORMACION CON EL SIGUIENTE FORMATO:\r\n\n");
+                sb.append("Nombre/Apellido/Usuario/Password/chat_id: \r\n");
+                sb.append("NO SE OLVIDE COLOCAR UN / DESPUES DE INGRESAR UN DATO \r\n");
+                sendStringBuffer(bot, chatId, sb);
+                setStatus("AWAITING_USER_RESPONSE");
+            }
         }
-        return new AccesoCandyBar();
+        return result;
     }
 
     @Override
