@@ -44,7 +44,10 @@ public class AgregarProducto extends AbstractProcess{
                 try {
                     int opcion = Integer.parseInt(text);
                     switch (opcion){
-                        case 1 : result = new MenuCandyBar();
+                        case 1 :
+                            this.setStatus("STARTED");
+
+                            result = context.getBean(MenuCandyBar.class);
                             break;
                         case 2 : result = new Reserva();
                             break;
