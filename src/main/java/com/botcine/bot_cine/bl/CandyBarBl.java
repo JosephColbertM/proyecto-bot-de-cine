@@ -19,4 +19,7 @@ public class CandyBarBl {
         return Prod;
 
     }
+    public void saveProductos(String nombre, Double precio){
+        candyBarDao.saveProductos(nombre, precio);
+    }
 }
