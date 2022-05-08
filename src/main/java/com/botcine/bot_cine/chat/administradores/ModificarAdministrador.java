@@ -1,6 +1,5 @@
 package com.botcine.bot_cine.chat.administradores;
 
-import com.botcine.bot_cine.bl.AdministradorBl;
 import com.botcine.bot_cine.chat.AbstractProcess;
 import com.botcine.bot_cine.chat.CineLongPollingBot;
 import com.botcine.bot_cine.dto.AdministradorDto;
@@ -12,21 +11,11 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import java.util.List;
 @Service
 public class ModificarAdministrador extends AbstractProcess {
-    private AdministradorBl administradorBl;
-    @Autowired
-    public ModificarAdministrador(AdministradorBl administradorBl) {
-        this.administradorBl = administradorBl;
-        this.setName("Modificar datos de los administradores");
-        this.setDefault(false);
-        this.setExpires(false);
-        this.setStartDate(System.currentTimeMillis()/1000);
-        //this.setUserData(new HashMap<>());
-        this.setStatus("STARTED");
-    }
+
 
     @Override
     public AbstractProcess handle(ApplicationContext context, Update update, CineLongPollingBot bot) {
-        int c=1;
+        /*int c=1;
         Long chatId = update.getMessage().getChatId();
 
         List<AdministradorDto> adminList = administradorBl.listadoDeAdministradores(chatId);
@@ -40,6 +29,8 @@ public class ModificarAdministrador extends AbstractProcess {
         }
         sendStringBuffer(bot, chatId, sb);
         return new DatosModificarAdministrador();
+        */
+         return null;
     }
 
     @Override

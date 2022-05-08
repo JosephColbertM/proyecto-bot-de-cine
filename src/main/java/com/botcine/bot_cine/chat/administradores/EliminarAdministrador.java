@@ -1,6 +1,5 @@
 package com.botcine.bot_cine.chat.administradores;
 
-import com.botcine.bot_cine.bl.AdministradorBl;
 import com.botcine.bot_cine.chat.AbstractProcess;
 import com.botcine.bot_cine.chat.AccesoAdministradores;
 import com.botcine.bot_cine.chat.CineLongPollingBot;
@@ -13,20 +12,11 @@ import java.util.List;
 
 @Service
 public class EliminarAdministrador extends AbstractProcess {
-    private AdministradorBl administradorBl;
-    public EliminarAdministrador(AdministradorBl administradorBl) {
-        this.administradorBl = administradorBl;
-        this.setName("Eliminar un administrador");
-        this.setDefault(false);
-        this.setExpires(false);
-        this.setStartDate(System.currentTimeMillis()/1000);
-        //this.setUserData(new HashMap<>());
-        this.setStatus("STARTED");
-    }
+
 
     @Override
     public AbstractProcess handle(ApplicationContext context, Update update, CineLongPollingBot bot) {
-        int c=1;
+        /*int c=1;
         Long chatId = update.getMessage().getChatId();
         List<AdministradorDto> adminList = administradorBl.listadoDeAdministradores(chatId);
         StringBuffer sb = new StringBuffer();
@@ -39,6 +29,9 @@ public class EliminarAdministrador extends AbstractProcess {
         }
         sendStringBuffer(bot, chatId, sb);
         return new AccesoAdministradores();
+        */
+
+        return null;
     }
 
     @Override

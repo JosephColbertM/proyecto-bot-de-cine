@@ -1,8 +1,8 @@
 package com.botcine.bot_cine.chat;
 
-import com.botcine.bot_cine.chat.administradores.AgregarAdministrador;
+import com.botcine.bot_cine.chat.administradores.AddAdministrator;
 import com.botcine.bot_cine.chat.administradores.EliminarAdministrador;
-import com.botcine.bot_cine.chat.administradores.ListaAdministradores;
+import com.botcine.bot_cine.chat.administradores.ListaAdministrador;
 import com.botcine.bot_cine.chat.administradores.ModificarAdministrador;
 
 import org.springframework.context.ApplicationContext;
@@ -50,7 +50,7 @@ public class AccesoAdministradores extends AbstractProcess{
                 try {
                     int opcion = Integer.parseInt(text);
                     switch (opcion){
-                        case 1 : result = context.getBean(AgregarAdministrador.class) ;
+                        case 1 : result = context.getBean(AddAdministrator.class) ;
                             break;
                         case 2 : result = context.getBean(ModificarAdministrador.class) ;
                             break;
@@ -58,7 +58,7 @@ public class AccesoAdministradores extends AbstractProcess{
                             break;
                         case 4 :
                             this.setStatus("STARTED");
-                            result = context.getBean(ListaAdministradores.class) ;
+                            result = context.getBean(ListaAdministrador.class);
                             break;
                         case 0 : result = context.getBean(MenuProcessImpl.class);
                             break;
