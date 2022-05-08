@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
-
 import java.util.HashMap;
 import java.util.List;
 
@@ -51,9 +50,8 @@ public class MenuCandyBar extends AbstractProcess{
             // relanzamos la excepción
             throw new RuntimeException(ex);
         }
-        return context.getBean(AccesoCliente.class);
 
-
+        return context.getBean(Reservaciones.class);
     }
 
     @Override

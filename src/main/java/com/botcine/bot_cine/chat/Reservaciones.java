@@ -1,17 +1,23 @@
-package com.botcine.bot_cine.chat.CandyBar;
+package com.botcine.bot_cine.chat;
 
-import com.botcine.bot_cine.bl.CandyBarBl;
-import com.botcine.bot_cine.chat.*;
+import com.botcine.bot_cine.bl.ReservaCBl;
+import com.botcine.bot_cine.dto.PeliculasDto;
+import com.botcine.bot_cine.dto.ReservaCDto;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
-import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
+
+import java.util.List;
+
 @Service
-public class AgregarProducto extends AbstractProcess {
-    private CandyBarBl candyBarBl;
-    public AgregarProducto(CandyBarBl candyBarBl){
-        this.candyBarBl=candyBarBl;
+public class Reservaciones extends AbstractProcess {
+    private ReservaCBl reservaCBl;
+
+    @Autowired
+    public Reservaciones (ReservaCBl reservaCBl){
+        this.reservaCBl=reservaCBl;
         this.setName("Agregar película");
         this.setDefault(false);
         this.setExpires(false);
@@ -39,7 +45,7 @@ public class AgregarProducto extends AbstractProcess {
                 try {
 
                     String c[] = text.split("/");
-                    candyBarBl.saveProductos(c[0], Double.valueOf(c[1]));
+                    reservaCBl.saveReservaC(Integer.parseInt(c[0]),Integer.parseInt(c[1]),Double.parseDouble(c[2]));
                     setStatus("STARTED");
                     return new AccesoCandyBar();
                 } catch (Exception ex) {
