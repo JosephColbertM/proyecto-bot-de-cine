@@ -1,0 +1,204 @@
+---
+openapi: 3.0.0
+info:
+  title: Simple Inventory API
+  description: This is a simple API
+  contact:
+    email: you@your-company.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+servers:
+- url: https://virtserver.swaggerhub.com/joseph97cm/Cine/1.0.0
+  description: SwaggerHub API Auto Mocking
+paths:
+  /LoginAdministrador/{usuario}{contraseña}:
+    post:
+      tags:
+      - login administrador
+      summary: Autenticación de datos para el ingreso al sistema
+      parameters:
+      - name: usuario
+        in: path
+        description: Ingreso de usuario
+        required: true
+        style: simple
+        schema:
+          type: string
+      - name: contraseña
+        in: path
+        description: Ingrese Contraseña
+        required: true
+        style: simple
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Informacion Correcta
+          
+        "400":
+          description: BAD REQUEST
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        "404":
+          description: NOT FOUND
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        "500":
+          description: INTERNAL SERVER ERROR
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+    
+  /AgregarAdministrador:
+    post:
+      tags:
+      - agregar administrador
+      summary: Ingrese los datos del nuevo administrador
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/administradorPost'
+        required: true
+      responses:
+        "200":
+          description: Se ingreso el administrador de forma correcta
+        "400":
+          description: BAD REQUEST
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        "500":
+          description: SERVER ERROR
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+  /ListaAdministradores/{administradorId}:
+    get:
+      tags:
+      - administrador
+      summary: Mostrar los administradores por el id
+      description: Devolver el resultado de los administradores por medio del id (nombre - apellido - fecha_nacimiento - usuario - password)
+      operationId: getadministradorId
+      parameters:
+      - name: administradorId
+        in: path
+        description: ID del administrador
+        required: true
+        style: simple
+       
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/administrador'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/administrador'
+        "400":
+          description: BAD REQUEST
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        "404":
+          description: NOT FOUND
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        "500":
+          description: INTERNAL SERVER ERROR
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+  
+components:
+  schemas:
+    error:
+      type: object
+      properties:
+        errorCode:
+          type: integer
+          format: int64
+        errorMessage:
+          type: string
+          description: Mensaje del error
+        errorDescription:
+          type: string
+          description: La descripcion en detalle del error
+    
+    administrador:
+      type: object
+      properties:
+
+        nombre:
+          type: string
+          description: Nombre Administrador
+          example: Juan Marco
+        apellido:
+          type: string
+          description: Apellido Administrador
+          example: Guzman Pozo
+        fecha_nacimiento:
+          type: string
+          description: Fecha de nacimiento
+          example: 20/11/1990
+        usuario:
+          type: string
+          description: Nombre de usuario
+          example: Marco20
+        contraseña:
+          type: string
+          description: Contraseña del usuario
+          example: 12345
+    administradorPost:
+      type: object
+      properties:
+        nombre:
+          type: string
+          description: Nombre Administrador
+        apellido:
+          type: string
+          description: Apellido Administrador
+        fecha_nacimiento:
+          type: string
+          description: Fecha de nacimiento
+        usuario:
+          type: string
+          description: Nombre de usuario
+        contraseña:
+          type: string
+          description: Contraseña del usuario
+    administradorExam:
+      type: object
+      properties:
+        usuario:
+          type: string
+          description: Usuario
+        contraseña:
+          type: string
+          description: Contraseña
+      
+    
+        
+        
+      
+          
+          
+  
