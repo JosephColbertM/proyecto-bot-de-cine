@@ -13,6 +13,50 @@ servers:
 - url: https://virtserver.swaggerhub.com/joseph97cm/Cine/1.0.0
   description: SwaggerHub API Auto Mocking
 paths:
+  /LoginAdministrador/{usuario}{contraseña}:
+    get:
+      tags:
+        - login administrador
+      summary: Autenticación de datos para el ingreso al sistema
+      parameters:
+        - name: usuario
+          in: path
+          description: Ingreso de usuario
+          required: true
+          style: simple
+          schema:
+            type: string
+
+        - name: contraseña
+          in: path
+          description: Ingrese Contraseña
+          required: true
+          style: simple
+          schema:
+            type: string
+
+      responses:
+        "200":
+          description: Informacion Correcta
+        "400":
+          description: BAD REQUEST
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        "404":
+          description: NOT FOUND
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        "500":
+          description: INTERNAL SERVER ERROR
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+
   /AgregarAdministrador:
     post:
       tags:
