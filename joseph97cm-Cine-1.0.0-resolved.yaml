@@ -13,6 +13,77 @@ servers:
 - url: https://virtserver.swaggerhub.com/joseph97cm/Cine/1.0.0
   description: SwaggerHub API Auto Mocking
 paths:
+  /AgregarAdministrador:
+    post:
+      tags:
+        - administrador
+      summary: Ingrese los datos del nuevo administrador
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/administradorPost'
+        required: true
+      responses:
+        200:
+          description: Se ingreso el adminsitrador de forma correcta
+        "400":
+          description: BAD REQUEST
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        "500":
+          description: SERVER ERROR
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+    /ListaAdministradores/{administradorId}:
+      get:
+        tags:
+          - administrador
+        summary: Mostrar los administradores por el id
+        description: Devolver el resultado de los administradores por medio del id (nombre - apellido - fecha_nacimiento - usuario - password)
+        operationId: getadministradorId
+        parameters:
+          - name: administradorId
+            in: path
+            description: ID del administrador
+            required: true
+            style: simple
+
+            schema:
+              type: integer
+              format: int64
+        responses:
+          "200":
+            description: Successful operation
+            content:
+              application/xml:
+                schema:
+                  $ref: '#/components/schemas/administrador'
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/administrador'
+          "400":
+            description: BAD REQUEST
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/error'
+          "404":
+            description: NOT FOUND
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/error'
+          "500":
+            description: INTERNAL SERVER ERROR
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/error'
   /peliculas/{peliculasId}:
     get:
       tags:
@@ -399,3 +470,47 @@ components:
           type: integer
           description: nit para la factura
           example: 2657452014
+    administrador:
+      type: object
+      properties:
+        nombre:
+          type: string
+          description: Nombre Administrador
+          example: Juan Marco
+        apellido:
+          type: string
+          description: Apellido Administrador
+          example: Guzman Pozo
+        fecha_nacimiento:
+          type: string
+          description: Fecha de nacimiento
+          example: 20/11/1990
+        usuario:
+          type: string
+          description: Nombre de usuario
+          example: Marco20
+        contraseña:
+          type: string
+          description: Contraseña del usuario
+          example: 12345
+    administradorPost:
+      type: object
+      properties:
+        nombre:
+          type: string
+          description: Nombre Administrador
+        apellido:
+          type: string
+          description: Apellido Administrador
+        fecha_nacimiento:
+          type: string
+          description: Fecha de nacimiento
+        usuario:
+          type: string
+          description: Nombre de usuario
+        contraseña:
+          type: string
+          description: Contraseña del usuario
+
+
+
