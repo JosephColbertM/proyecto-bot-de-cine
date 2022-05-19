@@ -147,12 +147,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
-  /datosPago/{datosPagoId}:
+  /datosPagoProducto/{datosPagoId}:
     get:
       tags:
       - datosPago
       summary: Mostrar informacion de necesaria para seguir con la compra del producto
-      description: Retorna los datos de la orden( id - idcompraProducto - idProduccto - name - image - total)
+      description: Retorna los datos de la orden( id - idcompraProducto - idProducto - name - image - total)
       operationId: getdatosPagoById
       parameters:
       - name: datosPagoId
@@ -205,7 +205,7 @@ paths:
         style: form
         explode: true
         schema:
-          $ref: '#/components/schemas/datodPagoItem'
+          $ref: '#/components/schemas/datosPagoItem'
       responses:
         "200":
           description: Successful operation
@@ -231,7 +231,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
-  components:
+components:
   schemas:
     error:
       type: object
@@ -245,51 +245,13 @@ paths:
         errorDescription:
           type: string
           description: La descripcion en detalle del error
-    CandyBar:
+    producto:
       type: object
       properties:
         id:
           type: integer
           description: Producto Id
-          example:
-    compraProducto:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: Producto Id
-          example: 123
-        idProducto:
-          type: integer
-          description: Producto Id
-          example: 1
-        name:
-          type: string
-          description: Nombre del producto
-          example: pipocas
-        image:
-          type: string
-          description: Imagen del producto
-          example: https://es.web.img3.acsta.net/c_310_420/pictures/22/04/07/11/43/1839314.jpg
-        precio:
-          rype: Number
-          description: Precio del producto
-          example: 10.00
-    CompraProducto:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: Productos Id
-          example: 2344
-        idcompraProducto:
-          type: integer
-          description: Producto Id
-          example: 1223
-        idProducto:
-          type: integer
-          description: Producto Id
-          example: 1
+          example: 2
         name:
           type: string
           description: Nombre del producto
@@ -299,22 +261,79 @@ paths:
           description: Imagen del producto
           example: https://es.web.img3.acsta.net/c_310_420/pictures/22/04/07/11/43/1839314.jpg
         precio:
-          type: Number
+          type: number
           description: Precio del producto
-          example: 30.00
-        
-        total:
+          example: 10.00
+    compraProducto:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Peliculas Id
+          example: 5261
+        idPelicula:
+          type: integer
+          description: Peliculas Id
+          example: 2
+        name:
           type: string
-          description: Total de la compra
-          example: "80"
+          description: Nombre de la pelicula
+          example: Doctor Strange en el Multiverso de la Locura
+        image:
+          type: string
+          description: Imagen de la pelicula
+          example: https://es.web.img3.acsta.net/c_310_420/pictures/22/04/07/11/43/1839314.jpg
+        precio:
+          type: number
+          description: Precio del producto
+          example: 10.00
     compraProductoItem:
       type: object
       properties:
         id:
           type: integer
-          description: id del producto
+          description: Producto Id
           example: 2
-          datosPagoItem:
+        name:
+          type: string
+          description: Nombre del producto
+          example: Pipocas
+        image:
+          type: string
+          description: Imagen del producto
+          example: https://es.web.img3.acsta.net/c_310_420/pictures/22/04/07/11/43/1839314.jpg
+        tamaño:
+          type: number
+          description: Tamaño que se tendra del producto
+          example: 2
+        cantidad:
+          type: number
+          description: cantidad que se tendra del producto
+          example: 2
+    datosPago:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Producto Id
+          example: 2
+        name:
+          type: string
+          description: Nombre del producto
+          example: Pipocas
+        image:
+          type: string
+          description: Imagen del producto
+          example: https://es.web.img3.acsta.net/c_310_420/pictures/22/04/07/11/43/1839314.jpg
+        cantidad:
+          type: number
+          description: cantidad que se tendra del producto
+          example: 2
+        precio:
+          type: number
+          description: precio del producto
+          example: 10.00
+    datosPagoItem:
       type: object
       properties:
         id:
@@ -328,11 +347,11 @@ paths:
         card:
           type: integer
           description: Numero de la tarjeta
-          example: 123456789920
+          example: 09293804928298
         lastDigits:
           type: integer
           description: Ingresar los 3 digitos detras de la tarjeta
-          example: 123
+          example: 298
         name:
           type: string
           description: Nombre para la factura
@@ -340,11 +359,4 @@ paths:
         nit:
           type: integer
           description: nit para la factura
-          example: 2657452014
-    
-        
-        
-      
-          
-          
-  
+          example: 83468734
