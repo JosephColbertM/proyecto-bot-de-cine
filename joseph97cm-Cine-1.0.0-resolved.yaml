@@ -14,7 +14,7 @@ servers:
   description: SwaggerHub API Auto Mocking
 paths:
   /LoginAdministrador/{usuario}{contraseña}:
-    get:
+    post:
       tags:
         - login administrador
       summary: Autenticación de datos para el ingreso al sistema
