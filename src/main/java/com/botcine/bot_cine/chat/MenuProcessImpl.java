@@ -71,6 +71,7 @@ public class MenuProcessImpl extends AbstractProcess {
                             break;
 
 
+
                         default: showMainMenu(bot, chatId);
                     }
                 } catch (NumberFormatException ex) {

@@ -1,0 +1,401 @@
+---
+openapi: 3.0.0
+info:
+  title: Simple Inventory API
+  description: This is a simple API
+  contact:
+    email: you@your-company.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+servers:
+- url: https://virtserver.swaggerhub.com/joseph97cm/Cine/1.0.0
+  description: SwaggerHub API Auto Mocking
+paths:
+  /peliculas/{peliculasId}:
+    get:
+      tags:
+      - peliculas
+      summary: Mostrar pelicula por id
+      description: Retorna los datos de la orden( id - name - image - lenguage - adaptation - gender - duration - definition)
+      operationId: getpeliculasById
+      parameters:
+      - name: peliculasId
+        in: path
+        description: ID de la pelicula
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/peliculas'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/peliculas'
+        "400":
+          description: BAD REQUEST
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        "404":
+          description: NOT FOUND
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        "500":
+          description: INTERNAL SERVER ERROR
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+  /compraTicket/{compraTicketId}:
+    get:
+      tags:
+      - compraTickets
+      summary: Mostrar pelicula por id para la compra del ticket
+      description: Retorna los datos de la orden( id - idPelicula - name - image - city - cinema - schedule - seats)
+      operationId: getcompraTicketById
+      parameters:
+      - name: compraTicketId
+        in: path
+        description: ID de la pelicula
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: SUCCESSFUL OPERATION
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/compraTickets'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/compraTickets'
+        "400":
+          description: BAD REQUEST
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        "404":
+          description: NOT FOUND
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        "500":
+          description: INTERNAL SERVER ERROR
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+  /compraTicket:
+    post:
+      tags:
+      - compraTickets
+      summary: Añadir informacion para la compra de tickets
+      description: Permite brindar la informacion requerida para la compra de tickets
+      parameters:
+      - name: compraTicketsItem
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          $ref: '#/components/schemas/compraTicketsItem'
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/compraTickets'
+        "404":
+          description: No existen donaciones en la base de datos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        "405":
+          description: Entrada de datos invalida
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        "500":
+          description: Error interno del servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+  /datosPago/{datosPagoId}:
+    get:
+      tags:
+      - datosPago
+      summary: Mostrar informacion de necesaria para seguir con la compra del ticket
+      description: Retorna los datos de la orden( id - idcompraTicket - idPelicula - name - image - city - date and time - tickets - seats - total)
+      operationId: getdatosPagoById
+      parameters:
+      - name: datosPagoId
+        in: path
+        description: ID datosPago
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: SUCCESSFUL OPERATION
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/datosPago'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/datosPago'
+        "400":
+          description: BAD REQUEST
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        "404":
+          description: NOT FOUND
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        "500":
+          description: INTERNAL SERVER ERROR
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+  /datosPago:
+    post:
+      tags:
+      - datosPago
+      summary: Añadir datos de pago
+      description: Permite ingresar lla informacion requerida para pagar los ticketes
+      parameters:
+      - name: datodPagoItem
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          $ref: '#/components/schemas/datodPagoItem'
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/datosPago'
+        "404":
+          description: No existen donaciones en la base de datos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        "405":
+          description: Entrada de datos invalida
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        "500":
+          description: Error interno del servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+components:
+  schemas:
+    error:
+      type: object
+      properties:
+        errorCode:
+          type: integer
+          format: int64
+        errorMessage:
+          type: string
+          description: Mensaje del error
+        errorDescription:
+          type: string
+          description: La descripcion en detalle del error
+    peliculas:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Peliculas Id
+          example: 2
+        name:
+          type: string
+          description: Nombre de la pelicula
+          example: Doctor Strange en el Multiverso de la Locura
+        image:
+          type: string
+          description: Imagen de la pelicula
+          example: https://es.web.img3.acsta.net/c_310_420/pictures/22/04/07/11/43/1839314.jpg
+        lenguage:
+          type: string
+          description: Idioma de la pelicula
+          example: Español
+        adaptation:
+          type: string
+          description: Apto para un tipo de publico
+          example: Todo Publico
+        gender:
+          type: string
+          description: Genero de la pelicula
+          example: Accion
+        duration:
+          type: string
+          description: Tiempo de duracion de la pelicula
+          example: 140 min
+        definition:
+          type: string
+          description: Definicion de la pelicula
+          example: 2D
+    compraTickets:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Peliculas Id
+          example: 5261
+        idPelicula:
+          type: integer
+          description: Peliculas Id
+          example: 2
+        name:
+          type: string
+          description: Nombre de la pelicula
+          example: Doctor Strange en el Multiverso de la Locura
+        image:
+          type: string
+          description: Imagen de la pelicula
+          example: https://es.web.img3.acsta.net/c_310_420/pictures/22/04/07/11/43/1839314.jpg
+        city:
+          type: string
+          description: Nombre de la ciudad para la funcion
+          example: La Paz
+        cinema:
+          type: string
+          description: Sala asignada y calidad de pelicula
+          example: Sala 3 - 2D
+        schedule:
+          type: string
+          description: Horarios disponibles
+          example: 12:30, 14:05, 16:00, 20:00
+        seats:
+          type: string
+          description: Asientos disponibles
+          example: A-1, A-2, A-3, A-4, G-16, G-17, I-8, I-11, P-20, R-4, R-5, R-13
+    datosPago:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Peliculas Id
+          example: 54562
+        idcompraTicket:
+          type: integer
+          description: Peliculas Id
+          example: 5261
+        idPelicula:
+          type: integer
+          description: Peliculas Id
+          example: 2
+        name:
+          type: string
+          description: Nombre de la pelicula
+          example: Doctor Strange en el Multiverso de la Locura
+        image:
+          type: string
+          description: Imagen de la pelicula
+          example: https://es.web.img3.acsta.net/c_310_420/pictures/22/04/07/11/43/1839314.jpg
+        city:
+          type: string
+          description: Nombre de la ciudad para la funcion
+          example: La Paz
+        datetime:
+          type: string
+          description: Fecha y hora de la funcion
+          example: 05/19/2022 - 16:00
+        tickets:
+          type: string
+          description: Cantidad de tickets y precio del ticket
+          example: 2 Entradas - Bs 40
+        seats:
+          type: string
+          description: Asientos asignados
+          example: A-2, A-3
+        total:
+          type: string
+          description: Total de la compra
+          example: "80"
+    compraTicketsItem:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: id de la pelicula
+          example: 2
+        fecha:
+          type: string
+          description: Fecha para ver la funcion
+          example: 05/19/2022
+        schedule:
+          type: string
+          description: Horario para ver la pelicula
+          example: "960"
+        seats:
+          type: string
+          description: Asientos escogidos
+          example: A-2, A-3
+    datodPagoItem:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: id de la pelicula
+          example: 54562
+        payment:
+          type: string
+          description: Metodo de pago
+          example: Visa
+        card:
+          type: integer
+          description: Numero de la tarjeta
+          example: 123456789920
+        lastDigits:
+          type: integer
+          description: Ingresar los 3 digitos detras de la tarjeta
+          example: 123
+        name:
+          type: string
+          description: Nombre para la factura
+          example: Colbert
+        nit:
+          type: integer
+          description: nit para la factura
+          example: 2657452014
