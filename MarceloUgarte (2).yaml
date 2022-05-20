@@ -269,19 +269,19 @@ components:
       properties:
         id:
           type: integer
-          description: Peliculas Id
-          example: 5261
-        idPelicula:
+          description: Producto Id
+          example: 7
+        idProducto:
           type: integer
-          description: Peliculas Id
+          description: Producto Id
           example: 2
         name:
           type: string
-          description: Nombre de la pelicula
-          example: Doctor Strange en el Multiverso de la Locura
+          description: Nombre del producto
+          example: Pipocas
         image:
           type: string
-          description: Imagen de la pelicula
+          description: Imagen del producto
           example: https://es.web.img3.acsta.net/c_310_420/pictures/22/04/07/11/43/1839314.jpg
         precio:
           type: number
