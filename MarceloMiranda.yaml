@@ -28,8 +28,8 @@ paths:
         "400":
           description: BAD REQUEST
           
-        "404":
-          description: NOT FOUND
+        "403":
+          description: THE CURRENT USER IS FORBIDDEN FROM ACCESSING THIS DATA
           
         "500":
           description: INTERNAL SERVER ERROR
@@ -55,7 +55,8 @@ paths:
                 $ref: '#/components/schemas/administradorResultado'
         "400":
           description: BAD REQUEST
-          
+        "410":
+          description: DATA HAS BEEN DELETED
         "500":
           description: SERVER ERROR
     
@@ -79,6 +80,9 @@ paths:
           
         "404":
           description: NOT FOUND
+        
+        "410":
+          description: DATA HAS BEEN DELETED
           
         "500":
           description: INTERNAL SERVER ERROR
@@ -139,6 +143,8 @@ paths:
                 $ref: '#/components/schemas/administradorActualizado'
         "400":
           description: BAD REQUEST   
+        "404":
+          description: NOT FOUND
         "500":
           description: SERVER ERROR
     get:
@@ -163,7 +169,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/administrador'
         "400":
-          description: BAD REQUEST   
+          description: BAD REQUEST 
+        "404":
+          description: NOT FOUND  
         "500":
           description: SERVER ERROR
       
@@ -205,10 +213,6 @@ components:
           type: string
           description: Nombre de usuario
           example: Marco20
-        contraseña:
-          type: string
-          description: Contraseña del usuario
-          example: 12345
         status:
           type: integer
           description: Estado del administrador
