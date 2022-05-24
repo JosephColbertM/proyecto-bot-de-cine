@@ -17,7 +17,7 @@ paths:
     get:
       tags:
       - peliculas
-      summary: Mostrar pelicula por id
+      summary: Mostrar peliculas por id
       description: Retorna los datos de la orden( id - name - image - lenguage - adaptation - gender - duration - definition)
       operationId: getpeliculasById
       parameters:
@@ -58,15 +58,15 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
-  /compraTicket/{compraTicketId}:
+  /horario/{peliculaId}:
     get:
       tags:
-      - compraTickets
-      summary: Mostrar pelicula por id para la compra del ticket
-      description: Retorna los datos de la orden( id - idPelicula - name - image - city - cinema - schedule - seats)
-      operationId: getcompraTicketById
+      - horario
+      summary: Mostrar horarios de peliculas
+      description: Retorna los datos de la orden( idPelicula - name - image - city - cinema - schedule)
+      operationId: getpeliculaById
       parameters:
-      - name: compraTicketId
+      - name: peliculaId
         in: path
         description: ID de la pelicula
         required: true
@@ -81,10 +81,55 @@ paths:
           content:
             application/xml:
               schema:
-                $ref: '#/components/schemas/compraTickets'
+                $ref: '#/components/schemas/horario'
             application/json:
               schema:
-                $ref: '#/components/schemas/compraTickets'
+                $ref: '#/components/schemas/horario'
+        "400":
+          description: BAD REQUEST
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        "404":
+          description: NOT FOUND
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        "500":
+          description: INTERNAL SERVER ERROR
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+  /horario/{pelisId}&horarioId=2&state=true:
+    get:
+      tags:
+      - horario
+      summary: Mostrar asientos disponibles de acuerdo a el horario seleccionado
+      description: Retorna los datos de la orden(idPelicula - idHorario - seats)
+      operationId: getpelisById
+      parameters:
+      - name: pelisId
+        in: path
+        description: ID de la pelicula
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: SUCCESSFUL OPERATION
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/asientos'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/asientos'
         "400":
           description: BAD REQUEST
           content:
@@ -106,7 +151,7 @@ paths:
   /compraTicket:
     post:
       tags:
-      - compraTickets
+      - compraTicket
       summary: Añadir informacion para la compra de tickets
       description: Permite brindar la informacion requerida para la compra de tickets
       parameters:
@@ -119,7 +164,7 @@ paths:
           $ref: '#/components/schemas/compraTicketsItem'
       responses:
         "200":
-          description: Successful operation
+          description: SUCCESSFUL OPERATION
           content:
             application/json:
               schema:
@@ -159,10 +204,10 @@ paths:
           content:
             application/xml:
               schema:
-                $ref: '#/components/schemas/datosPago'
+                $ref: '#/components/schemas/datosPagoGet'
             application/json:
               schema:
-                $ref: '#/components/schemas/datosPago'
+                $ref: '#/components/schemas/datosPagoGet'
         "400":
           description: BAD REQUEST
           content:
@@ -201,7 +246,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/envioPago'
+                $ref: '#/components/schemas/datosPagoPost'
         "404":
           description: NOT FOUND
           content:
@@ -263,32 +308,9 @@ components:
           type: string
           description: Definicion de la pelicula
           example: 2D
-    envio:
+    horario:
       type: object
       properties:
-        id:
-          type: integer
-          description: id de la pelicula
-          example: 2
-        fecha:
-          type: string
-          description: Fecha para ver la funcion
-          example: 05/19/2022
-        schedule:
-          type: string
-          description: Horario para ver la pelicula
-          example: "960"
-        seats:
-          type: string
-          description: Asientos escogidos
-          example: A-2, A-3
-    compraTickets:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: Peliculas Id
-          example: 5261
         idPelicula:
           type: integer
           description: Peliculas Id
@@ -310,27 +332,81 @@ components:
           description: Sala asignada y calidad de pelicula
           example: Sala 3 - 2D
         schedule:
-          type: string
-          description: Horarios disponibles
-          example: 12:30, 14:05, 16:00, 20:00
-        seats:
-          type: string
-          description: Asientos disponibles
-          example: A-1, A-2, A-3, A-4, G-16, G-17, I-8, I-11, P-20, R-4, R-5, R-13
-    datosPago:
+          type: array
+          items:
+            type: object
+            description: Horarios disponibles
+            example:
+            - 12:30
+            - 14:05
+            - 16:00
+            - 20:00
+    asientos:
       type: object
       properties:
-        id:
-          type: integer
-          description: Peliculas Id
-          example: 54562
-        idcompraTicket:
-          type: integer
-          description: Peliculas Id
-          example: 5261
         idPelicula:
           type: integer
           description: Peliculas Id
+          example: 2
+        idHorario:
+          type: integer
+          description: Horario Id
+          example: 2
+        seats:
+          type: array
+          items:
+            type: object
+            description: Asientos disponibles
+            example:
+            - A-1
+            - A-2
+            - A-3
+            - A-4
+            - G-16
+            - G-17
+            - I-8
+            - I-11
+            - P-20
+            - R-4
+            - R-5
+            - R-13
+    envio:
+      type: object
+      properties:
+        idPelicula:
+          type: integer
+          description: id de la pelicula
+          example: 2
+        idHorario:
+          type: integer
+          description: id de la pelicula
+          example: 2
+        date:
+          type: string
+          description: Fecha para ver la funcion
+          example: 05/19/2022
+        seats:
+          type: array
+          items:
+            type: object
+            description: Asientos disponibles
+            example:
+            - A-2
+            - A-3
+    datosPagoGet:
+      type: object
+      properties:
+        datosPagoId:
+          type: integer
+          description: Datos de pago Id
+          example: 424
+        idPelicula:
+          type: integer
+          description: Peliculas Id
+          example: 2
+        idHorario:
+          type: integer
+          description: Horario Id
           example: 2
         name:
           type: string
@@ -347,20 +423,24 @@ components:
         datetime:
           type: string
           description: Fecha y hora de la funcion
-          example: 05/19/2022 - 16:00
+          example: 05/19/2022 - 14:05
         tickets:
           type: string
           description: Cantidad de tickets y precio del ticket
           example: 2 Entradas - Bs 40
         seats:
-          type: string
-          description: Asientos asignados
-          example: A-2, A-3
+          type: array
+          items:
+            type: object
+            description: Asientos disponibles
+            example:
+            - A-2
+            - A-3
         total:
           type: string
           description: Total de la compra
           example: "80"
-    envioPago:
+    datosPagoPost:
       type: object
       properties:
         id:
@@ -371,10 +451,10 @@ components:
           type: string
           description: Metodo de pago
           example: Visa
-        card:
+        cart:
           type: integer
           description: Numero de la tarjeta
-          example: 123456789920
+          example: 12345678
         lastDigits:
           type: integer
           description: Ingresar los 3 digitos detras de la tarjeta
@@ -386,26 +466,29 @@ components:
         nit:
           type: integer
           description: nit para la factura
-          example: 2657452014
+          example: 2614120
     compraTicketsItem:
       type: object
       properties:
-        id:
+        idPelicula:
           type: integer
           description: id de la pelicula
           example: 2
-        fecha:
+        idHorario:
+          type: integer
+          description: id de la pelicula
+          example: 2
+        date:
           type: string
           description: Fecha para ver la funcion
           example: 05/19/2022
-        schedule:
-          type: string
-          description: Horario para ver la pelicula
-          example: "960"
         seats:
-          type: string
-          description: Asientos escogidos
-          example: A-2, A-3
+          type: array
+          items:
+            type: object
+            description: Asientos disponibles
+            example:
+            - A-2 A-3
     datodPagoItem:
       type: object
       properties:
@@ -417,10 +500,10 @@ components:
           type: string
           description: Metodo de pago
           example: Visa
-        card:
+        cart:
           type: integer
-          description: Numero de la tarjeta
-          example: 123456789920
+          description: numero de la tarjeta
+          example: 12345678
         lastDigits:
           type: integer
           description: Ingresar los 3 digitos detras de la tarjeta
@@ -432,4 +515,4 @@ components:
         nit:
           type: integer
           description: nit para la factura
-          example: 2657452014
+          example: 2614120
