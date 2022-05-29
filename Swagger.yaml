@@ -947,6 +947,11 @@ components:
           type: number
           description: Precio del producto
           example: 10.00
+        sabor :
+          type: string
+          description: Sabor del producto
+          example: Salada
+        
     compraProductoItem:
       type: object
       properties:
@@ -954,6 +959,10 @@ components:
           type: integer
           description: Producto Id
           example: 2
+        idProducto:
+          type: integer
+          description: Producto Id
+          example: 1
         cantidad:
           type: number
           description: cantidad que se tendra del producto
@@ -978,10 +987,6 @@ components:
           type: string
           description: Imagen del producto
           example: https://es.web.img3.acsta.net/c_310_420/pictures/22/04/07/11/43/1839314.jpg
-        cantidad:
-          type: number
-          description: cantidad que se tendra del producto
-          example: 2
         precio:
           type: number
           description: precio del producto
