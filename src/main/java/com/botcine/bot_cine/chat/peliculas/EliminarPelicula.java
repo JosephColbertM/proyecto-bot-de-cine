@@ -29,7 +29,7 @@ public class EliminarPelicula extends AbstractProcess {
     public AbstractProcess handle(ApplicationContext context, Update update, CineLongPollingBot bot) {
         int c=1;
         Long chatId = update.getMessage().getChatId();
-        List<PeliculasDto> peliculaList = peliculasBl.findLast10PermissionsByChatId(chatId);//cambiar
+        List<PeliculasDto> peliculaList = peliculasBl.findLast10PermissionsByChatId();//cambiar
         StringBuffer sb = new StringBuffer();
         sb.append("PELÍCULAS\n\r");
         sb.append("Ingrese el número de la película que desea eliminar\n\r\n");
