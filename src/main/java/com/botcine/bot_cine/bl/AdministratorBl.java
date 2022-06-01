@@ -1,12 +1,8 @@
 package com.botcine.bot_cine.bl;
 
 import com.botcine.bot_cine.dao.AdministradorDao;
-import com.botcine.bot_cine.dao.PeliculasDao;
 import com.botcine.bot_cine.dto.AdministradorDto;
-import com.botcine.bot_cine.dto.PeliculasDto;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -27,4 +23,20 @@ public class AdministratorBl {
         administradorDao.saveAdministrador(nombre, apellido, usuario, password, bot_chat_id);
     }
 
+    public void updateAdministrator(Integer ca, String nombre, String apellido, String usuario, String password, String bot_chat_id) {
+        administradorDao.updateAdministrator(ca,nombre,apellido,usuario, password, bot_chat_id);
+    }
+
+    public void deleteAdministrator(Integer idAdministrator) {
+        administradorDao.deleteAdministrator(idAdministrator);
+    }
+
+    public void deleteAdministrator2(Integer idAdministrator) {
+        administradorDao.deleteAdministrator2(idAdministrator);
+    }
+
+    public AdministradorDto findById(Integer idAdministrador) {
+        return administradorDao.findById(idAdministrador);
+
+    }
 }

@@ -28,4 +28,28 @@ public class AdministradorApi {
         administratorBl.saveAdministrador(administradorDto.getNombre(),administradorDto.getApellido(),administradorDto.getUsuario(),administradorDto.getPassword(),administradorDto.getBot_chat_id());
         return "Administrador Registrado";
     }
+
+    @PutMapping(path= "/administrators", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE )
+    public String updateAdministrador(@RequestBody AdministradorDto administradorDto){
+        administratorBl.updateAdministrator(administradorDto.getCa(),administradorDto.getNombre(),administradorDto.getApellido(),administradorDto.getUsuario(),administradorDto.getPassword(),administradorDto.getBot_chat_id());
+        return "Administrador Actualizado";
+    }
+
+    @DeleteMapping(path= "/administrators", produces = MediaType.APPLICATION_JSON_VALUE )
+    public String deleteAdministrador(@RequestParam ("idAdministrator")Integer idAdministrator){
+        administratorBl.deleteAdministrator(idAdministrator);
+        return "Eliminado exitoso";
+    }
+
+    @PutMapping(path= "/administrators/delete", produces = MediaType.APPLICATION_JSON_VALUE)
+    public String deleteAdministrador2(@RequestParam ("idAdministrator") Integer idAdministrator){
+        administratorBl.deleteAdministrator2(idAdministrator);
+        return "Eliminado status";
+    }
+
+    @GetMapping(value = "/administrators/{idAdministrador}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public AdministradorDto findById(@PathVariable ("idAdministrador") Integer idAdministrador) {
+        return administratorBl.findById(idAdministrador);
+    }
+
 }
