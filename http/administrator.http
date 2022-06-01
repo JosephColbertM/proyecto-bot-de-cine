@@ -1,0 +1,15 @@
+### Listado de todos los paises
+GET http://localhost:8080/administrators
+Accept: application/json
+
+###Crear una nueva Direccion
+POST http://localhost:8080/administrators
+Content-Type: application/json
+
+{
+  "nombre": "Ruben",
+  "apellido": "Diaz",
+  "usuario": "Ruco",
+  "password": "Lapoderosa",
+  "bot_chat_id": "1"
+}

@@ -31,7 +31,7 @@ public class ListaAdministrador extends AbstractProcess {
     @Override
     public AbstractProcess handle(ApplicationContext context, Update update, CineLongPollingBot bot) {
         Long chatId = update.getMessage().getChatId();
-        List<AdministradorDto> administradorDtoList = administratorBl.listAdmins(chatId);
+        List<AdministradorDto> administradorDtoList = administratorBl.listAdmins();
         StringBuffer sb = new StringBuffer();
         sb.append("Lista de administradores:\r\n\n");
 
