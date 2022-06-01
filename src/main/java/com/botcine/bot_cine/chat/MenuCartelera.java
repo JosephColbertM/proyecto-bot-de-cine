@@ -37,7 +37,7 @@ public class MenuCartelera extends AbstractProcess {
 
     public AbstractProcess handle(ApplicationContext context, Update update, CineLongPollingBot bot) {
         Long chatId = update.getMessage().getChatId();
-        List<PeliculasDto> peliculaList = peliculasBl.findLast10PermissionsByChatId(chatId);//cambiar
+        List<PeliculasDto> peliculaList = peliculasBl.findLast10PermissionsByChatId();//cambiar
         StringBuffer sb = new StringBuffer();
         sb.append("Lista de peliculas:\r\n\n");
         sb.append("Presione cualquier tecla para realizar la compra de su boleto:\r\n\n");

@@ -35,7 +35,7 @@ public class AgregarPelicula extends AbstractProcess {
     public AbstractProcess handle(ApplicationContext context, Update update, CineLongPollingBot bot) {
         AbstractProcess result = this;
         Long chatId = update.getMessage().getChatId();
-        List<PeliculasDto> peliculaList = peliculasBl.findLast10PermissionsByChatId(chatId);//cambiar
+        List<PeliculasDto> peliculaList = peliculasBl.findLast10PermissionsByChatId();//cambiar
         StringBuffer sb = new StringBuffer();
         if (this.getStatus().equals("STARTED")) {
             sb.append("PARA AGREGAR A UNA PELICULA COLOQUE LA INFORMACION CON EL SIGUIENTE FORMATO:\r\n\n");

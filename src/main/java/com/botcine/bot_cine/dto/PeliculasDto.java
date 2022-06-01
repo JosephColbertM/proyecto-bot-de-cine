@@ -1,66 +1,123 @@
 package com.botcine.bot_cine.dto;
 
 public class PeliculasDto{
-    private Integer cp;
-    private String nombre;
-    private String duracion;
-    private String horario_inicio;
-    private String horario_final;
+    private Integer peliculasId;
+    private String name;
+    private String image;
+    private String language;
+    private String adaptation;
+    private String gender;
+    private String duration;
+    private String definition;
+    private String city;
+    private String cinema;
 
-    public PeliculasDto(Integer cp, String nombre, String duracion, String horario_inicio, String horario_final) {
-        this.cp = cp;
-        this.nombre = nombre;
-        this.duracion = duracion;
-        this.horario_inicio = horario_inicio;
-        this.horario_final = horario_final;
+    public PeliculasDto(Integer peliculasId, String name, String image, String language, String adaptation, String gender, String duration, String definition, String city, String cinema) {
+        this.peliculasId = peliculasId;
+        this.name = name;
+        this.image = image;
+        this.language = language;
+        this.adaptation = adaptation;
+        this.gender = gender;
+        this.duration = duration;
+        this.definition = definition;
+        this.city = city;
+        this.cinema = cinema;
     }
 
-    public Integer getCp() {
-        return cp;
+    public Integer getPeliculasId() {
+        return peliculasId;
     }
 
-    public void setCp(Integer cp) {
-        this.cp = cp;
+    public void setPeliculasId(Integer peliculasId) {
+        this.peliculasId = peliculasId;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getName() {
+        return name;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getDuracion() {
-        return duracion;
+    public String getImage() {
+        return image;
     }
 
-    public void setDuracion(String duracion) {
-        this.duracion = duracion;
+    public void setImage(String image) {
+        this.image = image;
     }
 
-    public String getHorario_inicio() {
-        return horario_inicio;
+    public String getLanguage() {
+        return language;
     }
 
-    public void setHorario_inicio(String horario_inicio) {
-        this.horario_inicio = horario_inicio;
+    public void setLanguage(String language) {
+        this.language = language;
     }
 
-    public String getHorario_final() {
-        return horario_final;
+    public String getAdaptation() {
+        return adaptation;
     }
 
-    public void setHorario_final(String horario_final) {
-        this.horario_final = horario_final;
+    public void setAdaptation(String adaptation) {
+        this.adaptation = adaptation;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
+    }
+
+    public String getDefinition() {
+        return definition;
+    }
+
+    public void setDefinition(String definition) {
+        this.definition = definition;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCinema() {
+        return cinema;
+    }
+
+    public void setCinema(String cinema) {
+        this.cinema = cinema;
     }
 
     @Override
     public String toString() {
-        return
-                "Nombre: " + nombre + '\n' +
-                        "Duración: " + duracion + '\n' +
-                        "Hora de Inicio: " + horario_inicio + '\n' +
-                        "Hora de Salida: " + horario_final + '\n' ;
+        return "PeliculasDto{" +
+                "peliculasId=" + peliculasId +
+                ", name='" + name + '\'' +
+                ", image='" + image + '\'' +
+                ", language='" + language + '\'' +
+                ", adaptation='" + adaptation + '\'' +
+                ", gender='" + gender + '\'' +
+                ", duration='" + duration + '\'' +
+                ", definition='" + definition + '\'' +
+                ", city='" + city + '\'' +
+                ", cinema='" + cinema + '\'' +
+                '}';
     }
 }
