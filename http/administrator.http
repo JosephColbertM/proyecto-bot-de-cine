@@ -1,5 +1,5 @@
 ###
-GET http://localhost:8080/administrators/pagina/1
+GET http://localhost:8080/administrators/pagina/0
 Accept: application/json
 
 ###
@@ -11,7 +11,7 @@ Content-Type: application/json
   "apellido": "Diaz",
   "fecha_nacimiento": "1999-5-5",
   "usuario": "Ruco",
-  "password": "Lapoderosa"
+  "password": "contra"
 }
 
 ###
@@ -22,8 +22,8 @@ Content-Type: application/json
   "nombre": "Roberto",
   "apellido": "Melendez",
   "fecha_nacimiento": "1999-5-5",
-  "usuario": "Ruco",
-  "password": "Lapoderosa"
+  "usuario": "Robert",
+  "password": "4050"
 }
 
 ###
