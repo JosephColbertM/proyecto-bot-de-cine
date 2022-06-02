@@ -51,7 +51,6 @@ public class AgregarPelicula extends AbstractProcess {
                 try {
 
                     String c[] = text.split("/");
-                    peliculasBl.savePeliculas(c[0], c[1], c[2],c[3]);
                     setStatus("STARTED");
                     return new AccesoPeliculas();
                 } catch (Exception ex) {

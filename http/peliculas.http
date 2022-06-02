@@ -1,2 +1,47 @@
 ###
 GET http://localhost:8080/peliculas
+Accept: application/json
+
+###
+GET http://localhost:8080/peliculas/nombre
+Accept: application/json
+
+###
+GET http://localhost:8080/peliculas/peliculasId/horario
+Accept: application/json
+
+###
+GET http://localhost:8080/peliculas/{{peliculasId}}/horario/{{horarioId}}&state=true
+Accept: application/json
+
+###
+POST http://localhost:8080/compraTicket
+Content-Type: application/json
+Accept: application/json
+
+{
+  "peliculasId": 2,
+  "horarioId": 2,
+  "date": "05/19/2022",
+  "seats": ["A-2", "A-3"]
+
+}
+###
+GET http://localhost:8080/datosPago/{{datosPagoId}}
+Accept: application/json
+
+###
+POST http://localhost:8080/datosPago
+Content-Type: application/json
+Accept: application/json
+
+{
+  "datospagoId": 54562,
+  "payment": "Visa",
+  "card": 12345678,
+  "lastDigits": 123,
+  "expirationDate": "05/2028",
+  "name": "Colbert",
+  "nit": 2614120
+}
+
