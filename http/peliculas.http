@@ -1,2 +1,21 @@
 ###
 GET http://localhost:8080/peliculas
+
+###
+GET http://localhost:8080/peliculas/{{nombre}}
+
+###
+GET http://localhost:8080/peliculas/{{peliculasId}}/horario
+
+###
+GET http://localhost:8080/peliculas/{{peliculasId}}/horario/{{horarioId}}&state=true
+
+###
+POST http://localhost:8080/compraTicket
+
+###
+GET http://localhost:8080/datosPago/{{datosPagoId}}
+
+###
+POST http://localhost:8080/datosPago
+

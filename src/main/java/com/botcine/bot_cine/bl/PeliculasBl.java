@@ -5,7 +5,6 @@ import com.botcine.bot_cine.dto.PeliculasDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -24,10 +23,6 @@ public class PeliculasBl {
         return Pel;
     }
 
-    public void savePeliculas(String nombre, String duracion, String hora_inicio, String hora_final){
-        peliculasDao.savePeliculas(nombre,duracion,hora_inicio,hora_final);
-    }
-
     public PeliculasDto findByName(String nombre) {
         return peliculasDao.showPeliculas(nombre);
     }
@@ -36,19 +31,19 @@ public class PeliculasBl {
         return peliculasDao.showHorario(peliculasId);
     }
 
-    public PeliculasDto findHorarioById(Integer peliculasId, Integer horarioId) {
+    public PeliculasDto findByIds(Integer peliculasId, Integer horarioId) {
         return peliculasDao.showAsientos(peliculasId, horarioId);
     }
 
-    public void saveTicket(Integer peliculasId) {
-        peliculasDao.saveTicket(peliculasId, horarioId, seats);
+    public void saveTicket(Integer peliculasId, Integer horarioId, String date, String seats) {
+        peliculasDao.saveTicket(peliculasId, horarioId, date, seats);
     }
 
     public PeliculasDto findDatosPago(Integer datosPagoId) {
         return peliculasDao.showdatosPago(datosPagoId);
     }
 
-    public void addDatosPago(Integer datosPagoId, String payment, String card, String lastDigist, String expirationDate, String name, Integer nit) {
+    public void saveDatosPago(Integer datosPagoId, String payment, Integer card, Integer lastDigist, String expirationDate, String name, Integer nit) {
         peliculasDao.addDatosPago(datosPagoId, payment, card, lastDigist, expirationDate, name, nit);
     }
 }

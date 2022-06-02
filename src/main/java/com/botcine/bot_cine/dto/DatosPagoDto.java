@@ -3,13 +3,13 @@ package com.botcine.bot_cine.dto;
 public class DatosPagoDto {
     private Integer datosPagoId;
     private String payment;
-    private String card;
+    private Integer card;
     private Integer lastDigist;
     private String expirationDate;
     private String name;
     private Integer nit;
 
-    public DatosPagoDto(Integer datosPagoId, String payment, String card, Integer lastDigist, String expirationDate, String name, Integer nit) {
+    public DatosPagoDto(Integer datosPagoId, String payment, Integer card, Integer lastDigist, String expirationDate, String name, Integer nit) {
         this.datosPagoId = datosPagoId;
         this.payment = payment;
         this.card = card;
@@ -35,11 +35,11 @@ public class DatosPagoDto {
         this.payment = payment;
     }
 
-    public String getCard() {
+    public Integer getCard() {
         return card;
     }
 
-    public void setCard(String card) {
+    public void setCard(Integer card) {
         this.card = card;
     }
 

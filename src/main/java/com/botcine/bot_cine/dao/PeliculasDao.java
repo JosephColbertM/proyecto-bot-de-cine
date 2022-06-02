@@ -12,31 +12,33 @@ import java.util.List;
 @Service
 public interface PeliculasDao {
 
-    @Select("SELECT cp, nombre, duracion, horario_inicio, horario_final " +
+    @Select("SELECT peliculasId, name, image, language, adaptation, gender, duration, definition" +
             "FROM peliculas")
     public List<PeliculasDto> findAllPeliculas();
 
-
-    @Insert("INSERT INTO peliculas(nombre, duracion, horario_inicio, horario_final)" +
-            " VALUES (#{nombre}, #{duracion}, #{horario_inicio}, #{horario_final} )")
-
-    void savePeliculas(@Param("nombre") String nombre, @Param("duracion") String duracion, @Param("horario_inicio") String hora_inicio, @Param("horario_final") String hora_final);
-
-    @Select()
+    @Select("SELECT peliculasId, name"+
+            "FROM peliculas WHERE name LIKE '%name%' ")
     PeliculasDto showPeliculas(String nombre);
 
-    @Select()
+    @Select("SELECT a.peliculasId, a.name, a.image, a.city, a.cinema, b.schedule" +
+            "FROM peliculas a, horarios b WHERE a.peliculas = b.peliculas ")
     PeliculasDto showHorario(Integer peliculasId);
 
-    @Select()
+    @Select("SELECT a.peliculasId, b.horariosId, c.seats"+
+            "FROM peliculas a, horarios b, asientos c" +
+            "WHERE c.state = true")
     PeliculasDto showAsientos(Integer peliculasId, Integer horarioId);
 
-    void saveTicket(@Param("nombre") String nombre, @Param("apellido") String apellido, @Param("usuario") String usuario, @Param("password") String password, @Param("bot_chat_id") String bot_chat_id);
+    @Insert("INSERT INTO compraTicket(peliculasId, horarioId, date, seats)" +
+            " VALUES (#{peliculasId}, #{horarioId}, #{date}, #{seats} )")
+    void saveTicket(@Param("peliculasId") Integer peliculasId, @Param("horarioId") Integer horarioId, @Param("date") String date, @Param("seats") String seast);
 
-    @Select()
-    DatosPagoDto showdatosPago(Integer datosPagoId);
+    @Select("SELECT datosPagoId, peliculasId")
+    PeliculasDto showdatosPago(Integer datosPagoId);
 
-    void addDatosPago(Integer datosPagoId, String payment, String card, String lastDigist, String expirationDate, String name, Integer nit);
+    @Insert("INSERT INTO datos_pago(datospagoId, payment, card, lastdigist, expirationdate, name, nit)" +
+            " VALUES (#{datospagoId}, #{payment}, #{payment}, #{card}, #{lastdigist}, #{expirationdate}, #{name}, #{nit})")
+    void addDatosPago(@Param ("datospagoId") Integer datosPagoId, @Param("payment") String payment, @Param("card") Integer card, @Param("lastdigist") Integer lastDigist, @Param("expirationdate") String expirationDate, @Param("name") String name, @Param("nit") Integer nit);
 
 
 }

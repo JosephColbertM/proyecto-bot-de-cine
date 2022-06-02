@@ -35,13 +35,13 @@ public class PeliculasApi {
     }
 
     @GetMapping(value = "/peliculas/{peliculasId}/horario/{horarioId}&state=true", produces = MediaType.APPLICATION_JSON_VALUE)
-    public PeliculasDto findByIds@PathVariable("peliculasId") Integer peliculasId, @PathVariable("horarioId") Integer horarioId) {
+    public PeliculasDto findByIds(@PathVariable("peliculasId") Integer peliculasId, @PathVariable("horarioId") Integer horarioId) {
         return peliculasBl.findByIds(peliculasId, horarioId);
     }
 
     @PostMapping(path="/compraTicket", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE )
     public String addTicket(@RequestBody PeliculasDto  peliculasDto, HorariosDto horarioDto) {
-        peliculasBl.saveTicket(peliculasDto.getPeliculasId(), HorariosDto.getHorarioId());
+        peliculasBl.saveTicket(peliculasDto.getPeliculasId(), peliculasDto.getHorarioId(), peliculasDto.getDate(), peliculasDto.getStatus());
         return "Datos Registrados";
     }
 
