@@ -36,7 +36,7 @@ public class ProductoBl {
         return productoDao.datosPagoG(nombre, image, cantidad, precio);
     }
 
-    public void savePago(String payment, String card, Integer lastDigist, String expirationDate, String name, Integer nit, Integer compra_producto_compraProductoId){
+    public void savePago(String payment, Integer card, Integer lastDigist, String expirationDate, String name, Integer nit, Integer compra_producto_compraProductoId){
         productoDao.datosPagoP(payment,  card,  lastDigist,  expirationDate,  name,  nit,  compra_producto_compraProductoId);
     }
 }

@@ -3,14 +3,14 @@ package com.botcine.bot_cine.dto;
 public class DatosPagosProductoDto {
     private Integer datosPagoId;
     private String payment;
-    private String card;
+    private Integer card;
     private Integer lastDigist;
     private String expirationDate;
     private String name;
     private Integer nit;
     private Integer Compra_producto_compraProductoId;
 
-    public DatosPagosProductoDto(Integer datosPagoId, String payment, String card, Integer lastDigist, String expirationDate, String name, Integer nit, Integer compra_producto_compraProductoId) {
+    public DatosPagosProductoDto(Integer datosPagoId, String payment, Integer card, Integer lastDigist, String expirationDate, String name, Integer nit, Integer compra_producto_compraProductoId) {
         this.datosPagoId = datosPagoId;
         this.payment = payment;
         this.card = card;
@@ -37,11 +37,11 @@ public class DatosPagosProductoDto {
         this.payment = payment;
     }
 
-    public String getCard() {
+    public Integer getCard() {
         return card;
     }
 
-    public void setCard(String card) {
+    public void setCard(Integer card) {
         this.card = card;
     }
 
@@ -83,19 +83,5 @@ public class DatosPagosProductoDto {
 
     public void setCompra_producto_compraProductoId(Integer compra_producto_compraProductoId) {
         Compra_producto_compraProductoId = compra_producto_compraProductoId;
-    }
-
-    @Override
-    public String toString() {
-        return "DatosPagosProductoDto{" +
-                "datosPagoId=" + datosPagoId +
-                ", payment='" + payment + '\'' +
-                ", card='" + card + '\'' +
-                ", lastDigist=" + lastDigist +
-                ", expirationDate='" + expirationDate + '\'' +
-                ", name='" + name + '\'' +
-                ", nit=" + nit +
-                ", Compra_producto_compraProductoId=" + Compra_producto_compraProductoId +
-                '}';
     }
 }

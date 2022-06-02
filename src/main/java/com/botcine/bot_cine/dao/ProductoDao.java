@@ -27,9 +27,9 @@ public interface ProductoDao {
             "FROM peliculas a, horarios b WHERE a.peliculas = b.peliculas ")
     ProductoDto datosPagoG(String nombre, String image, Integer cantidad, Double precio);
 
-    @Insert("INSERT INTO Datos_pago_producto(payment, card, lastDigit, expirationDate, name, nit, Compra_producto_compraProductoId)" +
-            " VALUES (#{payment}, #{card}, #{lastDigit}, #{expirationDate}, #{name}, #{nit}, #{Compra_producto_compraProductoId})")
-    void datosPagoP(@Param("payment") String payment, @Param("card") String card, @Param("lastDigit") Integer lastDigit, @Param("expirationDate") String expirationDate, @Param("name") String name, @Param("nit") Integer nit, @Param("Compra_producto_compraProductoId") Integer Compra_producto_compraProductoId);
+    @Insert("INSERT INTO Datos_pago_producto(payment, card, lastDigist, expirationDate, name, nit, Compra_producto_compraProductoId)" +
+            " VALUES (#{payment}, #{card}, #{lastDigist}, #{expirationDate}, #{name}, #{nit}, #{Compra_producto_compraProductoId})")
+    void datosPagoP(@Param("payment") String payment, @Param("card") Integer card, @Param("lastDigist") Integer lastDigit, @Param("expirationDate") String expirationDate, @Param("name") String name, @Param("nit") Integer nit, @Param("Compra_producto_compraProductoId") Integer Compra_producto_compraProductoId);
 
 
 

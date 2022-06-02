@@ -2,7 +2,7 @@
 GET http://localhost:8080/producto
 Accept: application/json
 ###
-GET http://localhost:8080/compraProducto/{compraProductoId}:
+GET http://localhost:8080/compraProducto/1
 Accept: application/json
 ###
 POST http://localhost:8080/compraProducto
@@ -23,8 +23,11 @@ POST http://localhost:8080/datosPagoP:
 Content-Type: application/json
 
 {
-  "fecha": "2022-09-09",
-  "cantidad": "1",
-  "precio_final": "30",
-  "producto_productoId": "1"
+  "payment": "Visa",
+  "card": 12345678,
+  "lastDigist": 679,
+  "expirationDate": "2022-09-09",
+  "name": "Ugarte",
+  "nit": 2614120,
+  "compra_producto_compraProductoId": 1
 }

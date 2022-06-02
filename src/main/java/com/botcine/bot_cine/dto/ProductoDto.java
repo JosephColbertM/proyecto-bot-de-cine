@@ -5,10 +5,7 @@ public class ProductoDto {
     private String sabor;
     private String image;
     private Double precio;
-    private String fecha;
-    private Integer cantidad;
-    private Double precio_final;
-    private Integer Producto_productoId;
+
 
     public ProductoDto(String nombre, String sabor, String image, Double precio) {
         this.nombre = nombre;
@@ -53,37 +50,6 @@ public class ProductoDto {
         this.precio = precio;
     }
 
-    public String getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
-    }
-
-    public Integer getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(Integer cantidad) {
-        this.cantidad = cantidad;
-    }
-
-    public Double getPrecio_final() {
-        return precio_final;
-    }
-
-    public void setPrecio_final(Double precio_final) {
-        this.precio_final = precio_final;
-    }
-
-    public Integer getProducto_productoId() {
-        return Producto_productoId;
-    }
-
-    public void setProducto_productoId(Integer producto_productoId) {
-        Producto_productoId = producto_productoId;
-    }
 
     @Override
     public String toString() {
@@ -91,11 +57,6 @@ public class ProductoDto {
                 "nombre='" + nombre + '\'' +
                 ", sabor='" + sabor + '\'' +
                 ", image='" + image + '\'' +
-                ", precio=" + precio +
-                ", fecha='" + fecha + '\'' +
-                ", cantidad=" + cantidad +
-                ", precio_final=" + precio_final +
-                ", Producto_productoId=" + Producto_productoId +
-                '}';
+                ", precio=" + precio;
     }
 }
