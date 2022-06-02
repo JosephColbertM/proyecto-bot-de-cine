@@ -1,0 +1,14 @@
+###
+GET http://localhost:8080/producto
+
+###
+GET http://localhost:8080/compraProducto/{compraProductoId}:
+
+###
+POST http://localhost:8080/compraProducto:
+
+###
+GET http://localhost:8080/datosPagoProducto/{datosPagoId}:
+
+###
+POST http://localhost:8080/datosPagoP:
