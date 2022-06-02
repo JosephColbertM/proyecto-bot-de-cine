@@ -25,17 +25,19 @@ public interface PeliculasDao {
             "AND #{horarioId} = b.horarioId")
     HorariosDto showHorario(@Param ("peliculaId") Integer peliculasId,@Param ("horarioId") Integer horarioId);
 
-    @Select("SELECT a.peliculasId, b.horariosId, c.seats "+
+    @Select("SELECT a.peliculasId, b.horarioId, c.seats "+
             "FROM peliculas a, horarios b, asientos c " +
-            "WHERE c.state = true")
-    CompraTicketDto showAsientos(Integer peliculasId, Integer horarioId);
+            "WHERE c.status = true " +
+            "AND #{peliculaId} = a.peliculasId " +
+            "AND #{horarioId} = b.horarioId ")
+    AsientosDto showAsientos(@Param ("peliculaId") Integer peliculasId,@Param ("horarioId") Integer horarioId);
 
     @Insert("INSERT INTO compra_ticket(date, seats, peliculas_horario_id_peliculas_horario)" +
             " VALUES (#{date}, #{seats}, #{peliculas_horario_id_peliculas_horario})")
     void saveTicket(@Param("date") String date, @Param("seats") String seast,
                     @Param("peliculas_horario_id_peliculas_horario") Integer peliculas_horarios_id_peliculas_horario );
 
-    @Select("SELECT datosPagoId, peliculasId")
+    @Select("SELECT a.peliculasId, b.horarioId, a.name, ")
     PeliculasDto showdatosPago(Integer datosPagoId);
 
     @Insert("INSERT INTO datos_pago(payment, card, lastdigist, expirationdate, name, nit, compra_ticket_compraticketid)" +

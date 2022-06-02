@@ -32,7 +32,7 @@ public class PeliculasBl {
         return peliculasDao.showHorario(peliculasId, horarioId);
     }
 
-    public CompraTicketDto findByIds(Integer peliculasId, Integer horarioId) {
+    public AsientosDto findByIds(Integer peliculasId, Integer horarioId) {
         return peliculasDao.showAsientos(peliculasId, horarioId);
     }
 

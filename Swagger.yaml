@@ -191,21 +191,14 @@ paths:
           description: NOT FOUND  
         "500":
           description: SERVER ERROR
-  /peliculas/{peliculasId}:
+  /peliculas:
     get:
       tags:
         - peliculas
-      summary: Mostrar peliculas por id
-      description: Retorna los datos de la orden( id - name - image - lenguage - adaptation - gender - duration - definition)
+      summary: Mostrar peliculas
+      description: Retorna los datos de la orden( peliculasid - name - image - lenguage - adaptation - gender - duration - definition)
       operationId: getpeliculasById
-      parameters:
-        - name: peliculasId
-          in: path
-          description: ID de la pelicula
-          required: true
-          schema:
-            type: integer
-            format: int64
+
       responses:
         200:
           description: Successful operation
@@ -232,7 +225,48 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
 
-  /peliculas/{peliculasId}/horario:
+  /peliculas/{nombre}:
+    get:
+      tags:
+        - busqueda
+      summary: Mostrar la pelicula buscada
+      description: Retorna los datos de la orden( id - name - image - lenguage - adaptation - gender - duration - definition)
+      operationId: getbusquedaById
+      parameters:
+        - name: nombre
+          in: path
+          description: nombre de la pelicula
+          required: true
+          schema:
+            type: string
+            format: int64
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/busqueda'
+        400:
+          description: BAD REQUEST
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        404:
+          description: NOT FOUND
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        500:
+          description: INTERNAL SERVER ERROR
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+
+  /peliculas/{peliculasId}/horario/{horarioId}:
     get:
       tags:
         - horario
@@ -243,6 +277,13 @@ paths:
         - name: peliculasId
           in: path
           description: ID de la pelicula
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: horarioId
+          in: path
+          description: ID del horario
           required: true
           schema:
             type: integer
@@ -290,7 +331,7 @@ paths:
             format: int64
         - name: horarioId
           in: path
-          description: ID de la pelicula
+          description: ID del horario
           required: true
           schema:
             type: integer
@@ -332,14 +373,6 @@ paths:
           schema:
             type: object
             properties:
-              idPelicula:
-                type: integer
-                description: id de la pelicula
-                example: 2
-              idHorario:
-                type: integer
-                description: id de la pelicula
-                example: 2
               date:
                 type: string
                 description: Fecha para ver la funcion
@@ -351,6 +384,10 @@ paths:
                   description: Asientos disponibles
                   example:
                     [ A-2, A-3 ]
+              compra_ticket_compraticketid:
+                type: integer
+                description: id tabla
+                example: 1
       responses:
         200:
           description: SUCCESSFUL OPERATION
@@ -439,6 +476,10 @@ paths:
                 type: integer
                 description: Ingresar los 3 digitos detras de la tarjeta
                 example: 123
+              expirationDate:
+                type: string
+                description: Nombre para la factura
+                example: 05/2028
               name:
                 type: string
                 description: Nombre para la factura
@@ -447,6 +488,10 @@ paths:
                 type: integer
                 description: nit para la factura
                 example: 2614120
+              compra_ticket_compraticketid:
+                type: integer
+                description: id tabla
+                example: 1
       responses:
         200:
           description: Successful operation
@@ -698,7 +743,7 @@ components:
     peliculas:
       type: object
       properties:
-        id:
+        peliculasId:
           type: integer
           description: Peliculas Id
           example: 2
@@ -710,7 +755,7 @@ components:
           type: string
           description: Imagen de la pelicula
           example: https://es.web.img3.acsta.net/c_310_420/pictures/22/04/07/11/43/1839314.jpg
-        lenguage:
+        language:
           type: string
           description: Idioma de la pelicula
           example: Español
@@ -730,13 +775,28 @@ components:
           type: string
           description: Definicion de la pelicula
           example: 2D
-    horario:
+    busqueda:
       type: object
       properties:
-        idPelicula:
+        peliculasid:
           type: integer
           description: Peliculas Id
           example: 2
+        name:
+          type: string
+          description: Nombre de la pelicula
+          example: Doctor Strange en el Multiverso de la Locura
+    horario:
+      type: object
+      properties:
+        peliculasId:
+          type: integer
+          description: Peliculas Id
+          example: 1
+        horarioId:
+          type: integer
+          description: Peliculas Id
+          example: 1
         name:
           type: string
           description: Nombre de la pelicula
@@ -745,14 +805,6 @@ components:
           type: string
           description: Imagen de la pelicula
           example: https://es.web.img3.acsta.net/c_310_420/pictures/22/04/07/11/43/1839314.jpg
-        city:
-          type: string
-          description: Nombre de la ciudad para la funcion
-          example: La Paz
-        cinema:
-          type: string
-          description: Sala asignada y calidad de pelicula
-          example: Sala 3 - 2D
         schedule:
           type: array
           items:
@@ -763,7 +815,7 @@ components:
     asientos:
       type: object
       properties:
-        idPelicula:
+        peliculasId:
           type: integer
           description: Peliculas Id
           example: 2
@@ -781,11 +833,11 @@ components:
     envio:
       type: object
       properties:
-        idPelicula:
+        peliculasId:
           type: integer
           description: id de la pelicula
           example: 2
-        idHorario:
+        horarioId:
           type: integer
           description: id de la pelicula
           example: 2
@@ -793,6 +845,10 @@ components:
           type: string
           description: Fecha para ver la funcion
           example: 05/19/2022
+        compra_ticket_compraticketid:
+          type: integer
+          description: id tabla
+          example: 1
         seats:
           type: array
           items:
@@ -800,6 +856,7 @@ components:
             description: Asientos disponibles
             example:
               [ A-2, A-3 ]
+
     datosPagoGet:
       type: object
       properties:
@@ -807,11 +864,11 @@ components:
           type: integer
           description: Datos de pago Id
           example: 424
-        idPelicula:
+        peliculasId:
           type: integer
           description: Peliculas Id
           example: 2
-        idHorario:
+        horarioId:
           type: integer
           description: Horario Id
           example: 2
@@ -823,10 +880,6 @@ components:
           type: string
           description: Imagen de la pelicula
           example: https://es.web.img3.acsta.net/c_310_420/pictures/22/04/07/11/43/1839314.jpg
-        city:
-          type: string
-          description: Nombre de la ciudad para la funcion
-          example: La Paz
         datetime:
           type: string
           description: Fecha y hora de la funcion
@@ -848,7 +901,7 @@ components:
     datosPagoPost:
       type: object
       properties:
-        id:
+        datosPagoid:
           type: integer
           description: id de la pelicula
           example: 54562
@@ -872,6 +925,10 @@ components:
           type: integer
           description: nit para la factura
           example: 2614120
+        compra_ticket_compraticketid:
+          type: integer
+          description: id tabla
+          example: 1
     compraTicketsItem:
       type: object
       properties:
@@ -893,7 +950,7 @@ components:
             type: object
             description: Asientos disponibles
             example:
-            - A-2 A-3
+              - A-2 A-3
     datodPagoItem:
       type: object
       properties:
@@ -905,7 +962,7 @@ components:
           type: string
           description: Metodo de pago
           example: Visa
-        cart:
+        card:
           type: integer
           description: numero de la tarjeta
           example: 12345678

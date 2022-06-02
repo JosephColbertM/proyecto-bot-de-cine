@@ -33,7 +33,7 @@ public class PeliculasApi {
     }
 
     @GetMapping(path = "/peliculas/{peliculasId}/horario/{horarioId}&state=true", produces = MediaType.APPLICATION_JSON_VALUE)
-    public CompraTicketDto findByIds(@PathVariable("peliculasId") Integer peliculasId, @PathVariable("horarioId") Integer horarioId) {
+    public AsientosDto findByIds(@PathVariable("peliculasId") Integer peliculasId, @PathVariable("horarioId") Integer horarioId) {
         return peliculasBl.findByIds(peliculasId, horarioId);
     }
 
