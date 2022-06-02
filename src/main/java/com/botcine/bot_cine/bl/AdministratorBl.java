@@ -15,28 +15,30 @@ public class AdministratorBl {
         this.administradorDao = administradorDao;
     }
 
-    public List<AdministradorDto> listAdmins(){
-        return administradorDao.findAllAdministradores();
+    public List<AdministradorDto> listAdmins(Integer pagina){
+        return administradorDao.findAllAdministradores(pagina);
     }
 
-    public void saveAdministrador(String nombre, String apellido, String usuario, String password, String bot_chat_id){
-        administradorDao.saveAdministrador(nombre, apellido, usuario, password, bot_chat_id);
-    }
 
-    public void updateAdministrator(Integer ca, String nombre, String apellido, String usuario, String password, String bot_chat_id) {
-        administradorDao.updateAdministrator(ca,nombre,apellido,usuario, password, bot_chat_id);
-    }
 
     public void deleteAdministrator(Integer idAdministrator) {
         administradorDao.deleteAdministrator(idAdministrator);
     }
 
-    public void deleteAdministrator2(Integer idAdministrator) {
-        administradorDao.deleteAdministrator2(idAdministrator);
+    public void deleteAdministrator2(Integer idAdministrador) {
+        administradorDao.deleteAdministrator2(idAdministrador);
     }
 
     public AdministradorDto findById(Integer idAdministrador) {
         return administradorDao.findById(idAdministrador);
 
+    }
+
+    public void saveAdministrador(String nombre, String apellido, String fecha_nacimiento, String usuario, String password) {
+        administradorDao.saveAdministrador(nombre, apellido, fecha_nacimiento, usuario, password);
+    }
+
+    public void updateAdministrator(String nombre, String apellido, String fecha_nacimiento, String usuario, String password, Integer idAdministrador) {
+        administradorDao.updateAdministrator(nombre,apellido,fecha_nacimiento,usuario,password,idAdministrador);
     }
 }

@@ -1,29 +1,29 @@
 package com.botcine.bot_cine.dto;
 
 public class AdministradorDto {
-    Integer ca;
+    Integer id_admin;
     String nombre;
     String apellido;
+    String fecha_nacimiento;
     String usuario;
     String password;
-    String bot_chat_id;
-
-    public AdministradorDto(Integer ca, String nombre, String apellido, String usuario, String password, String bot_chat_id) {
-        this.ca = ca;
+    Integer status;
+    public AdministradorDto(Integer id_admin, String nombre, String apellido, String fecha_nacimiento, String usuario, String password, Integer status) {
+        this.id_admin = id_admin;
         this.nombre = nombre;
         this.apellido = apellido;
+        this.fecha_nacimiento = fecha_nacimiento;
         this.usuario = usuario;
         this.password = password;
-        this.bot_chat_id = bot_chat_id;
+        this.status = status;
     }
 
-
-    public Integer getCa() {
-        return ca;
+    public Integer getId_admin() {
+        return id_admin;
     }
 
-    public void setCa(Integer ca) {
-        this.ca = ca;
+    public void setId_admin(Integer id_admin) {
+        this.id_admin = id_admin;
     }
 
     public String getNombre() {
@@ -42,6 +42,14 @@ public class AdministradorDto {
         this.apellido = apellido;
     }
 
+    public String getFecha_nacimiento() {
+        return fecha_nacimiento;
+    }
+
+    public void setFecha_nacimiento(String fecha_nacimiento) {
+        this.fecha_nacimiento = fecha_nacimiento;
+    }
+
     public String getUsuario() {
         return usuario;
     }
@@ -58,20 +66,24 @@ public class AdministradorDto {
         this.password = password;
     }
 
-    public String getBot_chat_id() {
-        return bot_chat_id;
+    public Integer getStatus() {
+        return status;
     }
 
-    public void setBot_chat_id(String bot_chat_id) {
-        this.bot_chat_id = bot_chat_id;
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     @Override
     public String toString() {
-        return
-                "Nombre: " + nombre + '\n' +
-                        "Apellido: " + apellido + '\n' +
-                        "Usuario: " + usuario + '\n' +
-                        "Password: " + password + '\n';
+        return "AdministradorDto{" +
+                "id_admin=" + id_admin +
+                ", nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", fecha_nacimiento='" + fecha_nacimiento + '\'' +
+                ", usuario='" + usuario + '\'' +
+                ", password='" + password + '\'' +
+                ", status=" + status +
+                '}';
     }
 }

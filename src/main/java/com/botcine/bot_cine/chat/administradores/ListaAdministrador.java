@@ -3,7 +3,6 @@ package com.botcine.bot_cine.chat.administradores;
 import com.botcine.bot_cine.bl.AdministratorBl;
 import com.botcine.bot_cine.chat.AbstractProcess;
 import com.botcine.bot_cine.chat.AccesoAdministradores;
-import com.botcine.bot_cine.chat.AccesoPeliculas;
 import com.botcine.bot_cine.chat.CineLongPollingBot;
 import com.botcine.bot_cine.dto.AdministradorDto;
 import org.springframework.context.ApplicationContext;
@@ -31,14 +30,10 @@ public class ListaAdministrador extends AbstractProcess {
     @Override
     public AbstractProcess handle(ApplicationContext context, Update update, CineLongPollingBot bot) {
         Long chatId = update.getMessage().getChatId();
-        List<AdministradorDto> administradorDtoList = administratorBl.listAdmins();
+        //List<AdministradorDto> administradorDtoList = administratorBl.listAdmins();
         StringBuffer sb = new StringBuffer();
         sb.append("Lista de administradores:\r\n\n");
 
-        for(AdministradorDto administradorDto : administradorDtoList){
-            sb.append(administradorDto.toString()).append("\n\r");
-
-        }
         sb.append("Ingrese cualquier caracter para volver al menu\n\r");
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(chatId.toString());

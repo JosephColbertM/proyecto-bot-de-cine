@@ -18,32 +18,32 @@ public class AdministradorApi {
         this.administratorBl = administratorBl;
     }
 
-    @GetMapping(value = "/administrators", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<AdministradorDto> listAll() {
-        return administratorBl.listAdmins();
+    @GetMapping(value = "/administrators/pagina/{pagina}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<AdministradorDto> listAll(@PathVariable ("pagina") Integer pagina) {
+        return administratorBl.listAdmins(pagina);
     }
 
     @PostMapping(path="/administrators", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE )
     public String addAdministrador(@RequestBody AdministradorDto administradorDto) {
-        administratorBl.saveAdministrador(administradorDto.getNombre(),administradorDto.getApellido(),administradorDto.getUsuario(),administradorDto.getPassword(),administradorDto.getBot_chat_id());
+        administratorBl.saveAdministrador(administradorDto.getNombre(),administradorDto.getApellido(),administradorDto.getFecha_nacimiento(),administradorDto.getUsuario(),administradorDto.getPassword());
         return "Administrador Registrado";
     }
 
-    @PutMapping(path= "/administrators", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE )
-    public String updateAdministrador(@RequestBody AdministradorDto administradorDto){
-        administratorBl.updateAdministrator(administradorDto.getCa(),administradorDto.getNombre(),administradorDto.getApellido(),administradorDto.getUsuario(),administradorDto.getPassword(),administradorDto.getBot_chat_id());
+    @PutMapping(path= "/administrators/{idAdministrador}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public String updateAdministrador(@PathVariable ("idAdministrador") Integer idAdministrador,@RequestBody AdministradorDto administradorDto){
+        administratorBl.updateAdministrator(administradorDto.getNombre(),administradorDto.getApellido(),administradorDto.getFecha_nacimiento(),administradorDto.getUsuario(),administradorDto.getPassword(),idAdministrador);
         return "Administrador Actualizado";
     }
 
-    @DeleteMapping(path= "/administrators", produces = MediaType.APPLICATION_JSON_VALUE )
-    public String deleteAdministrador(@RequestParam ("idAdministrator")Integer idAdministrator){
-        administratorBl.deleteAdministrator(idAdministrator);
+    @DeleteMapping(path= "/administrators/{idAdministrador}", produces = MediaType.APPLICATION_JSON_VALUE )
+    public String deleteAdministrador(@PathVariable ("idAdministrador")Integer idAdministrador){
+        administratorBl.deleteAdministrator(idAdministrador);
         return "Eliminado exitoso";
     }
 
-    @PutMapping(path= "/administrators/delete", produces = MediaType.APPLICATION_JSON_VALUE)
-    public String deleteAdministrador2(@RequestParam ("idAdministrator") Integer idAdministrator){
-        administratorBl.deleteAdministrator2(idAdministrator);
+    @PutMapping(path= "/administrators/delete/{idAdministrador}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public String deleteAdministrador2(@PathVariable ("idAdministrador") Integer idAdministrador){
+        administratorBl.deleteAdministrator2(idAdministrador);
         return "Eliminado status";
     }
 

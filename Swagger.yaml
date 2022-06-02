@@ -104,7 +104,7 @@ paths:
           format: int64
       responses:
         "200":
-           description: Eliminación logica exitosa
+           description: Eliminación exitosa
           
         "400":
           description: BAD REQUEST

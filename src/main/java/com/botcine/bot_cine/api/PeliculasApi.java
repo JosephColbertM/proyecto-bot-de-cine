@@ -14,7 +14,7 @@ import java.util.List;
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT})
 public class PeliculasApi {
     private PeliculasBl  peliculasBl;
-
+/*
     @Autowired
     public PeliculasApi(PeliculasBl peliculasBl) {
         this.peliculasBl = peliculasBl;
@@ -33,27 +33,28 @@ public class PeliculasApi {
     public PeliculasDto findHorarioById(@PathVariable("peliculasId") Integer peliculasId) {
         return peliculasBl.findByPeliculasId(peliculasId);
     }
-
-    @GetMapping(value = "/peliculas/{peliculasId}/horario/{horarioId}&state=true", produces = MediaType.APPLICATION_JSON_VALUE)
-    public PeliculasDto findByIds@PathVariable("peliculasId") Integer peliculasId, @PathVariable("horarioId") Integer horarioId) {
-        return peliculasBl.findByIds(peliculasId, horarioId);
-    }
-
+    /*
     @PostMapping(path="/compraTicket", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE )
     public String addTicket(@RequestBody PeliculasDto  peliculasDto, HorariosDto horarioDto) {
         peliculasBl.saveTicket(peliculasDto.getPeliculasId(), HorariosDto.getHorarioId());
         return "Datos Registrados";
     }
 
+     */
+/*
     @GetMapping(value = "/datosPago/{datosPagoId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public PeliculasDto findByIdPago(@PathVariable("datosPagoId") Integer datosPagoId){
         return peliculasBl.findDatosPago(datosPagoId);
     }
 
+ */
+/*
     @PostMapping(path="/datosPago", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE )
     public String addDatosPago (@RequestBody DatosPagoDto datosPagoDto) {
         peliculasBl.saveDatosPago(datosPagoDto.getDatosPagoId(), datosPagoDto.getPayment(),datosPagoDto.getCard(), datosPagoDto.getLastDigist(),
                 datosPagoDto.getExpirationDate(), datosPagoDto.getName(), datosPagoDto.getNit());
         return "Datos del Pago Registrado";
     }
+
+ */
 }

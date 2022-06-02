@@ -27,7 +27,7 @@ public class PeliculasBl {
     public void savePeliculas(String nombre, String duracion, String hora_inicio, String hora_final){
         peliculasDao.savePeliculas(nombre,duracion,hora_inicio,hora_final);
     }
-
+/*
     public PeliculasDto findByName(String nombre) {
         return peliculasDao.showPeliculas(nombre);
     }
@@ -39,7 +39,7 @@ public class PeliculasBl {
     public PeliculasDto findHorarioById(Integer peliculasId, Integer horarioId) {
         return peliculasDao.showAsientos(peliculasId, horarioId);
     }
-
+/*
     public void saveTicket(Integer peliculasId) {
         peliculasDao.saveTicket(peliculasId, horarioId, seats);
     }
@@ -47,6 +47,8 @@ public class PeliculasBl {
     public PeliculasDto findDatosPago(Integer datosPagoId) {
         return peliculasDao.showdatosPago(datosPagoId);
     }
+
+ */
 
     public void addDatosPago(Integer datosPagoId, String payment, String card, String lastDigist, String expirationDate, String name, Integer nit) {
         peliculasDao.addDatosPago(datosPagoId, payment, card, lastDigist, expirationDate, name, nit);

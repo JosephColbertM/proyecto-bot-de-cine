@@ -1,37 +1,37 @@
-### Listado de todos los paises
-GET http://localhost:8080/administrators
+###
+GET http://localhost:8080/administrators/pagina/1
 Accept: application/json
 
 ###
-PUT http://localhost:8080/administrators
-Content-Type: application/json
-
-{
-  "nombre": "Cosa",
-  "apellido": "Diaz",
-  "usuario": "Ruco",
-  "password": "Lapoderosa",
-  "bot_chat_id": "1",
-  "ca": 1
-}
-
-###Crear una nueva Direccion
 POST http://localhost:8080/administrators
 Content-Type: application/json
 
 {
-  "nombre": "Ruben",
+  "nombre": "Ruben ggg",
   "apellido": "Diaz",
+  "fecha_nacimiento": "1999-5-5",
   "usuario": "Ruco",
-  "password": "Lapoderosa",
-  "bot_chat_id": "1"
+  "password": "Lapoderosa"
 }
 
 ###
-DELETE http://localhost:8080/administrators?idAdministrator=1
+PUT http://localhost:8080/administrators/1
+Content-Type: application/json
+
+{
+  "nombre": "Roberto",
+  "apellido": "Melendez",
+  "fecha_nacimiento": "1999-5-5",
+  "usuario": "Ruco",
+  "password": "Lapoderosa"
+}
 
 ###
-PUT http://localhost:8080/administrators/delete?idAdministrator=2
+DELETE http://localhost:8080/administrators/1
+
 
 ###
-GET http://localhost:8080/administrators/3
+PUT http://localhost:8080/administrators/delete/
+
+###
+GET http://localhost:8080/administrators/2
