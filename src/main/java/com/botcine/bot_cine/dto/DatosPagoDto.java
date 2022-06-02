@@ -3,13 +3,14 @@ package com.botcine.bot_cine.dto;
 public class DatosPagoDto {
     private Integer datosPagoId;
     private String payment;
-    private String card;
+    private Integer card;
     private Integer lastDigist;
     private String expirationDate;
     private String name;
     private Integer nit;
+    private Integer compra_ticket_compraticketid;
 
-    public DatosPagoDto(Integer datosPagoId, String payment, String card, Integer lastDigist, String expirationDate, String name, Integer nit) {
+    public DatosPagoDto(Integer datosPagoId, String payment, Integer card, Integer lastDigist, String expirationDate, String name, Integer nit, Integer compra_ticket_compraticketid) {
         this.datosPagoId = datosPagoId;
         this.payment = payment;
         this.card = card;
@@ -17,6 +18,8 @@ public class DatosPagoDto {
         this.expirationDate = expirationDate;
         this.name = name;
         this.nit = nit;
+        this.compra_ticket_compraticketid = compra_ticket_compraticketid;
+
     }
 
     public Integer getDatosPagoId() {
@@ -35,11 +38,11 @@ public class DatosPagoDto {
         this.payment = payment;
     }
 
-    public String getCard() {
+    public Integer getCard() {
         return card;
     }
 
-    public void setCard(String card) {
+    public void setCard(Integer card) {
         this.card = card;
     }
 
@@ -73,6 +76,14 @@ public class DatosPagoDto {
 
     public void setNit(Integer nit) {
         this.nit = nit;
+    }
+
+    public Integer getCompra_ticket_compraticketid() {
+        return compra_ticket_compraticketid;
+    }
+
+    public void setCompra_ticket_compraticketid(Integer compra_ticket_compraticketid) {
+        this.compra_ticket_compraticketid = compra_ticket_compraticketid;
     }
 
     @Override

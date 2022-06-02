@@ -4,6 +4,7 @@ import com.botcine.bot_cine.bl.PeliculasBl;
 import com.botcine.bot_cine.chat.AbstractProcess;
 import com.botcine.bot_cine.chat.AccesoPeliculas;
 import com.botcine.bot_cine.chat.CineLongPollingBot;
+import com.botcine.bot_cine.dto.AsientosDto;
 import com.botcine.bot_cine.dto.PeliculasDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;

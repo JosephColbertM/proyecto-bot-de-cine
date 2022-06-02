@@ -1,7 +1,8 @@
 package com.botcine.bot_cine.bl;
 
 import com.botcine.bot_cine.dao.PeliculasDao;
-import com.botcine.bot_cine.dto.PeliculasDto;
+import com.botcine.bot_cine.dto.*;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,28 +24,28 @@ public class PeliculasBl {
         return Pel;
     }
 
-    public PeliculasDto findByName(String nombre) {
+    public BusquedaDto findByName(String nombre) {
         return peliculasDao.showPeliculas(nombre);
     }
 
-    public PeliculasDto findByPeliculasId(Integer peliculasId) {
-        return peliculasDao.showHorario(peliculasId);
+    public HorariosDto findByPeliculasId(Integer peliculasId, Integer horarioId) {
+        return peliculasDao.showHorario(peliculasId, horarioId);
     }
 
-    public PeliculasDto findByIds(Integer peliculasId, Integer horarioId) {
+    public CompraTicketDto findByIds(Integer peliculasId, Integer horarioId) {
         return peliculasDao.showAsientos(peliculasId, horarioId);
     }
 
-    public void saveTicket(Integer peliculasId, Integer horarioId, String date, String status) {
-        peliculasDao.saveTicket(peliculasId, horarioId, date, status);
+    public void saveTicket(String date, String seast, Integer peliculas_horario_id_peliculas_horario) {
+        peliculasDao.saveTicket(date, seast, peliculas_horario_id_peliculas_horario);
     }
 
     public PeliculasDto findDatosPago(Integer datosPagoId) {
         return peliculasDao.showdatosPago(datosPagoId);
     }
 
-    public void saveDatosPago(Integer datosPagoId, String payment, String card, Integer lastDigist, String expirationDate, String name, Integer nit) {
-        peliculasDao.addDatosPago(datosPagoId, payment, card, lastDigist, expirationDate, name, nit);
+    public void saveDatosPago(String payment, Integer card, Integer lastDigist, String expirationDate, String name, Integer nit, Integer compra_ticket_compraticketid) {
+        peliculasDao.addDatosPago(payment, card, lastDigist, expirationDate, name, nit, compra_ticket_compraticketid);
     }
 
 }
