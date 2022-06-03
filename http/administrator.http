@@ -1,8 +1,8 @@
-###
+### Busqueda de administradores con paginacion
 GET http://localhost:8080/administrators/pagina/0
 Accept: application/json
 
-###
+### Agregado de administrador
 POST http://localhost:8080/administrators
 Content-Type: application/json
 
@@ -14,8 +14,8 @@ Content-Type: application/json
   "password": "contra"
 }
 
-###
-PUT http://localhost:8080/administrators/1
+### Modificar administrador
+PUT http://localhost:8080/administrators/2
 Content-Type: application/json
 
 {
@@ -26,12 +26,11 @@ Content-Type: application/json
   "password": "4050"
 }
 
-###
-DELETE http://localhost:8080/administrators/1
+### Eliminado logico
+PUT http://localhost:8080/administrators/delete/2
 
+### Eliminado fisico
+DELETE http://localhost:8080/administrators/2
 
-###
-PUT http://localhost:8080/administrators/delete/
-
-###
-GET http://localhost:8080/administrators/2
+### Busqueda de administrador por id
+GET http://localhost:8080/administrators/4

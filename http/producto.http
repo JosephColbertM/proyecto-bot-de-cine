@@ -29,5 +29,5 @@ Content-Type: application/json
   "expirationDate": "2022-09-09",
   "name": "Ugarte",
   "nit": 2614120,
-  "compra_producto_compraProductoId": 1
+  "compra_producto_compraProductoId": 3
 }
