@@ -15,9 +15,6 @@ public interface PeliculasDao {
             "FROM peliculas")
     public List<PeliculasDto> findAllPeliculas();
 
-    @Select("SELECT peliculasId, name "+
-            "FROM peliculas WHERE name = #{name}")
-    BusquedaDto showPeliculas(@Param("name") String nombre);
 
     @Select("SELECT a.peliculasId, b.horarioId, a.name, a.image, b.schedule " +
             "FROM peliculas a, horarios b, peliculas_horario c " +
@@ -37,8 +34,6 @@ public interface PeliculasDao {
     void saveTicket(@Param("date") String date, @Param("seats") String seast,
                     @Param("peliculas_horario_id_peliculas_horario") Integer peliculas_horarios_id_peliculas_horario );
 
-    @Select("SELECT a.peliculasId, b.horarioId, a.name, ")
-    PeliculasDto showdatosPago(Integer datosPagoId);
 
     @Insert("INSERT INTO datos_pago(payment, card, lastdigist, expirationdate, name, nit, compra_ticket_compraticketid)" +
             " VALUES (#{payment}, #{card}, #{lastdigist}, #{expirationdate}, #{name}, #{nit}, #{compra_ticket_compraticketid})")

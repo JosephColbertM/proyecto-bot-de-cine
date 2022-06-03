@@ -24,10 +24,6 @@ public class PeliculasBl {
         return Pel;
     }
 
-    public BusquedaDto findByName(String nombre) {
-        return peliculasDao.showPeliculas(nombre);
-    }
-
     public HorariosDto findByPeliculasId(Integer peliculasId, Integer horarioId) {
         return peliculasDao.showHorario(peliculasId, horarioId);
     }
@@ -38,10 +34,6 @@ public class PeliculasBl {
 
     public void saveTicket(String date, String seast, Integer peliculas_horario_id_peliculas_horario) {
         peliculasDao.saveTicket(date, seast, peliculas_horario_id_peliculas_horario);
-    }
-
-    public PeliculasDto findDatosPago(Integer datosPagoId) {
-        return peliculasDao.showdatosPago(datosPagoId);
     }
 
     public void saveDatosPago(String payment, Integer card, Integer lastDigist, String expirationDate, String name, Integer nit, Integer compra_ticket_compraticketid) {

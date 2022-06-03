@@ -21,11 +21,7 @@ public class PeliculasApi {
     public List<PeliculasDto> findLast10PermissionsByChatId() {
         return peliculasBl.findLast10PermissionsByChatId();
     }
-
-    @GetMapping(path = "/peliculas/{nombre}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public BusquedaDto findById(@PathVariable("{nombre}") String nombre) {
-        return peliculasBl.findByName(nombre);
-    }
+    
 
     @GetMapping(path = "/peliculas/{peliculasId}/horario/{horarioId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public HorariosDto findHorarioById(@PathVariable ("peliculasId") Integer peliculasId, @PathVariable ("horarioId") Integer horarioId) {
@@ -40,11 +36,6 @@ public class PeliculasApi {
     @PostMapping(path="/compraTicket")
     public void addTicket(@RequestBody CompraTicketDto  compraTicketDto) {
         peliculasBl.saveTicket(compraTicketDto.getDate(), compraTicketDto.getSeats(), compraTicketDto.getPeliculas_horario_id_peliculas_horario());
-    }
-
-    @GetMapping(path = "/datosPago/{datosPagoId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public PeliculasDto findByIdPago(@PathVariable("datosPagoId") Integer datosPagoId){
-        return peliculasBl.findDatosPago(datosPagoId);
     }
 
     @PostMapping(path="/datosPago", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE )
